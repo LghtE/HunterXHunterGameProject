@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://didcvbvyc8eef"]
+[gd_scene load_steps=16 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/Player.gd" id="5_m8jon"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/movement.gd" id="6_u4hjb"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/untargeted_movement.gd" id="7_nyo0m"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/targeted_movement.gd" id="7_u5xgg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrrbp"]
 resource_name = "BaseBody.002"
@@ -89,9 +88,6 @@ node_connections = [&"Run", 0, &"Anim Idle", &"Run", 1, &"Anim Running", &"outpu
 [node name="Hunter" instance=ExtResource("1_axw2m")]
 script = ExtResource("2_tqj0w")
 
-[node name="Armature" parent="." index="0"]
-unique_name_in_owner = true
-
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(-0.0762817, 2.89634, -0.1124)
 bones/0/rotation = Quaternion(0.298747, -0.00531927, 0.0226945, 0.954048)
@@ -165,9 +161,13 @@ current_state = NodePath("Movement")
 
 [node name="Movement" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("6_u4hjb")
+mouse_sensitivity = null
+move_speed = null
+acceleration = null
+rotation_speed = null
+blend_speed = null
 
 [node name="TargetedMovement" type="Node" parent="StateMachine/Movement" index="0"]
-script = ExtResource("7_u5xgg")
 
 [node name="Untargeted Movement" type="Node" parent="StateMachine/Movement" index="1"]
 script = ExtResource("7_nyo0m")
