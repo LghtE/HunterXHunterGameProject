@@ -7,7 +7,7 @@
 shader = ExtResource("1_0bmbt")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
-shader_parameter/colors = 8
+shader_parameter/colors = 12
 shader_parameter/dither_size = 1
 
 [node name="Main" type="SubViewportContainer"]

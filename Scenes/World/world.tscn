@@ -13,7 +13,6 @@ sky_material = SubResource("ProceduralSkyMaterial_hv7uk")
 [sub_resource type="Environment" id="Environment_qijy7"]
 background_mode = 2
 sky = SubResource("Sky_d5h8u")
-tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw336"]
@@ -49,4 +48,4 @@ mesh = SubResource("BoxMesh_svt73")
 shape = SubResource("ConcavePolygonShape3D_7u63i")
 
 [node name="Hunter" parent="." instance=ExtResource("2_upwxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.964582, -0.099699, -1.98844)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.964582, -0.099699, -0.605025)

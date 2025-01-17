@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://didcvbvyc8eef"]
+[gd_scene load_steps=15 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
 [ext_resource type="Texture2D" uid="uid://djftgbhs6jeap" path="res://Assets/BaseHunter/Hunter_testcolormat.png" id="3_jmvef"]
 [ext_resource type="Texture2D" uid="uid://dehqmc6uv2s4g" path="res://Assets/BaseHunter/Hunter_testcolormat_1.png" id="4_hth1q"]
+[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/Player.gd" id="5_m8jon"]
+[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/movement.gd" id="6_u4hjb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrrbp"]
 resource_name = "BaseBody.002"
@@ -73,7 +75,6 @@ animation = &"Run"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_63tfg"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ssk2q"]
-graph_offset = Vector2(-464, 51.091)
 "nodes/Anim Idle/node" = SubResource("AnimationNodeAnimation_gichu")
 "nodes/Anim Idle/position" = Vector2(-160, 140)
 "nodes/Anim Running/node" = SubResource("AnimationNodeAnimation_yc5sn")
@@ -156,3 +157,9 @@ transform = Transform3D(-0.999692, 0.00480871, 0.024343, 0.0120257, 0.952021, 0.
 tree_root = SubResource("AnimationNodeBlendTree_ssk2q")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Run/blend_amount = 0.0
+
+[node name="StateMachine" type="Node" parent="." index="5"]
+script = ExtResource("5_m8jon")
+
+[node name="Movement" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("6_u4hjb")
