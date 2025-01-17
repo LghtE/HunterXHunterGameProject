@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2x67o7sqxefx"]
+
+[ext_resource type="Texture2D" uid="uid://ky14ggmi8kws" path="res://Assets/TestStuff/pattern.png" id="1_r5lpi"]
+[ext_resource type="PackedScene" uid="uid://didcvbvyc8eef" path="res://Scenes/Characters/BaseHunter/hunter.tscn" id="2_upwxr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hv7uk"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_d5h8u"]
+sky_material = SubResource("ProceduralSkyMaterial_hv7uk")
+
+[sub_resource type="Environment" id="Environment_qijy7"]
+background_mode = 2
+sky = SubResource("Sky_d5h8u")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw336"]
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("1_r5lpi")
+emission_enabled = true
+emission_texture = ExtResource("1_r5lpi")
+uv1_scale = Vector3(13.705, 10.325, 10.225)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_svt73"]
+material = SubResource("StandardMaterial3D_aw336")
+size = Vector3(50, 50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7u63i"]
+data = PackedVector3Array(-25, 25, 25, 25, 25, 25, -25, -25, 25, 25, 25, 25, 25, -25, 25, -25, -25, 25, 25, 25, -25, -25, 25, -25, 25, -25, -25, -25, 25, -25, -25, -25, -25, 25, -25, -25, 25, 25, 25, 25, 25, -25, 25, -25, 25, 25, 25, -25, 25, -25, -25, 25, -25, 25, -25, 25, -25, -25, 25, 25, -25, -25, -25, -25, 25, 25, -25, -25, 25, -25, -25, -25, 25, 25, 25, -25, 25, 25, 25, 25, -25, -25, 25, 25, -25, 25, -25, 25, 25, -25, -25, -25, 25, 25, -25, 25, -25, -25, -25, 25, -25, 25, 25, -25, -25, -25, -25, -25)
+
+[node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.222942, 1.90735e-06, 0.0165672)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qijy7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.30723, 0, 0, 0, 1, 0, 0, 0, 6.11432, 0.860806, -25.0997, -2.61025)
+mesh = SubResource("BoxMesh_svt73")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7u63i")
+
+[node name="Hunter" parent="." instance=ExtResource("2_upwxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.964582, -0.099699, -1.98844)
