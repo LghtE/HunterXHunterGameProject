@@ -11,12 +11,12 @@ extends State
 
 var _cam_input_dir := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK
-
+var move_direction
 
 @onready var _cam_pivot : Node3D = %CameraPivot
 @onready var _cam : Camera3D = %Camera3D
 @onready var _baseHunter : Node3D = %Armature
-@onready var _animTree: AnimationTree = $AnimationTree
+
 var run_value = 0.0
 
 var targeting = false
@@ -58,7 +58,7 @@ func baseMovement(delta):
 	var raw_input := Input.get_vector("Left", "Right", "Forward", "Back")
 	var forward := _cam.global_basis.z
 	var right := _cam.global_basis.x
-	var move_direction := forward * raw_input.y + right* raw_input.x
+	move_direction = forward * raw_input.y + right* raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
 	get_parent().get_parent().velocity = get_parent().get_parent().velocity.move_toward(move_direction * move_speed, acceleration * delta)

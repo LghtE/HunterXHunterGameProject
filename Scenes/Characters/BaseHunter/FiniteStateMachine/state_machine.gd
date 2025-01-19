@@ -7,7 +7,7 @@ func _ready() -> void:
 	pass
 
 func onEnter():
-	print("state initiated")
+	pass
 	
 func do(delta: float):
 	pass
