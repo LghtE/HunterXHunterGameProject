@@ -3,6 +3,8 @@ extends Node
 @export var current_state: State
 var previous_state: State
 var _velocity
+var mouse_position
+var mouse_moving = false
 
 func _ready() -> void:
 	pass
@@ -18,6 +20,13 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("Escape"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+	if event is InputEventMouseMotion:
+		mouse_moving = true
+		mouse_position = event.relative
+	else:
+		mouse_moving = false
+
 
 func handleStates(delta : float):
 	if previous_state && current_state:
