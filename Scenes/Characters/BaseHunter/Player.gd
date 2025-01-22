@@ -5,27 +5,33 @@ var previous_state: State
 var _velocity
 var mouse_position
 var mouse_moving = false
+var _old_mouse = Vector2.ZERO
 
 func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	pass
+	if get_viewport().get_mouse_position() != _old_mouse:
+		mouse_moving = true
+	else:
+		mouse_moving = false
+	_old_mouse = get_viewport().get_mouse_position()
 	
 func _physics_process(delta: float) -> void:
 	handleStates(delta)
 	
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("Escape"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		
+
 	if event is InputEventMouseMotion:
-		mouse_moving = true
+		#mouse_moving = true
 		mouse_position = event.relative
 	else:
-		mouse_moving = false
+		pass
+		#mouse_moving = false
 
 
 func handleStates(delta : float):

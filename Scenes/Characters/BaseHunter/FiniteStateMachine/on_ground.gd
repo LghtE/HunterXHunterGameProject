@@ -10,11 +10,11 @@ func do(delta : float):
 	
 	if %Movement.move_direction == Vector3.ZERO:
 		if get_node("RunStop").run_stop_done == true:
-			get_child(1).do(delta) # IDLE
+			get_node("Idle").do(delta) # IDLE
 		else:
-			get_child(2).do(delta)
+			get_node("RunStop").do(delta)
 	else:
 		get_node("RunStop").run_stop_done = false
-		get_child(0).do(delta) # RUNNING
+		get_node("Run").do(delta) # RUNNING
 		
 	

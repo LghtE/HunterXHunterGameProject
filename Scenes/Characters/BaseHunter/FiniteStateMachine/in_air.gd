@@ -1,7 +1,7 @@
 extends Node
 
 func do(delta:float):
-	%Armature.rotation.z = 0
+	#%Armature.rotation.z = 0
 
 	if %Movement._rootNode.velocity.y > 0:
 		get_node("Jump").do(delta)

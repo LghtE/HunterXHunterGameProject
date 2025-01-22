@@ -10,6 +10,6 @@ func do(delta):
 	
 	
 	if %Movement._rootNode.is_on_floor():
-		get_child(0).do(delta) #OnGround
+		get_node("OnGround").do(delta) #OnGround
 	else:
-		get_child(1).do(delta) #InAir
+		get_node("InAir").do(delta) #InAir

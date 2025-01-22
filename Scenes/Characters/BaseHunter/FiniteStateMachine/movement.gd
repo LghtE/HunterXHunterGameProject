@@ -45,9 +45,9 @@ func do(delta : float):
 	baseMovement(delta)
 
 	if targeting:
-		get_child(0).do(delta)
+		get_node("TargetedMovement").do(delta)
 	else:
-		get_child(1).do(delta)
+		get_node("Untargeted Movement").do(delta)
 
 
 
