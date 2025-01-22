@@ -8,11 +8,15 @@ extends State
 @export var acceleration := 150
 @export var rotation_speed := 10.0
 @export var blend_speed := 15
+@export var jump_impulse := 12.0
+@export var _gravity := -30.0
 
 var _cam_input_dir := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK
 var move_direction
 
+
+@onready var _rootNode : CharacterBody3D = get_parent().get_parent()
 @onready var _cam_pivot : Node3D = %CameraPivot
 @onready var _cam : Camera3D = %Camera3D
 @onready var _baseHunter : Node3D = %Armature
@@ -61,8 +65,14 @@ func baseMovement(delta):
 	move_direction = forward * raw_input.y + right* raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
-	get_parent().get_parent().velocity = get_parent().get_parent().velocity.move_toward(move_direction * move_speed, acceleration * delta)
-	get_parent().get_parent().move_and_slide()
+	
+	var y_velocity := _rootNode.velocity.y
+	_rootNode.velocity.y = 0.0
+	
+	
+	_rootNode.velocity = _rootNode.velocity.move_toward(move_direction * move_speed, acceleration * delta)
+	_rootNode.velocity.y = y_velocity + _gravity * delta
+	_rootNode.move_and_slide()
 	
 	if move_direction.length() > 0.2:
 		_last_movement_direction = move_direction

@@ -9,6 +9,12 @@ func do(delta : float):
 	
 	
 	if %Movement.move_direction == Vector3.ZERO:
-		get_child(1).do(delta) # IDLE
+		if get_node("RunStop").run_stop_done == true:
+			get_child(1).do(delta) # IDLE
+		else:
+			get_child(2).do(delta)
 	else:
+		get_node("RunStop").run_stop_done = false
 		get_child(0).do(delta) # RUNNING
+		
+	

@@ -24,6 +24,6 @@ func do(delta : float):
 		%Armature.rotation.z = lerp(%Armature.rotation.z, deg_to_rad(0), 0.1)
 	else:
 		if %StateMachine.mouse_position.x > 0:
-			%Armature.rotation.z = lerp(%Armature.rotation.z, deg_to_rad(12), 0.1)
+			%Armature.rotation.z = lerp(%Armature.rotation.z, deg_to_rad(10), 0.1)
 		elif %StateMachine.mouse_position.x < 0:
-			%Armature.rotation.z = lerp(%Armature.rotation.z, deg_to_rad(-12), 0.1)
+			%Armature.rotation.z = lerp(%Armature.rotation.z, deg_to_rad(-10), 0.1)
