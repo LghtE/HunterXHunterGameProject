@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://didcvbvyc8eef"]
+[gd_scene load_steps=27 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_c2lju"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/Player.gd" id="5_m8jon"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/movement.gd" id="6_u4hjb"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_wtisk"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/untargeted_movement.gd" id="7_nyo0m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/targeted_movement.gd" id="7_u5xgg"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/idle.gd" id="9_cc0kx"]
@@ -76,6 +77,12 @@ blend_shape_mode = 0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_homsi"]
 radius = 1.5
 height = 6.509
+
+[sub_resource type="Resource" id="Resource_xfdej"]
+script = ExtResource("6_wtisk")
+duration = 1.0
+transition = 0
+ease = 2
 
 [sub_resource type="Animation" id="Animation_v4fnq"]
 length = 0.001
@@ -180,22 +187,23 @@ shape = SubResource("CapsuleShape3D_homsi")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." index="3" node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
-transform = Transform3D(-1.00001, -2.87517e-08, 8.25648e-08, -9.06244e-09, 0.973427, 0.229213, -8.69528e-08, 0.22921, -0.973435, 6.60518e-07, 5.6337, -7.78748)
+transform = Transform3D(-1.00001, -4.39204e-08, 1.46985e-07, -9.06243e-09, 0.973426, 0.229212, -1.53131e-07, 0.22921, -0.973435, 1.32287e-06, 5.86291, -8.76091)
 script = ExtResource("5_c2lju")
 follow_mode = 6
 follow_target = NodePath("../Armature")
+tween_resource = SubResource("Resource_xfdej")
 tween_on_load = false
 follow_offset = Vector3(0, 3.8, 0)
-follow_distance = 8.0
+follow_distance = 9.0
 dead_zone_width = 0.51
 dead_zone_height = 0.65
 show_viewfinder_in_play = true
-spring_length = 8.0
+spring_length = 9.0
 
 [node name="Camera3D" type="Camera3D" parent="." index="4"]
 unique_name_in_owner = true
 physics_interpolation_mode = 2
-transform = Transform3D(-1, -2.87504e-08, 8.25602e-08, -9.06235e-09, 0.97338, 0.229199, -8.69519e-08, 0.229199, -0.97338, 6.60518e-07, 5.6337, -7.78748)
+transform = Transform3D(-1, -4.39182e-08, 1.46976e-07, -9.06234e-09, 0.97338, 0.229199, -1.53129e-07, 0.229199, -0.97338, 1.32287e-06, 5.86291, -8.76091)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" index="0"]
 process_priority = 300
