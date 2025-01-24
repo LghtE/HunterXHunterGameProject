@@ -12,7 +12,7 @@ func onEnter():
 func do(delta : float):
 	
 	%Movement.move_speed = 45
-	%AnimationPlayer.play("Run")
+	%AnimationPlayer.play("Movement/Run")
 	
 	
 

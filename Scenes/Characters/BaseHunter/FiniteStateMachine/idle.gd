@@ -8,4 +8,4 @@ func onEnter():
 	
 func do(delta : float):
 	%Armature.rotation.z = 0
-	%AnimationPlayer.play("Idle")
+	%AnimationPlayer.play("Movement/Idle")
