@@ -1,4 +1,4 @@
-[gd_scene load_steps=2252 format=3 uid="uid://c2x67o7sqxefx"]
+[gd_scene load_steps=2255 format=3 uid="uid://c2x67o7sqxefx"]
 
 [ext_resource type="Texture2D" uid="uid://ky14ggmi8kws" path="res://Assets/TestStuff/pattern.png" id="1_r5lpi"]
 [ext_resource type="PackedScene" uid="uid://didcvbvyc8eef" path="res://Scenes/Characters/BaseHunter/hunter.tscn" id="2_upwxr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="7_gp8ux"]
 [ext_resource type="Material" uid="uid://rdhrhgrb78ls" path="res://addons/cyclops_level_builder/materials/grid.tres" id="8_ojual"]
 [ext_resource type="Material" uid="uid://7k58uhvrhd0q" path="res://addons/cyclops_level_builder/materials/grid (2).tres" id="9_2ief1"]
+[ext_resource type="Shader" path="res://Scenes/World/cloud.gdshader" id="10_bdkk2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hv7uk"]
 sky_top_color = Color(0.356515, 0.519521, 0.603461, 1)
@@ -22,14 +23,19 @@ sky_material = SubResource("ProceduralSkyMaterial_hv7uk")
 [sub_resource type="Environment" id="Environment_qijy7"]
 background_mode = 2
 sky = SubResource("Sky_d5h8u")
+tonemap_mode = 1
 glow_enabled = true
-fog_density = 0.003
-fog_sky_affect = 0.56
-volumetric_fog_density = 0.016
-volumetric_fog_emission_energy = 8.7
-volumetric_fog_gi_inject = 3.2
+fog_mode = 1
+fog_density = 0.1571
+fog_sky_affect = 0.89
+volumetric_fog_density = 0.038
+volumetric_fog_emission_energy = 58.9
+volumetric_fog_gi_inject = 1.54
+volumetric_fog_anisotropy = -0.63
 volumetric_fog_length = 33.88
-volumetric_fog_sky_affect = 0.0
+volumetric_fog_detail_spread = 2.89781
+volumetric_fog_sky_affect = 0.931
+adjustment_saturation = 1.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw336"]
 cull_mode = 2
@@ -22580,6 +22586,21 @@ face_vertex_data = {
 "vertex_index": SubResource("Resource_1d8h5")
 }
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_sxams"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dfpw"]
+render_priority = 0
+shader = ExtResource("10_bdkk2")
+shader_parameter/use_custom_texture = 0.0
+shader_parameter/clouds_speed = 1.12
+shader_parameter/clouds_direction = 0.0645833
+shader_parameter/clouds_scale = 4.0
+shader_parameter/clouds_cutoff = 0.58
+shader_parameter/clouds_fuzziness = 0.0
+shader_parameter/clouds_color = Color(1, 1, 1, 1)
+shader_parameter/edge_fade = 0.15
+
 [node name="World" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.222942, 1.90735e-06, 0.0165672)
 
@@ -23645,9 +23666,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 256.77, -4.99997, 267.756)
 script = ExtResource("3_odee4")
 mesh_vector_data = SubResource("Resource_yf30h")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
-light_color = Color(0.505344, 0.505344, 0.505344, 1)
-light_energy = 2.057
-shadow_enabled = true
-spot_range = 8.007
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 346.961, 0)
+mesh = SubResource("PlaneMesh_sxams")
+surface_material_override/0 = SubResource("ShaderMaterial_4dfpw")
