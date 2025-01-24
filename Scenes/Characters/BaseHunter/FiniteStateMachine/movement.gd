@@ -23,8 +23,8 @@ var move_direction
 @onready var _baseHunter : Node3D = %Armature
 
 var run_value = 0.0
-
-
+var player_movement_in_control = true
+var raw_input = Vector2.ZERO
 @export var min_pitch: float = -89.9
 @export var max_pitch: float = 50
 
@@ -69,7 +69,8 @@ func baseMovement(delta):
 	
 	# Movement #
 	_cam_input_dir = Vector2.ZERO
-	var raw_input := Input.get_vector("Left", "Right", "Forward", "Back")
+	if player_movement_in_control:
+		raw_input = Input.get_vector("Left", "Right", "Forward", "Back")
 	var forward := _player_pcam.global_basis.z
 	var right := _player_pcam.global_basis.x
 	move_direction = forward * raw_input.y + right* raw_input.x
@@ -88,8 +89,9 @@ func baseMovement(delta):
 		_last_movement_direction = move_direction
 		
 	# Rotating the player #
-	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
-	_baseHunter.global_rotation.y = lerp_angle(_baseHunter.global_rotation.y, target_angle, rotation_speed * delta)
+	if player_movement_in_control:
+		var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
+		_baseHunter.global_rotation.y = lerp_angle(_baseHunter.global_rotation.y, target_angle, rotation_speed * delta)
 
 func _set_pcam_rotation(pcam: PhantomCamera3D, event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
