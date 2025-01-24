@@ -17,4 +17,7 @@ func do(delta : float):
 		get_node("RunStop").run_stop_done = false
 		get_node("Run").do(delta) # RUNNING
 		
+	if abs(%StateMachine.mouse_position.x) > 50:
+		get_node("Turn").do(delta)
+	
 	

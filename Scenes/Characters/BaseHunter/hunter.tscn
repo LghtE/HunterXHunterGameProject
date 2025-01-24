@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://didcvbvyc8eef"]
+[gd_scene load_steps=28 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/jump.gd" id="12_e4dku"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/in_air.gd" id="12_kq4s7"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/fall.gd" id="13_lsp1b"]
+[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/turn.gd" id="16_ttyva"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gx8bx"]
 resource_name = "BaseBody.002"
@@ -129,50 +130,50 @@ script = ExtResource("2_tqj0w")
 unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(-0.0762817, 2.1333, 0.088203)
-bones/0/rotation = Quaternion(0.116262, -0.0816326, 0.0260723, 0.989515)
+bones/0/position = Vector3(0.0195134, 4.53604, 1.57386)
+bones/0/rotation = Quaternion(0.176419, 0, 0, 0.984315)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.274106, -0.00406812, -0.0639406, 0.959563)
-bones/2/rotation = Quaternion(-0.254926, 0.062037, 0.00731264, 0.964941)
+bones/1/rotation = Quaternion(0.466032, 9.97639e-08, -6.52535e-08, 0.884768)
+bones/2/rotation = Quaternion(-0.41183, -1.08631e-07, -4.9094e-08, 0.911261)
 bones/3/position = Vector3(-0.536436, 0.682348, 0.0734515)
-bones/3/rotation = Quaternion(0.97519, -0.203503, -0.0312363, -0.0813416)
+bones/3/rotation = Quaternion(0.685306, -0.153985, 0.136666, 0.698546)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/position = Vector3(0.317694, 1.21762, 0.221811)
-bones/4/rotation = Quaternion(-0.0757328, 0.38, 0.78237, -0.487609)
+bones/4/position = Vector3(0.287195, 1.18888, 0.225011)
+bones/4/rotation = Quaternion(0.219934, 0.762206, 0.418981, -0.441731)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/position = Vector3(0.222482, 0.0507388, -0.138538)
-bones/5/rotation = Quaternion(-0.280598, 0.146937, -0.450981, 0.83444)
+bones/5/position = Vector3(0.222482, 0.050739, -0.138538)
+bones/5/rotation = Quaternion(-0.242472, 0.0930893, -0.498983, 0.826776)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/position = Vector3(-0.195186, -0.000796853, -0.0856311)
-bones/6/rotation = Quaternion(-0.0313538, -0.0430087, 0.479272, 0.876051)
+bones/6/position = Vector3(-0.195186, -0.000796763, -0.0856311)
+bones/6/rotation = Quaternion(0.00208244, 0.0239458, 0.475052, 0.879629)
 bones/7/rotation = Quaternion(-0.0406354, 0.0693562, -0.749113, 0.657547)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.471025, -0.0352969, -0.197003, 0.859115)
-bones/9/rotation = Quaternion(0.806601, -0.0914699, 0.0351894, 0.582914)
+bones/8/rotation = Quaternion(-0.055632, -0.315888, -0.1117, 0.940555)
+bones/9/rotation = Quaternion(0.12406, -0.0378406, 0.0107589, 0.991495)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.144843, -0.0604937, -0.122332, 0.979998)
+bones/10/rotation = Quaternion(-0.09102, 0.00498743, 0.0899845, 0.991763)
 bones/11/rotation = Quaternion(-0.0406356, -0.0693564, 0.749113, 0.657547)
-bones/12/rotation = Quaternion(0.239067, 0.337588, 0.499938, 0.760884)
-bones/13/rotation = Quaternion(0.766822, -0.0988778, 0.205422, 0.600008)
-bones/14/rotation = Quaternion(0.0761234, -0.187324, 0.112105, 0.972907)
+bones/12/rotation = Quaternion(-0.349783, 0.335328, 0.293996, 0.823877)
+bones/13/rotation = Quaternion(0.148303, 0.0299229, 0.0200823, 0.988285)
+bones/14/rotation = Quaternion(-0.0080892, -0.0163849, 0.0593404, 0.998071)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.0126635, 0.662524, 0.73238, -0.156591)
-bones/15/scale = Vector3(0.999994, 1.00001, 1.00004)
-bones/16/rotation = Quaternion(-0.622325, -0.000551482, -0.103446, 0.775893)
-bones/16/scale = Vector3(0.999998, 1, 1.00001)
-bones/17/rotation = Quaternion(0.61499, -0.157483, 0.0664262, 0.769788)
-bones/17/scale = Vector3(1, 1.00001, 1.00001)
-bones/18/rotation = Quaternion(-0.00194614, 0.364151, 0.904543, 0.221792)
-bones/18/scale = Vector3(0.999996, 1.00001, 1.00003)
-bones/19/rotation = Quaternion(-0.641047, 0.000185827, 0.11161, 0.759343)
-bones/19/scale = Vector3(0.999998, 0.99999, 1.00001)
-bones/20/rotation = Quaternion(0.864593, 0.0123263, 0.045458, 0.500261)
-bones/20/scale = Vector3(1.00001, 1.00001, 1)
-bones/21/position = Vector3(0.472631, 0.317031, 0.794957)
-bones/21/rotation = Quaternion(-0.0712684, 0.705837, -0.701537, -0.06754)
+bones/15/rotation = Quaternion(-0.0993151, 0.823075, 0.536697, -0.156974)
+bones/15/scale = Vector3(1.00002, 0.999988, 1.00003)
+bones/16/rotation = Quaternion(-0.702013, -0.000174562, -0.122223, 0.701598)
+bones/16/scale = Vector3(1, 0.999994, 1)
+bones/17/rotation = Quaternion(0.601167, -0.151705, -0.0747197, 0.781025)
+bones/17/scale = Vector3(1, 1.00001, 1)
+bones/18/rotation = Quaternion(0.0836641, 0.480832, 0.870087, 0.0689199)
+bones/18/scale = Vector3(1, 0.999987, 1.00005)
+bones/19/rotation = Quaternion(-0.00419885, 0.000247444, 0.000731098, 0.999991)
+bones/19/scale = Vector3(1, 0.999989, 1.00002)
+bones/20/rotation = Quaternion(0.431174, 0.119623, -0.0124988, 0.894217)
+bones/20/scale = Vector3(1, 1.00001, 1)
+bones/21/position = Vector3(0.574674, 3.03206, 2.48069)
+bones/21/rotation = Quaternion(0.0578612, 0.681621, -0.729088, -0.0217984)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/position = Vector3(-0.583282, 0.370101, -0.752612)
-bones/22/rotation = Quaternion(0.0952076, 0.711815, -0.687615, 0.106963)
+bones/22/position = Vector3(-0.325462, 2.54413, 3.00229)
+bones/22/rotation = Quaternion(-0.0304747, 0.602067, -0.797799, 0.0101231)
 bones/22/scale = Vector3(1, 1, 1)
 
 [node name="HunterBody" parent="Armature/Skeleton3D" index="0"]
@@ -246,6 +247,9 @@ script = ExtResource("9_cc0kx")
 
 [node name="RunStop" type="Node" parent="StateMachine/Movement/Untargeted Movement/OnGround" index="2"]
 script = ExtResource("11_r53bd")
+
+[node name="Turn" type="Node" parent="StateMachine/Movement/Untargeted Movement/OnGround" index="3"]
+script = ExtResource("16_ttyva")
 
 [node name="InAir" type="Node" parent="StateMachine/Movement/Untargeted Movement" index="1"]
 script = ExtResource("12_kq4s7")

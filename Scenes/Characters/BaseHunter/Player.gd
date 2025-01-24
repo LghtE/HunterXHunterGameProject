@@ -3,7 +3,7 @@ extends Node
 @export var current_state: State
 var previous_state: State
 var _velocity
-var mouse_position
+var mouse_position = Vector2.ZERO
 var mouse_moving = false
 var _old_mouse = Vector2.ZERO
 
