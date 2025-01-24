@@ -6,4 +6,6 @@ var curr_anim = IDLE
 
 
 func _physics_process(delta: float) -> void:
-	pass
+	%Shadow.position.x = position.x - 0.15
+	%Shadow.position.z = position.z
+	%Shadow.position.y = position.y 

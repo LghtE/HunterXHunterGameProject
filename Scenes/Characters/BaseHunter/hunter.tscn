@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=4 uid="uid://didcvbvyc8eef"]
+[gd_scene load_steps=31 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
 [ext_resource type="Texture2D" uid="uid://djftgbhs6jeap" path="res://Assets/BaseHunter/Hunter_testcolormat.png" id="3_jmvef"]
+[ext_resource type="Shader" path="res://Scenes/Characters/BaseHunter/outlineTest.gdshader" id="4_fymm2"]
 [ext_resource type="Texture2D" uid="uid://dehqmc6uv2s4g" path="res://Assets/BaseHunter/Hunter_testcolormat_1.png" id="4_hth1q"]
 [ext_resource type="Animation" uid="uid://kqmaslbws6sl" path="res://Assets/BaseHunter/Turn.res" id="5_1xpcd"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/Player.gd" id="5_m8jon"]
@@ -21,9 +22,19 @@
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/in_air.gd" id="12_kq4s7"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/fall.gd" id="13_lsp1b"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/turn.gd" id="16_ttyva"]
+[ext_resource type="Texture2D" uid="uid://b66hobxl38g17" path="res://Assets/TestStuff/shadow.png" id="22_aoo6a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y628k"]
+render_priority = 0
+shader = ExtResource("4_fymm2")
+shader_parameter/outline_color = null
+shader_parameter/outline_width = 1.0
+shader_parameter/fade_start = 10.0
+shader_parameter/fade_end = 30.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gx8bx"]
 resource_name = "BaseBody.002"
+next_pass = SubResource("ShaderMaterial_y628k")
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
@@ -165,7 +176,7 @@ unique_name_in_owner = true
 top_level = true
 
 [node name="CameraTarget" type="Node3D" parent="CamPivot" index="0"]
-transform = Transform3D(-1, 1.3284e-08, -8.64076e-08, 0, 0.988388, 0.151951, 8.74228e-08, 0.151951, -0.988388, 0, 5.92913, -8.22409)
+transform = Transform3D(-1, 1.3284e-08, -8.64076e-08, 0, 0.988388, 0.151951, 8.74228e-08, 0.151951, -0.988388, 0, 5.65965, -7.36263)
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot/CameraTarget" index="0"]
 unique_name_in_owner = true
@@ -214,3 +225,11 @@ script = ExtResource("12_e4dku")
 
 [node name="Fall" type="Node" parent="StateMachine/Movement/Untargeted Movement/InAir" index="1"]
 script = ExtResource("13_lsp1b")
+
+[node name="Shadow" type="Sprite3D" parent="." index="5"]
+unique_name_in_owner = true
+transform = Transform3D(4, 0, 0, 0, -1.74846e-07, -4, 0, 4, -1.74846e-07, 0.0604928, 0, 0)
+top_level = true
+modulate = Color(1, 1, 1, 0.458824)
+texture_filter = 0
+texture = ExtResource("22_aoo6a")
