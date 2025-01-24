@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://b78mg60xhic6n" path="res://addons/cyclops_level_builder/art/textures/checkerboard.png" id="1_83il8"]
 
 [resource]
-specular_mode = 1
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
 emission_energy_multiplier = 0.55
