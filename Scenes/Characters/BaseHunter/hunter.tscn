@@ -1,16 +1,13 @@
-[gd_scene load_steps=35 format=4 uid="uid://didcvbvyc8eef"]
+[gd_scene load_steps=28 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
 [ext_resource type="Texture2D" uid="uid://djftgbhs6jeap" path="res://Assets/BaseHunter/Hunter_testcolormat.png" id="3_jmvef"]
 [ext_resource type="Texture2D" uid="uid://dehqmc6uv2s4g" path="res://Assets/BaseHunter/Hunter_testcolormat_1.png" id="4_hth1q"]
 [ext_resource type="Animation" uid="uid://kqmaslbws6sl" path="res://Assets/BaseHunter/Turn.res" id="5_1xpcd"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_7mpk6"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_c2lju"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/Player.gd" id="5_m8jon"]
 [ext_resource type="Animation" uid="uid://hixhrrd108ok" path="res://Assets/BaseHunter/Run.res" id="6_mag6i"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/movement.gd" id="6_u4hjb"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_wtisk"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/untargeted_movement.gd" id="7_nyo0m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/targeted_movement.gd" id="7_u5xgg"]
 [ext_resource type="Animation" uid="uid://cjqrd26oayoey" path="res://Assets/BaseHunter/Run_Stop.res" id="7_voa1g"]
@@ -97,94 +94,56 @@ _data = {
 radius = 1.5
 height = 6.509
 
-[sub_resource type="Resource" id="Resource_xfdej"]
-script = ExtResource("6_wtisk")
-duration = 1.0
-transition = 0
-ease = 2
-
-[sub_resource type="Animation" id="Animation_v4fnq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%Camera3D/..:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 3.63543, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_if230"]
-resource_name = "zoom_out_in_small"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%Camera3D/..:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(0.307786, 1.8025, 1),
-"update": 0,
-"values": [Vector3(0, 3.63543, 0), Vector3(0, 3.635, -0.78), Vector3(0, 3.63543, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_atqcm"]
-_data = {
-"RESET": SubResource("Animation_v4fnq"),
-"zoom_out_in_small": SubResource("Animation_if230")
-}
-
 [node name="Hunter" instance=ExtResource("1_axw2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.63543, 0)
 script = ExtResource("2_tqj0w")
 
 [node name="Armature" parent="." index="0"]
 unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0.00226895, 2.19805, -0.00134438)
-bones/0/rotation = Quaternion(0.0823212, -0.469598, -0.0788786, 0.875488)
+bones/0/rotation = Quaternion(0.0158575, 0, 0, 0.999874)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.264973, -0.228936, -0.0123573, 0.936603)
-bones/3/rotation = Quaternion(0.481838, -0.266164, -0.761755, 0.341641)
+bones/1/rotation = Quaternion(-0.0472008, 1.19076e-07, -5.62677e-09, 0.998885)
+bones/2/rotation = Quaternion(0.0498798, -1.19061e-07, 5.94613e-09, 0.998755)
+bones/3/position = Vector3(-0.536436, 0.682349, 0.0734516)
+bones/3/rotation = Quaternion(0.97519, -0.203503, -0.0312363, -0.0813416)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.441152, 0.536677, 0.563708, -0.446762)
+bones/4/position = Vector3(0.287195, 1.18888, 0.225011)
+bones/4/rotation = Quaternion(-0.0757328, 0.38, 0.78237, -0.487609)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.345224, 0.271917, -0.532366, 0.723511)
+bones/5/position = Vector3(0.222482, 0.0507391, -0.138538)
+bones/5/rotation = Quaternion(-0.280598, 0.146937, -0.450981, 0.83444)
 bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(-0.195187, -0.000796458, -0.0856311)
 bones/6/rotation = Quaternion(-0.0313538, -0.0430087, 0.479272, 0.876051)
 bones/7/rotation = Quaternion(-0.0406354, 0.0693562, -0.749113, 0.657547)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(-0.0445416, -0.0585528, -0.157244, 0.984816)
-bones/9/rotation = Quaternion(0.521916, -0.105614, 0.169705, 0.829247)
+bones/8/rotation = Quaternion(-0.00242667, 0.0479248, -0.578438, 0.814314)
+bones/9/rotation = Quaternion(0.0505906, -0.000917851, -0.0245549, 0.998417)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.139908, -0.00215596, -0.0709939, 0.987614)
+bones/10/rotation = Quaternion(0.0542335, -0.0296817, 0.0765631, 0.995146)
 bones/11/rotation = Quaternion(-0.0406356, -0.0693564, 0.749113, 0.657547)
-bones/12/rotation = Quaternion(0.50342, 0.343505, 0.470595, 0.638054)
-bones/13/rotation = Quaternion(0.295224, -0.820039, 0.0602365, 0.486571)
+bones/12/rotation = Quaternion(0.0371093, 0.00751712, 0.569942, 0.820812)
+bones/13/rotation = Quaternion(0.0588471, 0.00702494, 0.0296138, 0.997803)
 bones/14/rotation = Quaternion(0.139908, 0.00215596, 0.0709939, 0.987614)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.019438, 0.654579, 0.633924, -0.411448)
-bones/15/scale = Vector3(1, 1, 1.00001)
-bones/16/rotation = Quaternion(-0.566131, -0.000201442, -0.0985661, 0.818401)
-bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(0.249825, 0.279402, -0.189015, 0.907632)
-bones/18/rotation = Quaternion(-0.123416, 0.52107, 0.841791, 0.0681367)
-bones/18/scale = Vector3(1, 1, 1.00001)
-bones/19/rotation = Quaternion(-0.705886, 0.000169544, 0.122899, 0.697583)
-bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(0.754603, -0.110006, 0.0369239, 0.645841)
-bones/21/position = Vector3(-0.123251, 0.724015, 1.62839)
-bones/21/rotation = Quaternion(0.0144246, 0.659332, -0.433687, 0.613994)
+bones/15/rotation = Quaternion(-0.0396261, 0.0109369, 0.996809, -0.0684216)
+bones/15/scale = Vector3(1.00002, 0.999991, 1.00003)
+bones/16/rotation = Quaternion(-0.00419855, -0.000247495, -0.000730944, 0.999991)
+bones/16/scale = Vector3(1, 0.999998, 0.999999)
+bones/17/rotation = Quaternion(0.595809, -0.0648245, -0.0181396, 0.8003)
+bones/17/scale = Vector3(1.00001, 1.00002, 0.999989)
+bones/18/rotation = Quaternion(0.0223751, 0.0126793, 0.998669, 0.0446993)
+bones/18/scale = Vector3(1, 1.00001, 1.00003)
+bones/19/rotation = Quaternion(-0.00419679, 0.000247434, 0.000730729, 0.999991)
+bones/19/scale = Vector3(0.999999, 0.999997, 0.999997)
+bones/20/rotation = Quaternion(0.595574, 0.0367602, 0.00949242, 0.802403)
+bones/20/scale = Vector3(1, 1.00003, 0.999984)
+bones/21/position = Vector3(0.574674, 0.344606, -0.216926)
+bones/21/rotation = Quaternion(-0.00325268, 0.707099, -0.707099, 0.00325268)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/position = Vector3(-0.234389, 0.444447, -0.309477)
-bones/22/rotation = Quaternion(0.194777, 0.637334, -0.618411, 0.416456)
+bones/22/position = Vector3(-0.460257, 0.344606, -0.216926)
+bones/22/rotation = Quaternion(0.00325268, 0.707099, -0.707099, -0.00325268)
 bones/22/scale = Vector3(1, 1, 1)
 
 [node name="HunterBody" parent="Armature/Skeleton3D" index="0"]
@@ -201,38 +160,19 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.06423, 0)
 shape = SubResource("CapsuleShape3D_homsi")
 
-[node name="PhantomCamera3D" type="Node3D" parent="." index="3" node_paths=PackedStringArray("follow_target")]
+[node name="CamPivot" type="Node3D" parent="." index="3"]
 unique_name_in_owner = true
-transform = Transform3D(-1.00001, -4.39204e-08, 1.46985e-07, -9.06243e-09, 0.973426, 0.229212, -1.53131e-07, 0.22921, -0.973435, 1.32287e-06, 5.86291, -8.76091)
-script = ExtResource("5_c2lju")
-follow_mode = 6
-follow_target = NodePath("../Armature")
-tween_resource = SubResource("Resource_xfdej")
-tween_on_load = false
-follow_offset = Vector3(0, 3.8, 0)
-follow_distance = 9.0
-dead_zone_width = 0.51
-dead_zone_height = 0.65
-show_viewfinder_in_play = true
-spring_length = 9.0
+top_level = true
 
-[node name="Camera3D" type="Camera3D" parent="." index="4"]
+[node name="CameraTarget" type="Node3D" parent="CamPivot" index="0"]
+transform = Transform3D(-1, 1.3284e-08, -8.64076e-08, 0, 0.988388, 0.151951, 8.74228e-08, 0.151951, -0.988388, 0, 5.92913, -8.22409)
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot/CameraTarget" index="0"]
 unique_name_in_owner = true
 physics_interpolation_mode = 2
-transform = Transform3D(-1, -4.39182e-08, 1.46976e-07, -9.06234e-09, 0.97338, 0.229199, -1.53129e-07, 0.229199, -0.97338, 1.32287e-06, 5.86291, -8.76091)
+current = true
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D" index="0"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("5_7mpk6")
-
-[node name="CamAnimPlayer" type="AnimationPlayer" parent="Camera3D" index="1"]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_atqcm")
-}
-
-[node name="StateMachine" type="Node" parent="." index="5" node_paths=PackedStringArray("current_state")]
+[node name="StateMachine" type="Node" parent="." index="4" node_paths=PackedStringArray("current_state")]
 unique_name_in_owner = true
 script = ExtResource("5_m8jon")
 current_state = NodePath("Movement")

@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 	_old_mouse = get_viewport().get_mouse_position()
 	
 func _physics_process(delta: float) -> void:
+
 	handleStates(delta)
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -25,13 +26,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("Escape"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	if event.is_action_pressed("Fullscreen"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 	if event is InputEventMouseMotion:
-		#mouse_moving = true
 		mouse_position = event.relative
 	else:
 		pass
-		#mouse_moving = false
 
 
 func handleStates(delta : float):
@@ -44,12 +49,3 @@ func handleStates(delta : float):
 	if current_state:
 		current_state.do(delta)
 	
-
-#func handleAnimations(delta):
-	#match curr_anim:
-		#IDLE:
-			#run_value = lerp(run_value, 0.0, blend_speed * delta)
-		#RUN:
-			#run_value = lerp(run_value, 1.0, blend_speed * delta)
-		#WALK:
-			#run_value = lerp(run_value, 0.3, blend_speed * delta)
