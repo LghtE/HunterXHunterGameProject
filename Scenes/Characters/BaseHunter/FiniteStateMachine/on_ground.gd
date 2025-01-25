@@ -18,7 +18,7 @@ func do(delta : float):
 			get_node("RunStop").do(delta) # RUN STOP
 	else:
 		if get_node("Dash").need_to_dash == false:
-			if abs(%StateMachine.mouse_position.x) > 200 && get_node("Turn").need_to_turn == false:
+			if abs(%StateMachine.mouse_position.x) > 130 && get_node("Turn").need_to_turn == false:
 				get_node("Turn").need_to_turn = true
 			else:
 				get_node("RunStop").run_stop_done = false
