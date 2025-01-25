@@ -9,6 +9,7 @@ extends State
 @export var rotation_speed := 10.0
 @export var blend_speed := 15
 @export var jump_impulse := 12.0
+@export var dash_impulse := 80.0
 @export var _gravity := -30.0
 
 
@@ -88,8 +89,8 @@ func baseMovement(delta):
 	if move_direction.length() > 0.2:
 		_last_movement_direction = move_direction
 	
-	%CamPivot.position = lerp(%CamPivot.position, _rootNode.position, 0.14)
+	%CamPivot.position = lerp(%CamPivot.position, _rootNode.position + Vector3(0,-1,0), 0.2)
 	# Rotating the player #
-	if player_movement_in_control:
-		var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
-		_baseHunter.global_rotation.y = lerp_angle(_baseHunter.global_rotation.y, target_angle, rotation_speed * delta)
+
+	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
+	_baseHunter.global_rotation.y = lerp_angle(_baseHunter.global_rotation.y, target_angle, rotation_speed * delta)
