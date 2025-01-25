@@ -28,10 +28,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	if event.is_action_pressed("Fullscreen"):
-		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_MAXIMIZED:
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 	if event is InputEventMouseMotion:
 		mouse_position = event.relative
