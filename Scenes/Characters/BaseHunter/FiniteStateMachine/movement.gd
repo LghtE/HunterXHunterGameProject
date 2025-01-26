@@ -54,9 +54,9 @@ func do(delta : float):
 	baseMovement(delta)
 
 	if targeting:
-		get_node("TargetedMovement").do(delta)
+		get_node("Aiming").do(delta)
 	else:
-		get_node("Untargeted Movement").do(delta)
+		get_node("NotAiming").do(delta)
 
 
 

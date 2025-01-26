@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://didcvbvyc8eef"]
+[gd_scene load_steps=35 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
@@ -21,22 +21,21 @@
 [ext_resource type="Animation" uid="uid://bdxrejtvml7xs" path="res://Assets/BaseHunter/Dash.res" id="11_sn10l"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/jump.gd" id="12_e4dku"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/in_air.gd" id="12_kq4s7"]
+[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/camera_3d.gd" id="12_opfs2"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/fall.gd" id="13_lsp1b"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/turn.gd" id="16_ttyva"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/dash.gd" id="20_k0ylh"]
 [ext_resource type="Texture2D" uid="uid://b66hobxl38g17" path="res://Assets/TestStuff/shadow.png" id="22_aoo6a"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y628k"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mawfj"]
 render_priority = 0
 shader = ExtResource("4_fymm2")
 shader_parameter/outline_color = null
-shader_parameter/outline_width = 1.0
-shader_parameter/fade_start = 10.0
-shader_parameter/fade_end = 30.0
+shader_parameter/outline_width = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gx8bx"]
 resource_name = "BaseBody.002"
-next_pass = SubResource("ShaderMaterial_y628k")
+next_pass = SubResource("ShaderMaterial_mawfj")
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
@@ -127,44 +126,48 @@ script = ExtResource("2_tqj0w")
 unique_name_in_owner = true
 
 [node name="Skeleton3D" parent="Armature" index="0"]
+unique_name_in_owner = true
 bones/0/position = Vector3(0.019475, 4.53648, -0.326525)
-bones/0/rotation = Quaternion(0.176419, 0, 0, 0.984315)
+bones/0/rotation = Quaternion(0.130995, 4.05829e-19, 2.55891e-17, 0.991383)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.466032, 9.97639e-08, -6.52535e-08, 0.884768)
-bones/2/rotation = Quaternion(-0.41183, -1.08631e-07, -4.9094e-08, 0.911261)
-bones/3/rotation = Quaternion(0.685306, -0.153985, 0.136666, 0.698546)
+bones/1/rotation = Quaternion(0.00858774, 1.19205e-07, 1.02374e-09, 0.999963)
+bones/2/rotation = Quaternion(0.0498798, -1.19061e-07, 5.94613e-09, 0.998755)
+bones/3/rotation = Quaternion(0.97519, -0.203503, -0.0312363, -0.0813416)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.219934, 0.762206, 0.418981, -0.441731)
+bones/4/position = Vector3(0.287195, 1.18888, 0.225011)
+bones/4/rotation = Quaternion(-0.0757328, 0.38, 0.78237, -0.487609)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.242472, 0.0930893, -0.498983, 0.826776)
+bones/5/rotation = Quaternion(-0.280598, 0.146937, -0.450981, 0.83444)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.00208244, 0.0239458, 0.475052, 0.879629)
+bones/6/rotation = Quaternion(-0.0313538, -0.0430087, 0.479272, 0.876051)
 bones/7/rotation = Quaternion(-0.0406354, 0.0693562, -0.749113, 0.657547)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(-0.055632, -0.315888, -0.1117, 0.940555)
-bones/9/rotation = Quaternion(0.12406, -0.0378406, 0.0107589, 0.991495)
+bones/8/rotation = Quaternion(0.238484, -0.209913, -0.583491, 0.747396)
+bones/9/rotation = Quaternion(0.186688, -0.0165048, -0.136205, 0.972791)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.139908, -0.00215596, -0.0709939, 0.987614)
+bones/10/rotation = Quaternion(0.0328304, -0.0605107, -0.124932, 0.989774)
 bones/11/rotation = Quaternion(-0.0406356, -0.0693564, 0.749113, 0.657547)
-bones/12/rotation = Quaternion(-0.349783, 0.335328, 0.293996, 0.823877)
-bones/13/rotation = Quaternion(0.148303, 0.0299229, 0.0200823, 0.988285)
-bones/14/rotation = Quaternion(0.139908, 0.00215596, 0.0709939, 0.987614)
+bones/12/rotation = Quaternion(-0.0909354, -0.133185, 0.54228, 0.824576)
+bones/13/rotation = Quaternion(0.0973307, 0.0151409, 0.0335859, 0.99457)
+bones/14/rotation = Quaternion(0.139908, 0.00215597, 0.0709939, 0.987614)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.0993151, 0.823075, 0.536697, -0.156974)
-bones/15/scale = Vector3(1, 1, 1.00001)
-bones/16/rotation = Quaternion(-0.702013, -0.000174562, -0.122223, 0.701598)
-bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(0.601167, -0.151705, -0.0747197, 0.781025)
-bones/18/rotation = Quaternion(0.0836641, 0.480832, 0.870087, 0.0689199)
-bones/18/scale = Vector3(1, 1, 1.00001)
-bones/19/rotation = Quaternion(-0.00419885, 0.000247444, 0.000731098, 0.999991)
-bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(0.431174, 0.119623, -0.0124988, 0.894217)
-bones/21/position = Vector3(0.574674, 3.03206, 2.48069)
-bones/21/rotation = Quaternion(0.0578612, 0.681621, -0.729088, -0.0217984)
+bones/15/rotation = Quaternion(-0.0634169, -0.0474891, 0.995029, -0.0603331)
+bones/15/scale = Vector3(1.00002, 0.999992, 1.00002)
+bones/16/rotation = Quaternion(-0.0042209, -0.000247458, -0.000734883, 0.999991)
+bones/16/scale = Vector3(1, 0.999999, 0.999999)
+bones/17/rotation = Quaternion(0.654259, -0.0820946, 0.004986, 0.751785)
+bones/17/scale = Vector3(1.00001, 1.00001, 1)
+bones/18/rotation = Quaternion(0.0913099, 0.436101, 0.890827, 0.0889104)
+bones/18/scale = Vector3(1, 0.999984, 1.00005)
+bones/19/rotation = Quaternion(-0.559941, 0.000202374, 0.0974895, 0.822777)
+bones/19/scale = Vector3(1, 0.999954, 1.00004)
+bones/20/rotation = Quaternion(0.561004, 0.0757295, -0.00832929, 0.8243)
+bones/20/scale = Vector3(1, 0.999979, 1.00003)
+bones/21/position = Vector3(0.574674, 0.344606, -0.216926)
+bones/21/rotation = Quaternion(-0.00292033, 0.772622, -0.634849, 0.00355409)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/position = Vector3(-0.325462, 2.54413, 3.00229)
-bones/22/rotation = Quaternion(-0.0304747, 0.602067, -0.797799, 0.0101231)
+bones/22/position = Vector3(-0.460257, 0.778615, 0.418587)
+bones/22/rotation = Quaternion(0.00208806, 0.891029, -0.453923, -0.00409877)
 bones/22/scale = Vector3(1, 1, 1)
 
 [node name="HunterBody" parent="Armature/Skeleton3D" index="0"]
@@ -192,8 +195,9 @@ transform = Transform3D(-1, 1.3284e-08, -8.64076e-08, 0, 0.988388, 0.151951, 8.7
 unique_name_in_owner = true
 physics_interpolation_mode = 2
 current = true
+script = ExtResource("12_opfs2")
 
-[node name="TargettedCam" type="Camera3D" parent="CamPivot" index="1"]
+[node name="TargettedCamPoint" type="Camera3D" parent="CamPivot" index="1"]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.10345, 4.52926, -3.632)
 
@@ -212,37 +216,37 @@ jump_impulse = 50.0
 dash_impulse = 100.0
 _gravity = -100.0
 
-[node name="TargetedMovement" type="Node" parent="StateMachine/Movement" index="0"]
+[node name="Aiming" type="Node" parent="StateMachine/Movement" index="0"]
 script = ExtResource("7_u5xgg")
 
-[node name="Untargeted Movement" type="Node" parent="StateMachine/Movement" index="1"]
+[node name="NotAiming" type="Node" parent="StateMachine/Movement" index="1"]
 script = ExtResource("7_nyo0m")
 
-[node name="OnGround" type="Node" parent="StateMachine/Movement/Untargeted Movement" index="0"]
+[node name="OnGround" type="Node" parent="StateMachine/Movement/NotAiming" index="0"]
 script = ExtResource("9_si25g")
 
-[node name="Run" type="Node" parent="StateMachine/Movement/Untargeted Movement/OnGround" index="0"]
+[node name="Run" type="Node" parent="StateMachine/Movement/NotAiming/OnGround" index="0"]
 script = ExtResource("10_73ax2")
 
-[node name="Idle" type="Node" parent="StateMachine/Movement/Untargeted Movement/OnGround" index="1"]
+[node name="Idle" type="Node" parent="StateMachine/Movement/NotAiming/OnGround" index="1"]
 script = ExtResource("9_cc0kx")
 
-[node name="RunStop" type="Node" parent="StateMachine/Movement/Untargeted Movement/OnGround" index="2"]
+[node name="RunStop" type="Node" parent="StateMachine/Movement/NotAiming/OnGround" index="2"]
 script = ExtResource("11_r53bd")
 
-[node name="Turn" type="Node" parent="StateMachine/Movement/Untargeted Movement/OnGround" index="3"]
+[node name="Turn" type="Node" parent="StateMachine/Movement/NotAiming/OnGround" index="3"]
 script = ExtResource("16_ttyva")
 
-[node name="Dash" type="Node" parent="StateMachine/Movement/Untargeted Movement/OnGround" index="4"]
+[node name="Dash" type="Node" parent="StateMachine/Movement/NotAiming/OnGround" index="4"]
 script = ExtResource("20_k0ylh")
 
-[node name="InAir" type="Node" parent="StateMachine/Movement/Untargeted Movement" index="1"]
+[node name="InAir" type="Node" parent="StateMachine/Movement/NotAiming" index="1"]
 script = ExtResource("12_kq4s7")
 
-[node name="Jump" type="Node" parent="StateMachine/Movement/Untargeted Movement/InAir" index="0"]
+[node name="Jump" type="Node" parent="StateMachine/Movement/NotAiming/InAir" index="0"]
 script = ExtResource("12_e4dku")
 
-[node name="Fall" type="Node" parent="StateMachine/Movement/Untargeted Movement/InAir" index="1"]
+[node name="Fall" type="Node" parent="StateMachine/Movement/NotAiming/InAir" index="1"]
 script = ExtResource("13_lsp1b")
 
 [node name="Shadow" type="Sprite3D" parent="." index="5"]
