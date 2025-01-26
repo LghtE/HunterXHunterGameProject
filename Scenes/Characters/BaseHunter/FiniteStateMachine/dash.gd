@@ -1,5 +1,6 @@
 extends State
 var need_to_dash = false
+var no_of_after_images = 5
 
 func do(delta: float):
 	%AnimationPlayer.play("Movement/Dash")
@@ -15,13 +16,8 @@ func do(delta: float):
 		elif %StateMachine.mouse_position.x < 0:
 			%Armature.rotation.z = lerp(%Armature.rotation.z, deg_to_rad(-12), 0.1)
 	
-	
-	var mesh = %Skeleton3D.get_node("HunterBody").duplicate()
-	mesh.top_level = true
-	mesh.position = %Armature.get_parent().position
-	mesh.rotation = %Armature.rotation
 
-	%Skeleton3D.add_child(mesh)
+
 	
 func dashFinished():
 	need_to_dash = false
