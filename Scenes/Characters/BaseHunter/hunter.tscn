@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=4 uid="uid://didcvbvyc8eef"]
+[gd_scene load_steps=44 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
 [ext_resource type="Texture2D" uid="uid://djftgbhs6jeap" path="res://Assets/BaseHunter/Hunter_testcolormat.png" id="3_jmvef"]
 [ext_resource type="Shader" path="res://Scenes/Characters/BaseHunter/outlineTest.gdshader" id="4_fymm2"]
 [ext_resource type="Texture2D" uid="uid://dehqmc6uv2s4g" path="res://Assets/BaseHunter/Hunter_testcolormat_1.png" id="4_hth1q"]
+[ext_resource type="Shader" path="res://Scenes/Characters/BaseHunter/distortion.gdshader" id="4_u8sky"]
 [ext_resource type="Animation" uid="uid://kqmaslbws6sl" path="res://Assets/BaseHunter/Turn.res" id="5_1xpcd"]
 [ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/Player.gd" id="5_m8jon"]
 [ext_resource type="Animation" uid="uid://hixhrrd108ok" path="res://Assets/BaseHunter/Run.res" id="6_mag6i"]
@@ -28,16 +29,34 @@
 [ext_resource type="Texture2D" uid="uid://b66hobxl38g17" path="res://Assets/TestStuff/shadow.png" id="22_aoo6a"]
 [ext_resource type="PackedScene" uid="uid://c55loh0qkll3c" path="res://Scenes/Components/Effects/MeshAfterImage/MeshAfterImage.tscn" id="23_10cg8"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mawfj"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dp25d"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g3yy2"]
+noise = SubResource("FastNoiseLite_dp25d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdbnl"]
+resource_local_to_scene = true
 render_priority = 0
+shader = ExtResource("4_u8sky")
+shader_parameter/alpha = 0.0
+shader_parameter/speed = 0.5
+shader_parameter/distortion = 0.0
+shader_parameter/uv1_scale = Vector3(0, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_g3yy2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mawfj"]
+resource_local_to_scene = true
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_gdbnl")
 shader = ExtResource("4_fymm2")
-shader_parameter/outline_color = null
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gx8bx"]
+resource_local_to_scene = true
 resource_name = "BaseBody.002"
 next_pass = SubResource("ShaderMaterial_mawfj")
-cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
 metallic = 1.0
@@ -45,8 +64,12 @@ emission_enabled = true
 emission_texture = ExtResource("3_jmvef")
 texture_filter = 0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uwgs4"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_va8ht"]
+resource_local_to_scene = true
 resource_name = "BaseBody.001"
+next_pass = SubResource("ShaderMaterial_uwgs4")
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
@@ -56,6 +79,7 @@ emission_texture = ExtResource("4_hth1q")
 texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_a2x27"]
+resource_local_to_scene = true
 resource_name = "Hunter_Cylinder_001"
 _surfaces = [{
 "aabb": AABB(-1.45813, 0.021396, -0.975686, 2.91627, 5.63319, 1.61743),
@@ -88,7 +112,6 @@ _surfaces = [{
 "vertex_count": 149,
 "vertex_data": PackedByteArray("3degv9PMNkCWlTG+3degv9PMNkCWlTG+3degv9PMNkCWlTG+rmaqv9vCLUBhyQa+rmaqv9vCLUBhyQa+rmaqv9vCLUBhyQa+rhyTv2UAN0CgxZE8rhyTv2UAN0CgxZE8rhyTv2UAN0CgxZE8Xg+dv7KZLUAo/Xo9Xg+dv7KZLUAo/Xo9Xg+dv7KZLUAo/Xo9I+l3v3ViMkCQZjc9I+l3v3ViMkCQZjc9I+l3v3ViMkCQZjc91vSGv3IBKECoFL491vSGv3IBKECoFL491vSGv3IBKECoFL49jQtPv4AJLEA4GBS9jQtPv4AJLEA4GBS9jQtPv4AJLEA4GBS9oTpnvy6lIEBQ/Yc8oTpnvy6lIEBQ/Yc8oTpnvy6lIEBQ/Yc83ehLv6O8J0A9jGq+3ehLv6O8J0A9jGq+3ehLv6O8J0A9jGq+O9Fkv0wCHEAm7DK+O9Fkv0wCHEAm7DK+O9Fkv0wCHEAm7DK+wA1hvypDKEBOfq2+wA1hvypDKEBOfq2+wA1hvypDKEBOfq2+lEF5v6TcHEAvdpK+lEF5v6TcHEAvdpK+lEF5v6TcHEAvdpK+oOKIv6TbLUCk7da+oOKIv6TbLUCk7da+oOKIv6TbLUCk7da+8eaTv992I0BUTL6+8eaTv992I0BUTL6+8eaTv992I0BUTL6+ju+dv6dQNEA5jq6+ju+dv6dQNEA5jq6+ju+dv6dQNEA5jq6+x9Wnv4b1KkCKZpi+x9Wnv4b1KkCKZpi+x9Wnv4b1KkCKZpi+3NegP9LMNkCUlTG+3NegP9LMNkCUlTG+3NegP9LMNkCUlTG+rGaqP9vCLUBiyQa+rGaqP9vCLUBiyQa+rGaqP9vCLUBiyQa+rhyTP2QAN0DQxZE8rhyTP2QAN0DQxZE8rhyTP2QAN0DQxZE8Xg+dP7GZLUA4/Xo9Xg+dP7GZLUA4/Xo9Xg+dP7GZLUA4/Xo9JOl3P3RiMkCoZjc9JOl3P3RiMkCoZjc9JOl3P3RiMkCoZjc92PSGP3EBKEC0FL492PSGP3EBKEC0FL492PSGP3EBKEC0FL49jAtPP4AJLEAwGBS9jAtPP4AJLEAwGBS9jAtPP4AJLEAwGBS9oDpnPy6lIEBw/Yc8oDpnPy6lIEBw/Yc8oDpnPy6lIEBw/Yc83uhLP6S8J0A8jGq+3uhLP6S8J0A8jGq+3uhLP6S8J0A8jGq+PNFkP0wCHEAj7DK+PNFkP0wCHEAj7DK+PNFkP0wCHEAj7DK+wA1hPypDKEBOfq2+wA1hPypDKEBOfq2+wA1hPypDKEBOfq2+lEF5P6PcHEAudpK+lEF5P6PcHEAudpK+lEF5P6PcHEAudpK+ouKIP6TbLUCj7da+ouKIP6TbLUCj7da+ouKIP6TbLUCj7da+9OaTP992I0BTTL6+9OaTP992I0BTTL6+9OaTP992I0BTTL6+kO+dP6dQNEA5jq6+kO+dP6dQNEA5jq6+kO+dP6dQNEA5jq6+ytWnP4b1KkCGZpi+ytWnP4b1KkCGZpi+ytWnP4b1KkCGZpi+3degv9PMNkCWlTG+3degv9PMNkCWlTG+3degv9PMNkCWlTG+rmaqv9vCLUBhyQa+rmaqv9vCLUBhyQa+rmaqv9vCLUBhyQa+rhyTv2UAN0CgxZE8rhyTv2UAN0CgxZE8oTpnvy6lIEBQ/Yc8oTpnvy6lIEBQ/Yc8oTpnvy6lIEBQ/Yc83ehLv6O8J0A9jGq+3ehLv6O8J0A9jGq+3ehLv6O8J0A9jGq+x9Wnv4b1KkCKZpi+x9Wnv4b1KkCKZpi+3NegP9LMNkCUlTG+3NegP9LMNkCUlTG+3NegP9LMNkCUlTG+rGaqP9vCLUBiyQa+rGaqP9vCLUBiyQa+rhyTP2QAN0DQxZE8rhyTP2QAN0DQxZE8oDpnPy6lIEBw/Yc8oDpnPy6lIEBw/Yc8oDpnPy6lIEBw/Yc8wA1hPypDKEBOfq2+wA1hPypDKEBOfq2+wA1hPypDKEBOfq2+rhyTv2UAN0CgxZE8rhyTv2UAN0CgxZE8Xg+dv7KZLUAo/Xo9oTpnvy6lIEBQ/Yc8oTpnvy6lIEBQ/Yc83ehLv6O8J0A9jGq+3ehLv6O8J0A9jGq+3ehLv6O8J0A9jGq+lEF5v6TcHEAvdpK+lEF5v6TcHEAvdpK+ju+dv6dQNEA5jq6+ju+dv6dQNEA5jq6+x9Wnv4b1KkCKZpi+rGaqP9vCLUBiyQa+rhyTP2QAN0DQxZE8Xg+dP7GZLUA4/Xo9jAtPP4AJLEAwGBS9oDpnPy6lIEBw/Yc8wA1hPypDKEBOfq2+lEF5P6PcHEAudpK+lEF5P6PcHEAudpK+kO+dP6dQNEA5jq6+kO+dP6dQNEA5jq6+kO+dP6dQNEA5jq6+ubZt3P///7/hRn+n27ly7XYip7TauXLt1FarPP///z/hRn+n27ly7XYip7TauXLtubZt3P///7+Hfa+d4rlu7eFGf6fauXLth32vnd65ce3UVqs8////P+FGf6fbuXLtubZt3P///78yq7OB7Llp7Yd9r53muWztMquzgee5a+2Hfa+d47lu7dRWqzz///8/ubZt3P///78yq7OB8blo7cXL01zyuWftMquzgey5ae3Fy9Nc8rln7dRWqzz///8/ubZt3P///7/D2Zox8rln7cXL01zyuWftw9maMfK5Z+3Fy9Nc8rln7dRWqzz///8/e98EEu25ae25tm3c////v8PZmjHyuWfte98EEu+5Z+3D2Zox8rln7dRWqzz///8/e98EEuq5bO25tm3c////v6oCuinjuW7te98EEuy5au2qArop6Llt7dRWqzz///8/ubZt3P///7+qArop3Llx7XYip7TbuXLtqgK6KeK5b+3UVqs8////P3Yip7TbuXLtHbl/pyNGjBKI3ae0JEaMEkVJbdz///+/KqmrPP///z8duX+nI0aMEojdp7QkRowSd4KvnRxGkBIduX+nJEaMEkVJbdz///+/d4KvnSBGjRIqqas8////Px25f6cjRowSd4KvnRhGkhJFSW3c////v8xUs4ESRpUSd4KvnRtGkBIqqas8////P8xUs4EXRpMSRUlt3P///7/MVLOBDUaWEjk001wMRpcSKqmrPP///z/MVLOBEkaVEjk001wMRpcSRUlt3P///787JpoxDEaXEjk001wMRpcSKqmrPP///z87JpoxDEaXEjk001wMRpcSgyAEEhFGlRJFSW3c////vzsmmjEMRpcSKqmrPP///z+DIAQSD0aXEjsmmjEMRpcSVP26KRtGkBKDIAQSFEaSEkVJbdz///+/VP26KRZGkRIqqas8////P4MgBBISRpQSVP26KSJGjRKI3ae0I0aMEkVJbdz///+/VP26KRxGjxIqqas8////P4jdp7QjRowSxFC4pdu5cu3UVqs827ly7VMI2CDauXLtUFNCpdu5cu25tm3c2rly7f0MhxnauXLt1FarPOK5bu0oqqu04rlu7fVykZ/suWnt2VhEOOy5ae1BsDiI7Llp7ea179PyuWftdrUjFfK5Z+264YcF8rln7R1j3hbiuW/tubZt3OK5b+0qqas8I0aMEl+vv6UjRowSnffqyiRGjBLJ86fHJEaMEiqpqzwkRowSKqmrPBxGkBKDTAbVHEaQEiqpqzwSRpUS0JKdoBJGlRIPUB7CEkaVErNJcNsRRpUSMviuIRFGlRIqqas8EUaVEuFGf6fiuW7t36uht+K5bu3hRn+n3rlx7YmvNp3suWntos9IWOy5ae2Otne38rln7WfQYVfyuWft9PyBL/K5Z+3T1VpH77ln7RLnFwvvuWftNOXY2dy5ce12Iqe03Llx7XYip7TiuW/tyayOPiRGjBIduX+nHEaQEh25f6cgRo0SrjMwXA1GlhI7MnxaEkaVEporRk8RRpUSvShzPw9GlxIPrhg7D0aXEkYfKAsiRo0SiN2ntCJGjRKIvoJDIkaNEg==")
 }]
-blend_shape_mode = 0
 
 [sub_resource type="Animation" id="Animation_wok2v"]
 length = 0.001
@@ -132,6 +155,43 @@ _data = {
 radius = 1.5
 height = 6.509
 
+[sub_resource type="Animation" id="Animation_8okie"]
+resource_name = "small_fov_zoom_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(0.225313, 4.43828, 1),
+"update": 0,
+"values": [75.0, 90.0, 75.0]
+}
+
+[sub_resource type="Animation" id="Animation_5x52n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_thdgd"]
+_data = {
+"RESET": SubResource("Animation_5x52n"),
+"small_fov_zoom_out": SubResource("Animation_8okie")
+}
+
 [node name="Hunter" instance=ExtResource("1_axw2m")]
 script = ExtResource("2_tqj0w")
 
@@ -141,50 +201,51 @@ unique_name_in_owner = true
 [node name="Skeleton3D" parent="Armature" index="0"]
 unique_name_in_owner = true
 bones/0/position = Vector3(0.019475, 4.53648, -0.326525)
-bones/0/rotation = Quaternion(0.378036, -0.0058146, 0.0194955, 0.925567)
+bones/0/rotation = Quaternion(0.130995, 4.05829e-19, 2.55891e-17, 0.991383)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.288211, -0.00100589, -0.00436283, 0.957557)
-bones/2/rotation = Quaternion(-0.344032, -0.00709769, 0.00552766, 0.938915)
-bones/3/rotation = Quaternion(0.867724, -0.488275, 0.0314083, 0.0875017)
+bones/1/rotation = Quaternion(0.00858774, 1.19205e-07, 1.02374e-09, 0.999963)
+bones/2/rotation = Quaternion(0.0498798, -1.19061e-07, 5.94613e-09, 0.998755)
+bones/3/rotation = Quaternion(0.97519, -0.203503, -0.0312363, -0.0813416)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/position = Vector3(0.287195, 1.18888, 0.225011)
-bones/4/rotation = Quaternion(-0.0961763, 0.429811, 0.822255, -0.36043)
+bones/4/rotation = Quaternion(-0.0757328, 0.38, 0.78237, -0.487609)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.242597, 0.135279, -0.559817, 0.780674)
+bones/5/rotation = Quaternion(-0.280598, 0.146937, -0.450981, 0.83444)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.00439635, -0.012199, 0.561685, 0.82725)
+bones/6/rotation = Quaternion(-0.0313538, -0.0430087, 0.479272, 0.876051)
 bones/7/rotation = Quaternion(-0.0406354, 0.0693562, -0.749113, 0.657547)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.634242, -0.628481, -0.354537, 0.277582)
-bones/9/rotation = Quaternion(0.393554, 0.611474, -0.292824, 0.620862)
+bones/8/rotation = Quaternion(0.238484, -0.209913, -0.583491, 0.747396)
+bones/9/rotation = Quaternion(0.186688, -0.0165048, -0.136205, 0.972791)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(0.0328304, -0.0605107, -0.124932, 0.989774)
 bones/11/rotation = Quaternion(-0.0406356, -0.0693564, 0.749113, 0.657547)
-bones/12/rotation = Quaternion(-0.299533, -0.362057, 0.461339, 0.75257)
-bones/13/rotation = Quaternion(0.229092, -0.0571998, -0.0143675, 0.971617)
-bones/14/rotation = Quaternion(0.143615, 0.0164611, 0.156281, 0.977077)
+bones/12/rotation = Quaternion(-0.0909354, -0.133185, 0.54228, 0.824576)
+bones/13/rotation = Quaternion(0.0973307, 0.0151409, 0.0335859, 0.99457)
+bones/14/rotation = Quaternion(0.139908, 0.00215597, 0.0709939, 0.987614)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.011683, -0.0721265, 0.996559, 0.0391241)
+bones/15/rotation = Quaternion(-0.0634169, -0.0474891, 0.995029, -0.0603331)
 bones/15/scale = Vector3(1.00002, 0.999992, 1.00002)
-bones/16/rotation = Quaternion(-0.0746429, -0.000246733, -0.0129956, 0.997126)
+bones/16/rotation = Quaternion(-0.0042209, -0.000247458, -0.000734883, 0.999991)
 bones/16/scale = Vector3(1, 0.999999, 0.999999)
-bones/17/rotation = Quaternion(0.357006, -0.0295851, 0.0706839, 0.930954)
+bones/17/rotation = Quaternion(0.654259, -0.0820946, 0.004986, 0.751785)
 bones/17/scale = Vector3(1.00001, 1.00001, 1)
-bones/18/rotation = Quaternion(-0.0180521, 0.943118, 0.32947, 0.0406505)
+bones/18/rotation = Quaternion(0.0913099, 0.436101, 0.890827, 0.0889104)
 bones/18/scale = Vector3(1, 0.999984, 1.00005)
-bones/19/rotation = Quaternion(-0.795729, 0.000683458, 0.0806961, 0.600253)
+bones/19/rotation = Quaternion(-0.559941, 0.000202374, 0.0974895, 0.822777)
 bones/19/scale = Vector3(1, 0.999954, 1.00004)
-bones/20/rotation = Quaternion(0.408271, -0.150489, -0.168484, 0.884466)
+bones/20/rotation = Quaternion(0.561004, 0.0757295, -0.00832929, 0.8243)
 bones/20/scale = Vector3(1, 0.999979, 1.00003)
-bones/21/position = Vector3(0.0957378, 1.45781, -0.13279)
-bones/21/rotation = Quaternion(-0.0374426, 0.999159, 0.0155613, -0.00611201)
+bones/21/position = Vector3(0.574674, 0.344606, -0.216926)
+bones/21/rotation = Quaternion(-0.00292033, 0.772622, -0.634849, 0.00355409)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/position = Vector3(-0.226535, 1.31877, 2.51596)
-bones/22/rotation = Quaternion(0.123778, 0.853937, -0.486565, -0.13684)
+bones/22/position = Vector3(-0.460257, 0.778615, 0.418587)
+bones/22/rotation = Quaternion(0.00208806, 0.891029, -0.453923, -0.00409877)
 bones/22/scale = Vector3(1, 1, 1)
 
 [node name="HunterBody" parent="Armature/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_a2x27")
+metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
@@ -209,6 +270,12 @@ unique_name_in_owner = true
 physics_interpolation_mode = 2
 current = true
 script = ExtResource("12_opfs2")
+
+[node name="CamAnim" type="AnimationPlayer" parent="CamPivot/CameraTarget/Camera3D" index="0"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_thdgd")
+}
 
 [node name="TargettedCamPoint" type="Camera3D" parent="CamPivot" index="1"]
 unique_name_in_owner = true

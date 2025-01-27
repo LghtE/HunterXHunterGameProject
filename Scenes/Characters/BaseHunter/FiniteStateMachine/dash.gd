@@ -22,3 +22,6 @@ func do(delta: float):
 func dashFinished():
 	need_to_dash = false
 	%Movement.player_movement_in_control = true
+
+func dash_cam():
+	%CamAnim.play("small_fov_zoom_out")

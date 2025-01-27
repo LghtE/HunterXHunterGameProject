@@ -61,7 +61,20 @@ func _on_timer_timeout() -> void:
 	del2.duration = afterimg_duration
 	attach_node.get_node(skeleton.get_path()).add_child(del1)
 	attach_node.get_node(duplicate_mesh.get_path()).add_child(del2)
+	
+	
+	attach_node.get_node(duplicate_mesh.get_path()).set_surface_override_material(0, main_mesh.get_active_material(0).duplicate())
 
+	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).set_next_pass(main_mesh.get_active_material(0).get_next_pass().get_next_pass().duplicate())
+	
+	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).get_next_pass().set_shader_parameter("distortion", 0.06)
+	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).get_next_pass().set_shader_parameter("alpha", 0.89)
+	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).get_next_pass().set_shader_parameter("speed", 0.01)
+	
+	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).emission = Color.AQUA
+
+
+	
 	
 	afteriimgidx += 1
 	if afteriimgidx >= no_of_afterimages:
