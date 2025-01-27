@@ -70,7 +70,7 @@ func _on_timer_timeout() -> void:
 	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).get_next_pass().set_shader_parameter("distortion", 0.06)
 	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).get_next_pass().set_shader_parameter("alpha", 0.89)
 	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).get_next_pass().set_shader_parameter("speed", 0.01)
-	
+	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).emission_energy_multiplier = 2
 	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).emission = Color.AQUA
 
 
