@@ -155,6 +155,21 @@ _data = {
 radius = 1.5
 height = 6.509
 
+[sub_resource type="Animation" id="Animation_5x52n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+
 [sub_resource type="Animation" id="Animation_8okie"]
 resource_name = "small_fov_zoom_out"
 length = 0.5
@@ -169,21 +184,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.225313, 4.43828, 1),
 "update": 0,
 "values": [75.0, 90.0, 75.0]
-}
-
-[sub_resource type="Animation" id="Animation_5x52n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:fov")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [75.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_thdgd"]
@@ -326,6 +326,7 @@ attach_node_path = NodePath("../../../../../../Armature")
 main_body_path = NodePath("../../../../../..")
 source_skeleton = NodePath("../../../../../../Armature/Skeleton3D")
 duration = 0.4
+afterimg_duration = 2.0
 
 [node name="InAir" type="Node" parent="StateMachine/Movement/NotAiming" index="1"]
 script = ExtResource("12_kq4s7")

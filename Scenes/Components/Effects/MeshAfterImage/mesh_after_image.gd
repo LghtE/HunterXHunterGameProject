@@ -1,5 +1,6 @@
 extends Node
 
+@export_group("Prerequisites")
 ## The MeshInstance3D used for the after-images.
 @export var main_mesh : MeshInstance3D
 ## Where the MeshInstance3D and their Skeleton3D will be added to (also rotation).
@@ -10,9 +11,11 @@ extends Node
 
 var fade_and_delete_node : PackedScene = preload("res://Scenes/Components/Effects/MeshAfterImage/FadeOutAndDelete.tscn")
 
+@export_group("Visual")
 @export var no_of_afterimages : int = 4
 @export var duration : float = 2
 @export var afterimg_duration : float = 0.5
+@export var afterimg_color : Color = Color.AQUA
 
 var attach_node 
 var main_body
@@ -71,7 +74,7 @@ func _on_timer_timeout() -> void:
 	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).get_next_pass().set_shader_parameter("alpha", 0.89)
 	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).get_next_pass().set_shader_parameter("speed", 0.01)
 	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).emission_energy_multiplier = 2
-	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).emission = Color.AQUA
+	attach_node.get_node(duplicate_mesh.get_path()).get_surface_override_material(0).emission = afterimg_color
 
 
 	
