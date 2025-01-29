@@ -2,8 +2,9 @@ extends State
 
 
 func do(delta):
-	
-	
+	%Skeleton3D.position.y = 0 # remove
+
+	%AnimationPlayer.play("Movement/Fall")
 	
 	
 	

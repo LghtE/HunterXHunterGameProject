@@ -4,6 +4,9 @@ var run_toggle = false
 
 
 func do(delta : float):
+	%Skeleton3D.position.y = 0
+	%CameraTarget.position = lerp(%CameraTarget.position, %BaseCamPos.position, 0.1)
+	
 	
 	if Input.is_action_just_pressed("Shift"):
 		run_toggle = !run_toggle
@@ -18,7 +21,7 @@ func do(delta : float):
 			get_node("RunStop").do(delta) # RUN STOP
 	else:
 		if get_node("Dash").need_to_dash == false:
-			if abs(%StateMachine.mouse_position.x) > 100 && get_node("Turn").need_to_turn == false:
+			if abs(%StateMachine.mouse_position.x) > 150 && get_node("Turn").need_to_turn == false:
 				get_node("Turn").need_to_turn = true
 			else:
 				get_node("RunStop").run_stop_done = false

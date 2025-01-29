@@ -77,7 +77,7 @@ func baseMovement(delta):
 	move_direction = forward * raw_input.y + right* raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
-	
+	print(%CameraTarget.position)
 	var y_velocity := _rootNode.velocity.y
 	_rootNode.velocity.y = 0.0
 	
@@ -94,3 +94,4 @@ func baseMovement(delta):
 
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	_baseHunter.global_rotation.y = lerp_angle(_baseHunter.global_rotation.y, target_angle, rotation_speed * delta)
+	%Raycasts.global_rotation.y = lerp_angle(%Raycasts.global_rotation.y, target_angle, rotation_speed * delta)

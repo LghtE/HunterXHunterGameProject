@@ -30,7 +30,8 @@ func _ready() -> void:
 	time_per_afterimg = duration / no_of_afterimages
 	$Timer.wait_time = time_per_afterimg
 func afterImage():
-	$Timer.start()
+	if $Timer.is_stopped():
+		$Timer.start()
 
 
 
