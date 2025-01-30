@@ -17,6 +17,7 @@ func do(delta: float):
 		wall_normal = %mid_left_raycast.get_collision_normal()
 	elif %mid_right_raycast.is_colliding():
 		wall_normal = %mid_right_raycast.get_collision_normal()
+		
 	if wall_jumping:
 		%mid_left_raycast.enabled = false
 		%mid_right_raycast.enabled = false

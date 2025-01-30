@@ -11,7 +11,7 @@ func do(delta):
 
 
 		
-	if !(%mid_left_raycast.is_colliding() || %mid_right_raycast.is_colliding()) :
+	if !((%mid_left_raycast.is_colliding() || %mid_right_raycast.is_colliding()) && !%down_raycast.is_colliding()) :
 		%mid_left_raycast.enabled = true
 		%mid_right_raycast.enabled = true
 		
@@ -21,4 +21,5 @@ func do(delta):
 		elif get_node("OnGround/Dash").need_to_dash == false:
 			get_node("InAir").do(delta) #InAir
 	else:
+		
 		get_node("OnWall").do(delta) #OnWall

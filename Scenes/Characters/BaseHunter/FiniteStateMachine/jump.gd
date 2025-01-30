@@ -5,6 +5,8 @@ var hit_peak = false
 func do(delta:float):
 	if !hit_peak:
 		%AnimationPlayer.play("Movement/Jump",-1,1)
+		
+	
 	%Movement._rootNode.velocity.x = %Movement.move_direction.x * 60
 	%Movement._rootNode.velocity.z = %Movement.move_direction.z * 60
 	
