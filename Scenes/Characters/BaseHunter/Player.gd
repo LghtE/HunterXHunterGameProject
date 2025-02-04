@@ -6,6 +6,7 @@ var _velocity
 var mouse_position = Vector2.ZERO
 var mouse_moving = false
 var _old_mouse = Vector2.ZERO
+var stick_vector : Vector2
 
 func _ready() -> void:
 	pass
@@ -18,7 +19,11 @@ func _process(delta: float) -> void:
 	_old_mouse = get_viewport().get_mouse_position()
 	
 func _physics_process(delta: float) -> void:
+	
+	stick_vector = Input.get_vector("joy_left", "joy_right", "joy_up", "joy_down")
+	
 
+	
 	handleStates(delta)
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -37,6 +42,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		mouse_position = event.relative
 	else:
 		pass
+		
+
 
 
 func handleStates(delta : float):

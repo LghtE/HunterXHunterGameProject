@@ -11,7 +11,7 @@ func do(delta : float):
 	if Input.is_action_just_pressed("Shift"):
 		run_toggle = !run_toggle
 	
-	if Input.is_action_just_pressed("Dash") && get_node("Dash").need_to_dash == false :
+	if Input.is_action_just_pressed("Dash") && get_node("Dash").need_to_dash == false && %Movement.move_direction != Vector3.ZERO:
 		get_node("Dash").need_to_dash = true
 	
 	if %Movement.move_direction == Vector3.ZERO:

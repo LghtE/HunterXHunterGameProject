@@ -2,6 +2,8 @@ extends State
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.25
+@export var joypad_sensitivity := 5.0
+
 
 @export_group("Movement")
 @export var move_speed := 35.0
@@ -33,13 +35,16 @@ var targeting = false
 func _unhandled_input(event: InputEvent) -> void:
 	
 	
+
 	
-	var _is_cam_motion := (event is InputEventMouseMotion and 
+	var _is_cam_motion := ((event is InputEventMouseMotion) and 
 						Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
 						
 	
 	if _is_cam_motion:
-		_cam_input_dir = event.screen_relative * mouse_sensitivity
+		if event is InputEventMouseMotion:
+			_cam_input_dir = event.screen_relative * mouse_sensitivity
+			
 		
 	if event.is_action_pressed("Target"):
 		targeting = !targeting
@@ -53,6 +58,11 @@ func onExit():
 func do(delta : float):
 	baseMovement(delta)
 
+	if %StateMachine.stick_vector != Vector2.ZERO:
+		_cam_input_dir = %StateMachine.stick_vector
+
+
+
 	if targeting:
 		get_node("Aiming").do(delta)
 	else:
@@ -63,9 +73,9 @@ func do(delta : float):
 func baseMovement(delta):
 	
 	#Rotating the Cam
-	_camPivot.rotation.x +=_cam_input_dir.y * delta
+	_camPivot.rotation.x +=_cam_input_dir.y * delta * joypad_sensitivity
 	_camPivot.rotation.x = clamp(_camPivot.rotation.x, -PI / 6.0, PI / 6.0)
-	_camPivot.rotation.y -=_cam_input_dir.x * delta
+	_camPivot.rotation.y -=_cam_input_dir.x * delta * joypad_sensitivity
 	
 	
 	# Movement #
@@ -77,7 +87,6 @@ func baseMovement(delta):
 	move_direction = forward * raw_input.y + right* raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
-	print(%CameraTarget.position)
 	var y_velocity := _rootNode.velocity.y
 	_rootNode.velocity.y = 0.0
 	

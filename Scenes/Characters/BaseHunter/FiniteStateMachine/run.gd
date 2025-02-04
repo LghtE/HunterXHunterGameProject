@@ -11,7 +11,7 @@ func onEnter():
 
 func do(delta : float):
 	
-	%Movement.move_speed = lerp(%Movement.move_speed, 60.0, 0.1)
+	%Movement.move_speed = lerp(%Movement.move_speed, 45.0, 0.1)
 	%AnimationPlayer.play("Movement/Run")
 	
 	

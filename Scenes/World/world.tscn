@@ -1,4 +1,4 @@
-[gd_scene load_steps=2300 format=3 uid="uid://c2x67o7sqxefx"]
+[gd_scene load_steps=2301 format=3 uid="uid://c2x67o7sqxefx"]
 
 [ext_resource type="Script" path="res://Scenes/World/world.gd" id="1_m1gyp"]
 [ext_resource type="Texture2D" uid="uid://ky14ggmi8kws" path="res://Assets/TestStuff/pattern.png" id="1_r5lpi"]
@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://7k58uhvrhd0q" path="res://addons/cyclops_level_builder/materials/grid (2).tres" id="9_2ief1"]
 [ext_resource type="Shader" path="res://Scenes/World/cloud.gdshader" id="10_bdkk2"]
 [ext_resource type="Shader" path="res://Scenes/Characters/BaseHunter/outlineTest.gdshader" id="11_4t7e4"]
+[ext_resource type="PackedScene" uid="uid://criyq2cdxn3a3" path="res://Assets/TestStuff/basebody_2.tscn" id="13_2d2y1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hv7uk"]
 sky_top_color = Color(0.356515, 0.519521, 0.603461, 1)
@@ -24114,3 +24115,6 @@ shape = SubResource("ConcavePolygonShape3D_wxl67")
 
 [node name="StartingPos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 201.427, 34.0479, -74.1322)
+
+[node name="basebody1" parent="." instance=ExtResource("13_2d2y1")]
+transform = Transform3D(0.032, 0, 0, 0, 0.032, 0, 0, 0, 0.032, 200.408, 28, -65.6415)
