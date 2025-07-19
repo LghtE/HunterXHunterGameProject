@@ -1,40 +1,40 @@
 [gd_scene load_steps=45 format=4 uid="uid://didcvbvyc8eef"]
 
 [ext_resource type="PackedScene" uid="uid://blg2q563uts0j" path="res://Assets/BaseHunter/Hunter.glb" id="1_axw2m"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
+[ext_resource type="Script" uid="uid://6bvepo5yqb06" path="res://Scenes/Characters/BaseHunter/base_hunter.gd" id="2_tqj0w"]
 [ext_resource type="Material" uid="uid://dyux75alvtuxn" path="res://Scenes/Characters/BaseHunter/HunterBaseMaterial.tres" id="3_5n6hs"]
 [ext_resource type="Texture2D" uid="uid://dehqmc6uv2s4g" path="res://Assets/BaseHunter/Hunter_testcolormat_1.png" id="4_hth1q"]
 [ext_resource type="Animation" uid="uid://kqmaslbws6sl" path="res://Assets/BaseHunter/Turn.res" id="5_1xpcd"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/Player.gd" id="5_m8jon"]
+[ext_resource type="Script" uid="uid://trqkxq7ropno" path="res://Scenes/Characters/BaseHunter/Player.gd" id="5_m8jon"]
 [ext_resource type="Animation" uid="uid://hixhrrd108ok" path="res://Assets/BaseHunter/Run.res" id="6_mag6i"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/movement.gd" id="6_u4hjb"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/untargeted_movement.gd" id="7_nyo0m"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/targeted_movement.gd" id="7_u5xgg"]
+[ext_resource type="Script" uid="uid://cab3nj61re0ks" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/movement.gd" id="6_u4hjb"]
+[ext_resource type="Script" uid="uid://4usawonu7v6n" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/untargeted_movement.gd" id="7_nyo0m"]
+[ext_resource type="Script" uid="uid://dylb8g4arldpx" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/targeted_movement.gd" id="7_u5xgg"]
 [ext_resource type="Animation" uid="uid://cjqrd26oayoey" path="res://Assets/BaseHunter/Run_Stop.res" id="7_voa1g"]
 [ext_resource type="Animation" uid="uid://cwpsc2x0hl8p4" path="res://Assets/BaseHunter/Idle.res" id="8_6tv2u"]
 [ext_resource type="Animation" uid="uid://dbt7i4bhvm1q4" path="res://Assets/BaseHunter/Jump.res" id="9_c2v5p"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/idle.gd" id="9_cc0kx"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/on_ground.gd" id="9_si25g"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/run.gd" id="10_73ax2"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/run_stop.gd" id="11_r53bd"]
+[ext_resource type="Script" uid="uid://cu8lw7cfuo2cp" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/idle.gd" id="9_cc0kx"]
+[ext_resource type="Script" uid="uid://5ccibdngkdx2" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/on_ground.gd" id="9_si25g"]
+[ext_resource type="Script" uid="uid://dj4pip5go28q0" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/run.gd" id="10_73ax2"]
+[ext_resource type="Script" uid="uid://cr70h7plxpr3o" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/run_stop.gd" id="11_r53bd"]
 [ext_resource type="Animation" uid="uid://bdxrejtvml7xs" path="res://Assets/BaseHunter/Dash.res" id="11_sn10l"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/jump.gd" id="12_e4dku"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/in_air.gd" id="12_kq4s7"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/camera_3d.gd" id="12_opfs2"]
+[ext_resource type="Script" uid="uid://dkvg4hi1pgxu7" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/jump.gd" id="12_e4dku"]
+[ext_resource type="Script" uid="uid://b3jmlcxifucav" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/in_air.gd" id="12_kq4s7"]
+[ext_resource type="Script" uid="uid://2xwck0pi2urp" path="res://Scenes/Characters/BaseHunter/camera_3d.gd" id="12_opfs2"]
 [ext_resource type="Animation" uid="uid://cfh41nkxd6pjy" path="res://Assets/BaseHunter/WallGrabLeft.res" id="13_4rfft"]
 [ext_resource type="Animation" uid="uid://c4l36ie82g0xx" path="res://Assets/BaseHunter/Fall.res" id="13_7fm2r"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/fall.gd" id="13_lsp1b"]
+[ext_resource type="Script" uid="uid://6uag7ey6djoe" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/fall.gd" id="13_lsp1b"]
 [ext_resource type="Animation" uid="uid://ba5i1op5riex4" path="res://Assets/BaseHunter/WallGrabRight.res" id="14_onws7"]
 [ext_resource type="Animation" uid="uid://vqarg3sxae37" path="res://Assets/BaseHunter/WallRunLeft.res" id="15_m353l"]
 [ext_resource type="Animation" uid="uid://csv1yvhq0wks2" path="res://Assets/BaseHunter/WallRunRight.res" id="16_2r4el"]
 [ext_resource type="Animation" uid="uid://bmhea7fumqqgx" path="res://Assets/BaseHunter/WallJump.res" id="16_l5urr"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/turn.gd" id="16_ttyva"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/dash.gd" id="20_k0ylh"]
+[ext_resource type="Script" uid="uid://jk80jgiawduv" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/turn.gd" id="16_ttyva"]
+[ext_resource type="Script" uid="uid://b4t2wtp5bguy3" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/dash.gd" id="20_k0ylh"]
 [ext_resource type="Texture2D" uid="uid://b66hobxl38g17" path="res://Assets/TestStuff/shadow.png" id="22_aoo6a"]
 [ext_resource type="PackedScene" uid="uid://c55loh0qkll3c" path="res://Scenes/Components/Effects/MeshAfterImage/MeshAfterImage.tscn" id="23_10cg8"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/on_wall.gd" id="31_rn4tr"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/wall_grab.gd" id="32_cyhod"]
-[ext_resource type="Script" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/wall_jump.gd" id="33_bdiul"]
+[ext_resource type="Script" uid="uid://vgj5wavchrqq" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/on_wall.gd" id="31_rn4tr"]
+[ext_resource type="Script" uid="uid://c5hr71d2oy72h" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/wall_grab.gd" id="32_cyhod"]
+[ext_resource type="Script" uid="uid://wo4ckwyfmqrh" path="res://Scenes/Characters/BaseHunter/FiniteStateMachine/wall_jump.gd" id="33_bdiul"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2uke"]
 resource_name = "BaseBody.001"
@@ -116,24 +116,24 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yvaiv"]
 _data = {
-"RESET": SubResource("Animation_wok2v"),
-"Turn": ExtResource("5_1xpcd")
+&"RESET": SubResource("Animation_wok2v"),
+&"Turn": ExtResource("5_1xpcd")
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h7npd"]
 _data = {
-"Dash": ExtResource("11_sn10l"),
-"Fall": ExtResource("13_7fm2r"),
-"Idle": ExtResource("8_6tv2u"),
-"Jump": ExtResource("9_c2v5p"),
-"Run": ExtResource("6_mag6i"),
-"Run_Stop": ExtResource("7_voa1g"),
-"Turn": ExtResource("5_1xpcd"),
-"WallGrabLeft": ExtResource("13_4rfft"),
-"WallGrabRight": ExtResource("14_onws7"),
-"WallJump": ExtResource("16_l5urr"),
-"WallRunLeft": ExtResource("15_m353l"),
-"WallRunRight": ExtResource("16_2r4el")
+&"Dash": ExtResource("11_sn10l"),
+&"Fall": ExtResource("13_7fm2r"),
+&"Idle": ExtResource("8_6tv2u"),
+&"Jump": ExtResource("9_c2v5p"),
+&"Run": ExtResource("6_mag6i"),
+&"Run_Stop": ExtResource("7_voa1g"),
+&"Turn": ExtResource("5_1xpcd"),
+&"WallGrabLeft": ExtResource("13_4rfft"),
+&"WallGrabRight": ExtResource("14_onws7"),
+&"WallJump": ExtResource("16_l5urr"),
+&"WallRunLeft": ExtResource("15_m353l"),
+&"WallRunRight": ExtResource("16_2r4el")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_homsi"]
@@ -173,8 +173,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_thdgd"]
 _data = {
-"RESET": SubResource("Animation_5x52n"),
-"small_fov_zoom_out": SubResource("Animation_8okie")
+&"RESET": SubResource("Animation_5x52n"),
+&"small_fov_zoom_out": SubResource("Animation_8okie")
 }
 
 [node name="Hunter" instance=ExtResource("1_axw2m")]
@@ -231,8 +231,8 @@ mesh = SubResource("ArrayMesh_e7sel")
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_yvaiv"),
-"Movement": SubResource("AnimationLibrary_h7npd")
+&"": SubResource("AnimationLibrary_yvaiv"),
+&"Movement": SubResource("AnimationLibrary_h7npd")
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
@@ -257,7 +257,7 @@ script = ExtResource("12_opfs2")
 [node name="CamAnim" type="AnimationPlayer" parent="CamPivot/CameraTarget/Camera3D" index="0"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_thdgd")
+&"": SubResource("AnimationLibrary_thdgd")
 }
 
 [node name="TargettedCamPoint" type="Camera3D" parent="CamPivot" index="1"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5j03h6xmnugv"]
 
-[ext_resource type="Script" path="res://Scenes/Components/Effects/MeshAfterImage/fade_out_and_delete.gd" id="1_56t4j"]
+[ext_resource type="Script" uid="uid://cfxsnq8yefhn2" path="res://Scenes/Components/Effects/MeshAfterImage/fade_out_and_delete.gd" id="1_56t4j"]
 
 [node name="FadeOutAndDelete" type="Node"]
 script = ExtResource("1_56t4j")

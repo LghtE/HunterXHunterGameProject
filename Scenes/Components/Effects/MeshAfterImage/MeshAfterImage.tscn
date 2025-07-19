@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c55loh0qkll3c"]
 
-[ext_resource type="Script" path="res://Scenes/Components/Effects/MeshAfterImage/mesh_after_image.gd" id="1_hyyww"]
+[ext_resource type="Script" uid="uid://mf212m1ptnpf" path="res://Scenes/Components/Effects/MeshAfterImage/mesh_after_image.gd" id="1_hyyww"]
 
 [node name="MeshAfterImage" type="Node"]
 script = ExtResource("1_hyyww")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkfwlw1eq2ydy"]
+
+[ext_resource type="Script" uid="uid://c86o1ikidvr1u" path="res://Assets/Components/AfterImage/afterimage_component.gd" id="1_hn3el"]
+[ext_resource type="Shader" uid="uid://b2gy86tgyspw0" path="res://Assets/Player/test.gdshader" id="2_abodl"]
+
+[node name="AfterImageComponent" type="Node3D"]
+script = ExtResource("1_hn3el")
+color_shader = ExtResource("2_abodl")
+
+[node name="EchoTimer" type="Timer" parent="."]
+
+[node name="AiTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AiTimer" to="." method="_on_timer_timeout"]

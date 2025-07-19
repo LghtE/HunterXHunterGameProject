@@ -16,8 +16,10 @@ extends State
 
 
 var _cam_input_dir := Vector2.ZERO
+var cam_zoom
 var _last_movement_direction := Vector3.BACK
 var move_direction
+
 
 
 @onready var _rootNode : CharacterBody3D = get_parent().get_parent()
@@ -37,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 
 	
-	var _is_cam_motion := ((event is InputEventMouseMotion) and 
+	var _is_cam_motion := ((event is InputEventMouseMotion || event is InputEventJoypadMotion) and 
 						Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
 						
 	
@@ -76,6 +78,11 @@ func baseMovement(delta):
 	_camPivot.rotation.x +=_cam_input_dir.y * delta * joypad_sensitivity
 	_camPivot.rotation.x = clamp(_camPivot.rotation.x, -PI / 6.0, PI / 6.0)
 	_camPivot.rotation.y -=_cam_input_dir.x * delta * joypad_sensitivity
+	
+	cam_zoom = _camPivot.rotation.x + 1
+	
+
+	
 	
 	
 	# Movement #

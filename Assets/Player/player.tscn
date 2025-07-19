@@ -1,0 +1,261 @@
+[gd_scene load_steps=25 format=3 uid="uid://btbeog3qg5fgv"]
+
+[ext_resource type="Script" uid="uid://bihp0domhkt2m" path="res://Assets/Player/player.gd" id="1_6miq6"]
+[ext_resource type="Texture2D" uid="uid://4o7i8fug4tpf" path="res://Assets/Player/FosOWCombat3D.png" id="2_tfsyo"]
+[ext_resource type="AnimationLibrary" uid="uid://c5on8xubbrtrx" path="res://Assets/Player/movementAnims.tres" id="3_5jfoa"]
+[ext_resource type="Texture2D" uid="uid://gemf0qgv7hrx" path="res://Assets/Player/shadow.png" id="3_8ft5u"]
+[ext_resource type="Script" uid="uid://df73tf0hv6hmw" path="res://Assets/Player/animations.gd" id="4_kg0wl"]
+[ext_resource type="Script" uid="uid://bu2s5012yf41t" path="res://Assets/Player/state_machine.gd" id="5_5j20w"]
+[ext_resource type="Script" uid="uid://du4rxefxh7iax" path="res://Assets/Player/PlayerIdle.gd" id="6_rul8u"]
+[ext_resource type="Script" uid="uid://dd50nbblsuj1g" path="res://Assets/Player/PlayerRunning.gd" id="7_kg0wl"]
+[ext_resource type="FontFile" uid="uid://c0qwhv3dt8bkn" path="res://Assets/Fonts/EXEPixelPerfect.ttf" id="9_2147b"]
+[ext_resource type="Script" uid="uid://ljibp7pj51tr" path="res://Assets/Player/player_fall.gd" id="9_csact"]
+[ext_resource type="Script" uid="uid://cmbd3nwsd6cw8" path="res://Assets/Player/player_jump.gd" id="10_e6xfg"]
+[ext_resource type="Script" uid="uid://cpknpv44fgq5j" path="res://Assets/Player/player_dash.gd" id="11_fx6gu"]
+[ext_resource type="Script" uid="uid://prdecssgxee1" path="res://Assets/Player/player_land.gd" id="12_tfsyo"]
+[ext_resource type="PackedScene" uid="uid://dkfwlw1eq2ydy" path="res://Assets/Components/AfterImage/afterimage_component.tscn" id="13_cdil5"]
+[ext_resource type="Script" uid="uid://devgbdm6eoge4" path="res://Assets/Player/player_wall_grab.gd" id="14_rf7nh"]
+[ext_resource type="Texture2D" uid="uid://di3sp542ih50v" path="res://Assets/TestStuff/effects/dustfull.png" id="16_wv4rg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5jfoa"]
+radius = 1.03
+height = 8.0
+
+[sub_resource type="Animation" id="Animation_rf7nh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [144]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(10, 10, 10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wv4rg"]
+_data = {
+&"RESET": SubResource("Animation_rf7nh")
+}
+
+[sub_resource type="Curve" id="Curve_m3gky"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.925267, 0.961877), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hgjuv"]
+curve = SubResource("Curve_m3gky")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_funjf"]
+lifetime_randomness = 0.31
+emission_shape = 1
+emission_sphere_radius = 0.95
+angle_min = -22.5
+angle_max = 114.9
+direction = Vector3(0, 10, 0)
+initial_velocity_min = 0.52
+initial_velocity_max = 0.97
+gravity = Vector3(0, 2, 0)
+damping_max = 10.658
+scale_curve = SubResource("CurveTexture_hgjuv")
+anim_speed_min = 0.86
+anim_speed_max = 1.86
+anim_offset_max = 0.2758
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xvbvg"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("16_wv4rg")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow_amount = 1.33
+
+[sub_resource type="QuadMesh" id="QuadMesh_so11v"]
+lightmap_size_hint = Vector2i(7, 4)
+material = SubResource("StandardMaterial3D_xvbvg")
+size = Vector2(1.2, 1.165)
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_6miq6")
+
+[node name="StateNameDebug" type="Label3D" parent="."]
+transform = Transform3D(3.34707, 0, 0, 0, 4.72102, 0.654517, 0, -4.08702, 0.756048, 0, 8.72271, 0.718674)
+pixel_size = 0.0091
+billboard = 2
+texture_filter = 0
+text = "CURRENT_STATE"
+font = ExtResource("9_2147b")
+font_size = 47
+outline_size = 0
+
+[node name="SkinSuit" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 4, 0.249898)
+billboard = 2
+texture_filter = 4
+texture = ExtResource("2_tfsyo")
+hframes = 16
+vframes = 38
+frame = 144
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035, 4.3, 0.124)
+shape = SubResource("CapsuleShape3D_5jfoa")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="Shadow" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.32, 0, 0, 0, -0.022322, -0.31922, 0, 0.31922, -0.022322, 0.18, 5, 10.69)
+top_level = true
+pixel_size = 0.0026
+fixed_size = true
+texture_filter = 0
+texture = ExtResource("3_8ft5u")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 35.5, 95)
+current = true
+fov = 20.0
+size = 24.164
+
+[node name="CamFollow" type="Node3D" parent="."]
+
+[node name="Animations" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_kg0wl")
+
+[node name="MovementAnims" type="AnimationPlayer" parent="Animations"]
+unique_name_in_owner = true
+root_node = NodePath("../../SkinSuit")
+libraries = {
+&"": SubResource("AnimationLibrary_wv4rg"),
+&"movementAnims": ExtResource("3_5jfoa")
+}
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "main_node")]
+unique_name_in_owner = true
+script = ExtResource("5_5j20w")
+initial_state = NodePath("PlayerIdle")
+main_node = NodePath("..")
+
+[node name="PlayerIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("6_rul8u")
+player = NodePath("../..")
+
+[node name="PlayerRunning" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("7_kg0wl")
+player = NodePath("../..")
+
+[node name="PlayerFall" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("9_csact")
+player = NodePath("../..")
+fall_move_speed = 30.0
+
+[node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("10_e6xfg")
+player = NodePath("../..")
+jump_move_speed = 30.0
+
+[node name="PlayerDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("11_fx6gu")
+player = NodePath("../..")
+DASH_SPEED = 135.0
+
+[node name="DashTimer" type="Timer" parent="StateMachine/PlayerDash"]
+wait_time = 0.3
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="StateMachine/PlayerDash"]
+wait_time = 0.1
+one_shot = true
+
+[node name="DustTimer" type="Timer" parent="StateMachine/PlayerDash"]
+wait_time = 0.3
+one_shot = true
+
+[node name="PlayerLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("12_tfsyo")
+player = NodePath("../..")
+
+[node name="PlayerWallGrab" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+script = ExtResource("14_rf7nh")
+player = NodePath("../..")
+
+[node name="OnWallTimer" type="Timer" parent="StateMachine/PlayerWallGrab"]
+wait_time = 1.5
+one_shot = true
+
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="AfterImageComponent" parent="Particles" node_paths=PackedStringArray("sprite", "main_node") instance=ExtResource("13_cdil5")]
+unique_name_in_owner = true
+ai_frequency = 13.0
+sprite = NodePath("../../SkinSuit")
+main_node = NodePath("../..")
+afterimage_color = Color(1, 0, 0.690196, 1)
+mix_color = 1.0
+
+[node name="WallDustParticle" type="GPUParticles3D" parent="Particles"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.905, 4.137, 0.919)
+transparency = 0.56
+emitting = false
+amount = 5
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_funjf")
+draw_pass_1 = SubResource("QuadMesh_so11v")
+
+[node name="WallRaycasts" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="left" type="RayCast3D" parent="WallRaycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0112548, 3.21269, 0)
+target_position = Vector3(-3.2, 0, 0)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="right" type="RayCast3D" parent="WallRaycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0112548, 3.21269, 0)
+target_position = Vector3(3.2, 0, 0)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[connection signal="timeout" from="StateMachine/PlayerDash/DashTimer" to="StateMachine/PlayerDash" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerDash/DashCooldown" to="StateMachine/PlayerDash" method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerDash/DustTimer" to="StateMachine/PlayerDash" method="_on_dust_timer_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerWallGrab/OnWallTimer" to="StateMachine/PlayerWallGrab" method="_on_on_wall_timer_timeout"]

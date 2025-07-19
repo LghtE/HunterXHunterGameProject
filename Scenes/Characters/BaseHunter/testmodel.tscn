@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddm54wtubv5jq"]
+
+[ext_resource type="PackedScene" uid="uid://y60tj3jwlaac" path="res://Assets/BaseHunter/TESTMODEL.glb" id="1_2rej6"]
+[ext_resource type="Texture2D" uid="uid://ctl1ppcnvbypi" path="res://Assets/BaseHunter/basetext.png" id="2_tcpay"]
+[ext_resource type="Shader" uid="uid://bktsn3b2wsbf" path="res://Scenes/Characters/BaseHunter/outlineTest.gdshader" id="3_n02co"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oc2gi"]
+render_priority = 0
+shader = ExtResource("3_n02co")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ivwr"]
+next_pass = SubResource("ShaderMaterial_oc2gi")
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("2_tcpay")
+emission_enabled = true
+emission_texture = ExtResource("2_tcpay")
+texture_filter = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4slat"]
+render_priority = 0
+shader = ExtResource("3_n02co")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wm465"]
+next_pass = SubResource("ShaderMaterial_4slat")
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission_texture = ExtResource("2_tcpay")
+
+[node name="TESTMODEL" instance=ExtResource("1_2rej6")]
+
+[node name="HunterBody" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6ivwr")
+
+[node name="HunterBody_001" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wm465")

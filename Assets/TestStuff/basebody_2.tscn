@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://84sdwgcprs8p" path="res://Assets/TestStuff/basebody_1.tscn" id="1_ciqnm"]
 [ext_resource type="Texture2D" uid="uid://cu0hobjkasev2" path="res://Assets/BaseHunter/basebody1_fos.png" id="2_bm0s6"]
-[ext_resource type="Shader" path="res://Scenes/Characters/BaseHunter/outlineTest.gdshader" id="3_x2ic8"]
+[ext_resource type="Shader" uid="uid://bktsn3b2wsbf" path="res://Scenes/Characters/BaseHunter/outlineTest.gdshader" id="3_x2ic8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_saqoe"]
 render_priority = 0
 shader = ExtResource("3_x2ic8")
-shader_parameter/outline_color = null
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpk56"]

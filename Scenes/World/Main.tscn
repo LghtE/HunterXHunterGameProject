@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0c2qcbr7u8by"]
 
-[ext_resource type="Shader" path="res://Scenes/Characters/BaseHunter/psxPostProcessing.gdshader" id="1_0bmbt"]
+[ext_resource type="Shader" uid="uid://dgtfnn44mb20s" path="res://Scenes/Characters/BaseHunter/psxPostProcessing.gdshader" id="1_0bmbt"]
 [ext_resource type="PackedScene" uid="uid://c2x67o7sqxefx" path="res://Scenes/World/world.tscn" id="2_hnfn7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tp8nj"]
