@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://u3yqd7pwtigk"]
+[gd_scene load_steps=19 format=3 uid="uid://u3yqd7pwtigk"]
 
 [ext_resource type="Texture2D" uid="uid://bx2q4hw8l31y1" path="res://Assets/Enemies/Dasher/dasher.png" id="1_8k6n1"]
 [ext_resource type="Script" uid="uid://p2pqh22e62wl" path="res://Assets/Enemies/Dasher/baseEnemyScript.gd" id="1_g7xjr"]
@@ -13,6 +13,36 @@
 [ext_resource type="Script" uid="uid://bt0ty402aum81" path="res://Assets/Enemies/Dasher/enemy_chase.gd" id="8_lwrc5"]
 [ext_resource type="Script" uid="uid://8csbqgta5dlc" path="res://Assets/Enemies/Dasher/enemy_hurt.gd" id="10_6clr8"]
 
+[sub_resource type="Shader" id="Shader_ts40w"]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled, depth_draw_opaque;
+
+uniform sampler2D albedo_texture: filter_nearest, source_color;
+uniform bool flash_active = false;
+uniform vec4 flash_color = vec4(1.0, 1.0, 1.0, 1.0); // Flash color (white by default)
+
+void fragment() {
+    vec4 tex_color = texture(albedo_texture, UV);
+
+    vec4 final_color = tex_color;
+    if (flash_active) {
+        final_color.rgb = flash_color.rgb;
+        final_color.a *= flash_color.a;
+    }
+
+    ALBEDO = final_color.rgb;
+    ALPHA = final_color.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a3s0"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_ts40w")
+shader_parameter/albedo_texture = ExtResource("1_8k6n1")
+shader_parameter/flash_active = false
+shader_parameter/flash_color = Vector4(1, 1, 1, 1)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8k6n1"]
 radius = 0.880144
 height = 2.81295
@@ -20,6 +50,26 @@ height = 2.81295
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ts40w"]
 radius = 2.28825
 height = 5.23368
+
+[sub_resource type="Animation" id="Animation_7a3s0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:material_override:shader_parameter/flash_active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nf26"]
+_data = {
+&"RESET": SubResource("Animation_7a3s0")
+}
 
 [node name="b_Dasher" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 8
@@ -42,13 +92,14 @@ outline_size = 0
 
 [node name="Skin" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.00117889, 2.10887, 0.00047031)
+transform = Transform3D(10.0363, 0, 0, 0, 10, 0, 0, 0, 10.0314, 0.00117889, 2.10887, 0.00047031)
+material_override = SubResource("ShaderMaterial_7a3s0")
 billboard = 2
 texture_filter = 0
 texture = ExtResource("1_8k6n1")
 hframes = 18
 vframes = 6
-frame = 38
+frame = 55
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00353384, 1.35785, 0)
@@ -83,6 +134,7 @@ debug_color = Color(0.625298, 0.520639, 0.311498, 0.42)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
+&"": SubResource("AnimationLibrary_6nf26"),
 &"dasherAnims": ExtResource("3_4x4fv")
 }
 

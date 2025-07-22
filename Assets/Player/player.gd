@@ -293,7 +293,7 @@ func _on_melee_hurtboxes_area_entered(area: Area3D) -> void:
 			if !area.owner.invulnerable:
 				enemy_hit.emit(area.owner)
 				
-				#Fx.hitFx(child.global_position, 0)
+				Fx.hitFx(child.global_position, 0)
 				#isAuraIncrease = false
 				
 				if child.isHitstop:

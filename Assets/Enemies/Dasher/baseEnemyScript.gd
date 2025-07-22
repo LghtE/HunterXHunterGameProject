@@ -60,7 +60,13 @@ func _physics_process(_delta: float) -> void:
 	$DebugLabel.text = str("State : " + %StateMachine.current_state.name)
 	#$Skin/DebugLabel.text = str("has_token : " + str(has_token))
 	
-
+	
+func _process(delta):
+	var camera = get_viewport().get_camera_3d()
+	if camera:
+		var to_cam = $Skin.global_transform.origin - camera.global_transform.origin
+		to_cam.y = 0  # lock vertical axis
+		$Skin.look_at($Skin.global_transform.origin + to_cam, Vector3.UP)
 
 
 func _ready() -> void:

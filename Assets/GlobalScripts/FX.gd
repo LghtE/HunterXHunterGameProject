@@ -1,7 +1,7 @@
 extends Node
 
 @onready var dust_particle = preload("res://Assets/Effects/DustEffect/dust_particle_system.tscn")
-
+@onready var hitFX = preload("res://Assets/Effects/Hit/hit_fx.tscn")
 
 func dustParticleFx(pos, id, direction = Vector3.ZERO):
 	var dustp_instance = dust_particle.instantiate()
@@ -18,6 +18,13 @@ func dustParticleFx(pos, id, direction = Vector3.ZERO):
 		1:
 			dustp_instance.play(1)
 
-
-
+func hitFx(pos, id, play_sound = true):
+	var hitfx_instance = hitFX.instantiate()
 	
+	hitfx_instance.set_deferred("global_position", pos)
+	
+	for world in get_tree().get_nodes_in_group("world"):
+		world.add_child(hitfx_instance)
+		world.move_child(hitfx_instance, 0)
+	
+	hitfx_instance.spawn(id, play_sound)

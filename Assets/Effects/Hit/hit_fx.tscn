@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://btocv3djf5fd5"]
+
+[ext_resource type="Script" uid="uid://dted0t2x42rrv" path="res://Assets/Effects/Hit/hit_fx.gd" id="1_jux12"]
+[ext_resource type="Texture2D" uid="uid://b0mf0j0e26new" path="res://Assets/Effects/Hit/testFX.png" id="2_23bcg"]
+[ext_resource type="AnimationLibrary" uid="uid://botymj47gwite" path="res://Assets/Effects/Hit/hit_fx.tres" id="2_i1a6a"]
+[ext_resource type="AudioStream" uid="uid://ipsqoljkug8u" path="res://Assets/Sound/BattleSFX/Dash3.wav" id="2_snepq"]
+
+[node name="HitFx" type="Node3D"]
+script = ExtResource("1_jux12")
+hitSFX = ExtResource("2_snepq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"hit_fx": ExtResource("2_i1a6a")
+}
+
+[node name="BaseHit" type="Sprite3D" parent="."]
+transform = Transform3D(11.3, 0, 0, 0, 10, 0, 0, 0, 11.3, 0, 0, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_23bcg")
+hframes = 7

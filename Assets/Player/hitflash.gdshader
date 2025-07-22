@@ -1,32 +1,19 @@
 shader_type spatial;
-render_mode unshaded, cull_disabled, depth_draw_opaque, depth_prepass_alpha;
-// Remove unshaded if you want shading
-// Replace cull_disabled if you want to only show one side (cull_front, cull_back)
-// Reference for depth ::: https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/spatial_shader.html#render-modes
+render_mode unshaded, cull_disabled, depth_draw_opaque;
 
-uniform bool active = false; // Sets pixels to flash color when true
-uniform vec4 flash_color: source_color = vec4(1.0,1.0,1.0,1.0); // The color to use when active
-uniform bool y_billboard = false; // Enables Y-Billboarding when true
-uniform sampler2D tex: filter_nearest, source_color; // A copy of the texture for the Sprite3D or AnimatedSprite3D 
-
-void vertex() {
-	// You can comment out this function if you don't need billboarding
-	if (y_billboard == true) {
-		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(normalize(cross(vec3(0.0, 1.0, 0.0), INV_VIEW_MATRIX[2].xyz)), 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0), MODEL_MATRIX[3]);
-	}
-	else {
-		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
-	}
-	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
-}
+uniform sampler2D albedo_texture: filter_nearest, source_color;
+uniform bool flash_active = false;
+uniform vec4 flash_color = vec4(1.0, 1.0, 1.0, 1.0); // Flash color (white by default)
 
 void fragment() {
-	
-	vec4 col = texture(tex,UV / 1.0);
-	vec4 set_col = col;
-	if(active == true) {
-		set_col = flash_color;
-	}
-	ALBEDO = vec3(set_col.r,set_col.g,set_col.b);
-	ALPHA = col.a;
+    vec4 tex_color = texture(albedo_texture, UV);
+
+    vec4 final_color = tex_color;
+    if (flash_active) {
+        final_color.rgb = flash_color.rgb;
+        final_color.a *= flash_color.a;
+    }
+
+    ALBEDO = final_color.rgb;
+    ALPHA = final_color.a;
 }

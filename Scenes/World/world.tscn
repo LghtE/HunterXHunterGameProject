@@ -23,13 +23,14 @@ sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_curve = 0.106066
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_d5h8u"]
+[sub_resource type="Sky" id="Sky_dr8i3"]
 sky_material = SubResource("ProceduralSkyMaterial_hv7uk")
 
 [sub_resource type="Environment" id="Environment_qijy7"]
 background_mode = 2
-sky = SubResource("Sky_d5h8u")
+sky = SubResource("Sky_dr8i3")
 glow_enabled = true
+glow_strength = 1.34
 fog_mode = 1
 fog_light_color = Color(0.993663, 0.588035, 0.393492, 1)
 fog_density = 0.1571
@@ -24949,24 +24950,32 @@ shape = SubResource("BoxShape3D_4pv6w")
 
 [node name="b_Dasher" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.7732, -4.78993, -34.354)
+processing = false
 
 [node name="b_Dasher2" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.3439, -4.78993, -34.354)
+processing = false
 
 [node name="b_Dasher3" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7913, -4.78993, -34.354)
+current_health = 200.0
+max_health = 200.0
 
 [node name="b_Dasher4" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.2083, -4.78993, -30.442)
+processing = false
 
 [node name="b_Dasher5" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2105, -4.78993, -30.442)
+processing = false
 
 [node name="b_Dasher6" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.2105, -4.78993, -30.442)
+processing = false
 
 [node name="b_Dasher7" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.2105, -4.78993, -35.6332)
+processing = false
 
 [connection signal="body_entered" from="Area3D" to="Player" method="_on_area_3d_body_entered"]
 

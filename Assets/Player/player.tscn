@@ -435,7 +435,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.0204
 shape = SubResource("CapsuleShape3D_yh6lp")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 15
+knockback_strength = 20
 knockback_direction = Vector3(1, 0, 0)
 
 [node name="Right2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -443,7 +443,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.0204
 shape = SubResource("CapsuleShape3D_yh6lp")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 25
+knockback_strength = 30
 knockback_direction = Vector3(1, 0, 0)
 
 [node name="Right3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -451,7 +451,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.0204
 shape = SubResource("CapsuleShape3D_yh6lp")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 30
+knockback_strength = 35
 knockback_direction = Vector3(1, 0, 0)
 
 [connection signal="animation_finished" from="Animations/MovementAnims" to="StateMachine/PlayerMelee" method="_on_movement_anims_animation_finished"]
