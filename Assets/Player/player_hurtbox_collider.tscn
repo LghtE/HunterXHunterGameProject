@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7ehk5us22yop"]
+
+[ext_resource type="Script" uid="uid://hfyovifdybx" path="res://Assets/Player/player_hurtbox_collider.gd" id="1_bwu78"]
+
+[node name="PlayerHurtboxCollider" type="CollisionShape3D"]
+script = ExtResource("1_bwu78")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkwb6urvragkp"]
+
+[ext_resource type="Script" uid="uid://bt2grqc2juo5e" path="res://Assets/Components/ContextBasedSteering/context_based_steering.gd" id="1_onukn"]
+
+[node name="ContextBasedSteering" type="Node"]
+script = ExtResource("1_onukn")

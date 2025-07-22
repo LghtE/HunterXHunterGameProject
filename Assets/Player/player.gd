@@ -23,7 +23,7 @@ var in_dialogue = false
 
 var invulnerable : bool = false
 
-var sum: Vector2 = Vector2.ZERO
+var sum: Vector3 = Vector3.ZERO
 var num = 0
 
 var can_dash : bool = true
@@ -44,11 +44,11 @@ func _process(delta: float) -> void:
 	
 	# Smoothing the Camera
 	var cam_tw = get_tree().create_tween()
-	cam_tw.tween_property($Pivot, "global_position", $CamFollow.global_position, 0.2).set_ease(Tween.EASE_OUT)
+	cam_tw.tween_property($Pivot, "global_position", $CamFollow.global_position, 0.3).set_ease(Tween.EASE_OUT)
 
 
 func _ready() -> void:
-	
+	%ProceduralSlash.material_override.set_shader_parameter("progress", 0.0)
 	$Shadow.position.y = position.y 
 	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	
@@ -75,28 +75,27 @@ func _physics_process(_delta: float) -> void:
 		get_tree().quit()
 	
 	
+	
 	$Shadow.position.x = position.x 
 	$Shadow.position.z = position.z - 0.25
-	#
-	#if get_tree().get_nodes_in_group("enemy") != []:
-		#idx = 0
-		#sum = Vector2.ZERO
-		#num = 0
-		#
-		#for enemy in get_tree().get_nodes_in_group("enemy"):
-			#if enemy.processing:
-				#sum.x += enemy.global_position.x
-				#sum.y += enemy.global_position.y
-				#num += 1
-		#
-		#if num > 0:
-			#cam_tween = get_tree().create_tween()
-			#var final_pos = global_position * 0.7 + Vector2(sum.x/num, sum.y/num) * (1 - 0.7)
-			#cam_tween.tween_property(%Cam, "global_position", final_pos, 0.1)
-	#else:
-		#if idx == 0:
-			#resetCam()
-			#idx = 1
+	
+	if get_tree().get_nodes_in_group("enemy") != []:
+		idx = 0
+
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if enemy.processing:
+			sum += enemy.global_position
+			num += 1
+
+	if num > 0:
+		var cam_tween = get_tree().create_tween()
+		var avg_pos = sum / num
+		var final_pos = global_position * 0.9 + avg_pos * 0.1
+		cam_tween.tween_property($CamFollow, "global_position", final_pos, 0.1)
+	else:
+		if idx == 0:
+			resetCam()
+			idx = 1
 	
 	$StateNameDebug.text = "State: "+ $StateMachine.current_state.name
 		
@@ -148,10 +147,10 @@ func _physics_process(_delta: float) -> void:
 
 func resetCam():
 	var tween_1 = get_tree().create_tween()
-	var tween_2 = get_tree().create_tween()
+	#var tween_2 = get_tree().create_tween()
 	
-	tween_1.tween_property(%Cam, "position", Vector2.ZERO, 0.15).set_ease(Tween.EASE_IN)
-	tween_2.tween_property(%Cam, "zoom", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN)
+	tween_1.tween_property($CamFollow, "global_position", Vector3.ZERO, 0.15).set_ease(Tween.EASE_IN)
+	#tween_2.tween_property($Pivot, "zoom", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN)
 
 #==============================================================================
 
@@ -278,12 +277,39 @@ func playerHeal(frac):
 	get_node("CanvasLayer/HealthBarComponent").hpDrop(current_health - (frac * max_health), current_health, 0.6)
 
 
+# TESTSTUFF
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	var t = get_tree().create_tween()
+	t.tween_property(self, "rotation_degrees:y", 0.0, 1.0).set_ease(Tween.EASE_IN_OUT)
 
-func checkForWalls():
+func _on_melee_hurtboxes_area_entered(area: Area3D) -> void:
 	
-	for child : RayCast3D in $WallRaycasts.get_children():
-		if child.is_colliding():
-			print("yo")
-			%StateMachine.on_child_transition("", "PlayerWallGrab")
-			%PlayerWallGrab.collided_raycast = child
-			return
+	if !area.owner.is_in_group("enemy"):
+		return
+	
+	for child in %MeleeHurtboxes.get_children():
+		if !child.disabled:
+			
+			if !area.owner.invulnerable:
+				enemy_hit.emit(area.owner)
+				
+				#Fx.hitFx(child.global_position, 0)
+				#isAuraIncrease = false
+				
+				if child.isHitstop:
+					GameGlobals.setProcessOff([%Cam])
+					var tw = get_tree().create_timer(child.hitstopTime)
+					await tw.timeout
+					GameGlobals.resetProcess()
+					#GameGlobals.hitStop(child.hitstopTime)
+			
+				if area.owner.has_node("DamageComponent"):
+					if area.owner.in_break:
+						area.owner.get_node("DamageComponent").damage(child.damage_amount * 1.5, child.knockback_strength, child.knockback_direction)
+					else:
+						if !area.owner.stun_lockable:
+							var dir = Vector3(facing.x, 0.0, facing.z)
+							velocity = -dir.normalized() * 140
+						area.owner.get_node("DamageComponent").damage(child.damage_amount, child.knockback_strength, child.knockback_direction)
+				else:
+					print("Hit entity has no damage component")

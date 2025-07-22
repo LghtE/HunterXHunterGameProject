@@ -6,6 +6,7 @@ class_name PlayerIdle
 
 
 func enter():
+	%SkinSuit.scale = Vector3(10, 10, 10)
 	%Shadow.position.y = player.position.y + 0.7
 	#%AimingCrosshair.visible = false
 	
@@ -40,21 +41,21 @@ func physics_update(_delta: float):
 		Transitioned.emit(self, "PlayerJump")
 	
 	
-		#if Input.is_action_just_pressed("J"):
-			#Transitioned.emit(self, "PlayerMelee")
-		#
-		#
-		if Input.is_action_just_pressed("Dash") and player.can_dash:
-			Transitioned.emit(self, "PlayerDash")
-		#
-		#
-		#if player.joy_dir != Vector2.ZERO or Input.is_action_pressed("rightClick"):
-			#Transitioned.emit(self, "PlayerAiming")
-		
-		#if Input.is_action_just_pressed("Y"):
-			#if player.aura_amount >= (20.0 * 3):
-				#Transitioned.emit(self, "PlayerHealing")
+	if Input.is_action_just_pressed("J"):
+		Transitioned.emit(self, "PlayerMelee")
 	#
+	#
+	if Input.is_action_just_pressed("Dash") and player.can_dash:
+		Transitioned.emit(self, "PlayerDash")
+	#
+	#
+	#if player.joy_dir != Vector2.ZERO or Input.is_action_pressed("rightClick"):
+		#Transitioned.emit(self, "PlayerAiming")
+	
+	#if Input.is_action_just_pressed("Y"):
+		#if player.aura_amount >= (20.0 * 3):
+			#Transitioned.emit(self, "PlayerHealing")
+#
 	
 	#Add Gravity
 	player.velocity += Vector3(0, -98, 0) * _delta

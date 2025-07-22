@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://xbhr1gtf4mio"
+path="res://.godot/imported/WHSH_MOVEMENT-Noise Zap_HY_PC-004.wav-5ca00826e8ede668dbd3663e341ce64e.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/BattleSFX/PlayerDashSounds/WHSH_MOVEMENT-Noise Zap_HY_PC-004.wav"
+dest_files=["res://.godot/imported/WHSH_MOVEMENT-Noise Zap_HY_PC-004.wav-5ca00826e8ede668dbd3663e341ce64e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

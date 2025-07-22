@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://wcgpyi4jpumo"
+path="res://.godot/imported/DSGNMisc_PROJECTILE-Laser Shot_HY_PC-002.wav-80f15006becc92613ef3120426bfdb94.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/BattleSFX/DSGNMisc_PROJECTILE-Laser Shot_HY_PC-002.wav"
+dest_files=["res://.godot/imported/DSGNMisc_PROJECTILE-Laser Shot_HY_PC-002.wav-80f15006becc92613ef3120426bfdb94.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

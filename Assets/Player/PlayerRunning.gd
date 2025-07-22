@@ -2,13 +2,14 @@ extends FSMState
 class_name PlayerRunning
 
 @export var player : CharacterBody3D
-@export var SPEED = 30.0
+@export var SPEED = 25.0
 @export var run1 : AudioStreamWAV
 @export var run2 : AudioStreamWAV
 
 var S_MULT = 1.65
 
 func enter():
+	%SkinSuit.scale = Vector3(10, 10, 10)
 	%Shadow.position.y = player.position.y + 0.7
 	#%RunDust.emitting = true
 
@@ -65,9 +66,9 @@ func physics_update(_delta:float):
 		#SPEED = 250
 	#
 	
-	#if Input.is_action_just_pressed("J"):
-		#Transitioned.emit(self, "PlayerMelee")
-	#
+	if Input.is_action_just_pressed("J"):
+		Transitioned.emit(self, "PlayerMelee")
+	
 	
 	if Input.is_action_just_pressed("Dash") and player.can_dash:
 		Transitioned.emit(self, "PlayerDash")

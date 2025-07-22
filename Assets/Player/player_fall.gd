@@ -14,7 +14,7 @@ func exit():
 
 func physics_update(_delta : float):
 	
-	player.checkForWalls()
+	
 	player.velocity.x = move_toward(player.velocity.x, 0, 3)
 	player.velocity.z = move_toward(player.velocity.z, 0, 3)
 	
@@ -37,7 +37,7 @@ func physics_update(_delta : float):
 	
 	
 	
-	
+	checkForWalls()
 	# Add the gravity.
 	
 	player.velocity += Vector3(0, -98, 0) * _delta
@@ -46,8 +46,6 @@ func physics_update(_delta : float):
 	if player.is_on_floor():
 		Transitioned.emit(self, "PlayerLand")
 		
-	if Input.is_action_just_pressed("Dash") and player.can_dash:
-		Transitioned.emit(self, "PlayerDash")
 
 func playDirectionalAnim():
 	var anim_name = "movementAnims/fall_" + vecToDir(player.facing)
@@ -88,3 +86,17 @@ func vecToDir(v : Vector2):
 		return "downright"
 	elif v.x < 0 and v.y > 0:
 		return "downleft"
+
+
+
+func checkForWalls():
+	if %StateMachine.current_state.name == "PlayerWallGrab":
+		return
+	
+	
+	for child : RayCast3D in %WallRaycasts.get_children():
+		if child.is_colliding():
+			%PlayerWallGrab.collided_raycast = child
+			Transitioned.emit(self, "PlayerWallGrab")
+			
+			return

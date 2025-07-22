@@ -6,15 +6,26 @@ class_name PlayerLand
 @export var SPEED = 30.0
 var S_MULT = 1.65
 
+@export var landSFX1 : AudioStreamWAV
+@export var landSFX2 : AudioStreamWAV
+
+
 func enter():
 	for child in %WallRaycasts.get_children():
 		child.enabled = true
-	
+		
+	if randf() >= 0.5:
+		GameAudioManager.playSFX(player.global_position, landSFX1, 0, true)
+	else:
+		GameAudioManager.playSFX(player.global_position, landSFX2, 0 , true)
+		#
 	playDirectionalAnim()
 	Fx.dustParticleFx(player.global_position + Vector3(0, 1.5, 1.5), 0)
 	await get_tree().create_timer(0.15).timeout
 	if %StateMachine.current_state.name == "PlayerLand":
 		Transitioned.emit(self, "PlayerIdle")
+	
+	
 
 func exit():
 	pass
@@ -72,9 +83,8 @@ func physics_update(_delta:float):
 		#Transitioned.emit(self, "PlayerAiming")
 	#
 	
-	#if Input.is_action_just_pressed("Y"):
-		#if player.aura_amount >= (20.0 * 3):
-			#Transitioned.emit(self, "PlayerHealing")
+	if Input.is_action_just_pressed("J"):
+		Transitioned.emit(self, "PlayerMelee")
 		
 	if Input.is_action_just_pressed("Jump") and player.is_on_floor():
 		Transitioned.emit(self, "PlayerJump")

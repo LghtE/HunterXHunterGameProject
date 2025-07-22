@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://btbeog3qg5fgv"]
+[gd_scene load_steps=57 format=3 uid="uid://btbeog3qg5fgv"]
 
 [ext_resource type="Script" uid="uid://bihp0domhkt2m" path="res://Assets/Player/player.gd" id="1_6miq6"]
 [ext_resource type="Texture2D" uid="uid://4o7i8fug4tpf" path="res://Assets/Player/FosOWCombat3D.png" id="2_tfsyo"]
 [ext_resource type="AnimationLibrary" uid="uid://c5on8xubbrtrx" path="res://Assets/Player/movementAnims.tres" id="3_5jfoa"]
 [ext_resource type="Texture2D" uid="uid://gemf0qgv7hrx" path="res://Assets/Player/shadow.png" id="3_8ft5u"]
+[ext_resource type="Texture2D" uid="uid://eqgqqjl6wqpn" path="res://Assets/MiscSprites/slash-sheet.png" id="4_funjf"]
 [ext_resource type="Script" uid="uid://df73tf0hv6hmw" path="res://Assets/Player/animations.gd" id="4_kg0wl"]
 [ext_resource type="Script" uid="uid://bu2s5012yf41t" path="res://Assets/Player/state_machine.gd" id="5_5j20w"]
 [ext_resource type="Script" uid="uid://du4rxefxh7iax" path="res://Assets/Player/PlayerIdle.gd" id="6_rul8u"]
@@ -12,14 +13,94 @@
 [ext_resource type="Script" uid="uid://ljibp7pj51tr" path="res://Assets/Player/player_fall.gd" id="9_csact"]
 [ext_resource type="Script" uid="uid://cmbd3nwsd6cw8" path="res://Assets/Player/player_jump.gd" id="10_e6xfg"]
 [ext_resource type="Script" uid="uid://cpknpv44fgq5j" path="res://Assets/Player/player_dash.gd" id="11_fx6gu"]
+[ext_resource type="AudioStream" uid="uid://7nh60qruoy6u" path="res://Assets/Sound/BattleSFX/Run1.wav" id="12_80x61"]
 [ext_resource type="Script" uid="uid://prdecssgxee1" path="res://Assets/Player/player_land.gd" id="12_tfsyo"]
 [ext_resource type="PackedScene" uid="uid://dkfwlw1eq2ydy" path="res://Assets/Components/AfterImage/afterimage_component.tscn" id="13_cdil5"]
+[ext_resource type="AudioStream" uid="uid://bbmhgs3svjmx4" path="res://Assets/Sound/BattleSFX/Run2.wav" id="13_sklkn"]
 [ext_resource type="Script" uid="uid://devgbdm6eoge4" path="res://Assets/Player/player_wall_grab.gd" id="14_rf7nh"]
+[ext_resource type="AudioStream" uid="uid://cjygcd7aydwsu" path="res://Assets/Sound/BattleSFX/DSGNMisc_MOVEMENT-Jump Sparkle_HY_PC-004.wav" id="16_qcxy6"]
 [ext_resource type="Texture2D" uid="uid://di3sp542ih50v" path="res://Assets/TestStuff/effects/dustfull.png" id="16_wv4rg"]
+[ext_resource type="AudioStream" uid="uid://d0im6ia5hbhjn" path="res://Assets/Sound/BattleSFX/PlayerDashSounds/dashHeltonQuicker.wav" id="17_1ssyw"]
+[ext_resource type="AudioStream" uid="uid://i0d1l3pkg4i3" path="res://Assets/Sound/BattleSFX/WHSH_MOVEMENT-Wind Shaker_HY_PC-001.wav" id="17_4bdev"]
+[ext_resource type="Script" uid="uid://4et3f7hdd1p3" path="res://Assets/Player/player_melee.gd" id="17_so11v"]
+[ext_resource type="AudioStream" uid="uid://cjr176dk0va72" path="res://Assets/Sound/BattleSFX/PlayerDashSounds/dashHeltonShorter.wav" id="18_7rk7e"]
+[ext_resource type="Shader" uid="uid://d0fnwq0n6lisq" path="res://Assets/Player/slashshader.gdshader" id="19_so11v"]
+[ext_resource type="AudioStream" uid="uid://d0soxl7jlel7m" path="res://Assets/Sound/BattleSFX/DSGNImpt_MELEE-Hollow Punch_HY_PC-001.wav" id="21_ct75r"]
+[ext_resource type="AudioStream" uid="uid://ybpaaycmjych" path="res://Assets/Sound/BattleSFX/DSGNImpt_MELEE-Hollow Punch_HY_PC-006.wav" id="22_pw7o6"]
+[ext_resource type="AudioStream" uid="uid://bfivrphxmo3so" path="res://Assets/Sound/BattleSFX/preslash3.wav" id="23_gtoes"]
+[ext_resource type="AudioStream" uid="uid://srr2p3fdrd7t" path="res://Assets/Sound/BattleSFX/DSGNMisc_HIT-Yoi Yai_HY_PC-006.wav" id="24_pw7o6"]
+[ext_resource type="AudioStream" uid="uid://bxktf4721l834" path="res://Assets/Sound/BattleSFX/Slash3.wav" id="24_qcxy6"]
+[ext_resource type="AudioStream" uid="uid://3bvjjexgywyp" path="res://Assets/Sound/BattleSFX/helton_swordSlash1.wav" id="26_vmi6o"]
+[ext_resource type="AudioStream" uid="uid://bk7a8up4mkc7k" path="res://Assets/Sound/BattleSFX/helton_SwordSlash2.wav" id="27_4bdev"]
+[ext_resource type="PackedScene" uid="uid://b7ehk5us22yop" path="res://Assets/Player/player_hurtbox_collider.tscn" id="33_3bf6a"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wt21t"]
+noise_type = 2
+fractal_gain = 4.0
+cellular_distance_function = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_80x61"]
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_wt21t")
+
+[sub_resource type="Gradient" id="Gradient_sklkn"]
+offsets = PackedFloat32Array(0, 0.146067, 0.367041)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ssyw"]
+gradient = SubResource("Gradient_sklkn")
+
+[sub_resource type="Gradient" id="Gradient_7rk7e"]
+offsets = PackedFloat32Array(0.501873, 0.621723, 0.644195)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d410y"]
+gradient = SubResource("Gradient_7rk7e")
+
+[sub_resource type="Gradient" id="Gradient_so11v"]
+offsets = PackedFloat32Array(0, 0.299625, 0.722846, 0.850187, 0.913858)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wt21t"]
+gradient = SubResource("Gradient_so11v")
+
+[sub_resource type="Gradient" id="Gradient_gtoes"]
+offsets = PackedFloat32Array(0.138577, 0.314607, 0.494382, 0.745318, 0.891386, 0.970037)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.0695645, 0.0695645, 0.0695645, 1, 0, 0, 0, 1, 0.498039, 0.498039, 0.498039, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qcxy6"]
+gradient = SubResource("Gradient_gtoes")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ct75r"]
+render_priority = 0
+shader = ExtResource("19_so11v")
+shader_parameter/progress = 0.51
+shader_parameter/derive_progress = 0.0
+shader_parameter/ease_progress = 0.0
+shader_parameter/time_scale = 0.01
+shader_parameter/anim_rot_amt = 1.0
+shader_parameter/base_noise = SubResource("NoiseTexture2D_80x61")
+shader_parameter/width_gradient_mask = SubResource("GradientTexture1D_qcxy6")
+shader_parameter/length_gradient_mask = SubResource("GradientTexture1D_wt21t")
+shader_parameter/highlight = SubResource("GradientTexture1D_d410y")
+shader_parameter/zoom = 0.99
+shader_parameter/rotate_all = 360.0
+shader_parameter/emission_strength = 1.0
+shader_parameter/mix_strength = 0.93
+shader_parameter/color_lookup = SubResource("GradientTexture1D_1ssyw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pw7o6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5jfoa"]
 radius = 1.03
 height = 8.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yh6lp"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_4bdev"]
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="Animation" id="Animation_rf7nh"]
 length = 0.001
@@ -58,6 +139,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(10, 10, 10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%ProceduralSlash:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.124506, 2.42357, 2.71786)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%ProceduralSlash:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.13495, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wv4rg"]
@@ -106,12 +211,17 @@ lightmap_size_hint = Vector2i(7, 4)
 material = SubResource("StandardMaterial3D_xvbvg")
 size = Vector2(1.2, 1.165)
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yh6lp"]
+radius = 3.259
+height = 8.30398
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_6miq6")
 
 [node name="StateNameDebug" type="Label3D" parent="."]
 transform = Transform3D(3.34707, 0, 0, 0, 4.72102, 0.654517, 0, -4.08702, 0.756048, 0, 8.72271, 0.718674)
+visible = false
 pixel_size = 0.0091
 billboard = 2
 texture_filter = 0
@@ -127,8 +237,25 @@ billboard = 2
 texture_filter = 4
 texture = ExtResource("2_tfsyo")
 hframes = 16
-vframes = 38
+vframes = 39
 frame = 144
+
+[node name="SwordFX" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+offset = Vector2(-10, -42)
+texture_filter = 0
+texture = ExtResource("4_funjf")
+hframes = 5
+vframes = 9
+frame = 4
+
+[node name="ProceduralSlash" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(9.99999, 0, 0, 0, 4.22177, 9.06512, 0, -9.06512, 4.22177, -0.124506, 2.42357, 2.71786)
+material_override = SubResource("ShaderMaterial_ct75r")
+mesh = SubResource("QuadMesh_pw7o6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035, 4.3, 0.124)
@@ -151,6 +278,12 @@ transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 
 current = true
 fov = 20.0
 size = 24.164
+
+[node name="Outline" type="MeshInstance3D" parent="Pivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0672989, -1.14777)
+material_override = SubResource("ShaderMaterial_yh6lp")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_4bdev")
 
 [node name="CamFollow" type="Node3D" parent="."]
 
@@ -179,6 +312,8 @@ player = NodePath("../..")
 [node name="PlayerRunning" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_kg0wl")
 player = NodePath("../..")
+run1 = ExtResource("12_80x61")
+run2 = ExtResource("13_sklkn")
 
 [node name="PlayerFall" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("9_csact")
@@ -186,14 +321,24 @@ player = NodePath("../..")
 fall_move_speed = 30.0
 
 [node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
 script = ExtResource("10_e6xfg")
 player = NodePath("../..")
 jump_move_speed = 30.0
+jumpSFX1 = ExtResource("16_qcxy6")
+jumpSFX2 = ExtResource("16_qcxy6")
+special_jumpSFX = ExtResource("17_4bdev")
+
+[node name="JumpSpecialTimer" type="Timer" parent="StateMachine/PlayerJump"]
+wait_time = 0.705
+one_shot = true
 
 [node name="PlayerDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("11_fx6gu")
 player = NodePath("../..")
 DASH_SPEED = 135.0
+dashSFX1 = ExtResource("17_1ssyw")
+dashSFX2 = ExtResource("18_7rk7e")
 
 [node name="DashTimer" type="Timer" parent="StateMachine/PlayerDash"]
 wait_time = 0.3
@@ -210,14 +355,33 @@ one_shot = true
 [node name="PlayerLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("12_tfsyo")
 player = NodePath("../..")
+landSFX1 = ExtResource("21_ct75r")
+landSFX2 = ExtResource("22_pw7o6")
 
 [node name="PlayerWallGrab" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("14_rf7nh")
 player = NodePath("../..")
+wallgrabsfx = ExtResource("24_pw7o6")
 
 [node name="OnWallTimer" type="Timer" parent="StateMachine/PlayerWallGrab"]
 wait_time = 1.5
+one_shot = true
+
+[node name="PlayerMelee" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("17_so11v")
+slash1 = ExtResource("26_vmi6o")
+slash2 = ExtResource("27_4bdev")
+preslash3 = ExtResource("23_gtoes")
+slash3 = ExtResource("24_qcxy6")
+player = NodePath("../..")
+
+[node name="M1" type="Timer" parent="StateMachine/PlayerMelee"]
+wait_time = 0.15
+one_shot = true
+
+[node name="M2" type="Timer" parent="StateMachine/PlayerMelee"]
+wait_time = 0.15
 one_shot = true
 
 [node name="Particles" type="Node3D" parent="."]
@@ -232,7 +396,7 @@ mix_color = 1.0
 
 [node name="WallDustParticle" type="GPUParticles3D" parent="Particles"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.905, 4.137, 0.919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02723, 3.82207, -0.953505)
 transparency = 0.56
 emitting = false
 amount = 5
@@ -255,7 +419,45 @@ target_position = Vector3(3.2, 0, 0)
 debug_shape_custom_color = Color(0, 1, 0, 1)
 debug_shape_thickness = 5
 
+[node name="up" type="RayCast3D" parent="WallRaycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0112548, 3.21269, 0)
+target_position = Vector3(0, 0, -3.2)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="MeleeHurtboxes" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 16
+collision_mask = 128
+
+[node name="Right1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.02045, 3.31886, 0.0687985)
+shape = SubResource("CapsuleShape3D_yh6lp")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 15
+knockback_direction = Vector3(1, 0, 0)
+
+[node name="Right2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.02045, 3.31886, 0.0687985)
+shape = SubResource("CapsuleShape3D_yh6lp")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 25
+knockback_direction = Vector3(1, 0, 0)
+
+[node name="Right3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.02045, 3.31886, 0.0687985)
+shape = SubResource("CapsuleShape3D_yh6lp")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 30
+knockback_direction = Vector3(1, 0, 0)
+
+[connection signal="animation_finished" from="Animations/MovementAnims" to="StateMachine/PlayerMelee" method="_on_movement_anims_animation_finished"]
+[connection signal="timeout" from="StateMachine/PlayerJump/JumpSpecialTimer" to="StateMachine/PlayerJump" method="_on_jump_special_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerDash/DashTimer" to="StateMachine/PlayerDash" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerDash/DashCooldown" to="StateMachine/PlayerDash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerDash/DustTimer" to="StateMachine/PlayerDash" method="_on_dust_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerWallGrab/OnWallTimer" to="StateMachine/PlayerWallGrab" method="_on_on_wall_timer_timeout"]
+[connection signal="area_entered" from="MeleeHurtboxes" to="." method="_on_melee_hurtboxes_area_entered"]

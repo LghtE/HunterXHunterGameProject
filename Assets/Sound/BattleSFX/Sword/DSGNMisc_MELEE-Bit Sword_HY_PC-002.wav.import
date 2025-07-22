@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7xulqik6j4u3"
+path="res://.godot/imported/DSGNMisc_MELEE-Bit Sword_HY_PC-002.wav-73c704f89ddd409599add0edef8dfb3e.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/BattleSFX/Sword/DSGNMisc_MELEE-Bit Sword_HY_PC-002.wav"
+dest_files=["res://.godot/imported/DSGNMisc_MELEE-Bit Sword_HY_PC-002.wav-73c704f89ddd409599add0edef8dfb3e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=true
+force/max_rate_hz=44100.0
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

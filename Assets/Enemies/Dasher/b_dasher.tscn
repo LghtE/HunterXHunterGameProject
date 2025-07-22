@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=3 uid="uid://u3yqd7pwtigk"]
+
+[ext_resource type="Texture2D" uid="uid://bx2q4hw8l31y1" path="res://Assets/Enemies/Dasher/dasher.png" id="1_8k6n1"]
+[ext_resource type="Script" uid="uid://p2pqh22e62wl" path="res://Assets/Enemies/Dasher/baseEnemyScript.gd" id="1_g7xjr"]
+[ext_resource type="FontFile" uid="uid://c0qwhv3dt8bkn" path="res://Assets/Fonts/EXEPixelPerfect.ttf" id="2_01qyd"]
+[ext_resource type="Texture2D" uid="uid://gemf0qgv7hrx" path="res://Assets/Player/shadow.png" id="2_c2y2a"]
+[ext_resource type="AnimationLibrary" uid="uid://bw8x68jbtcywt" path="res://Assets/Enemies/Dasher/dasherAnims.tres" id="3_4x4fv"]
+[ext_resource type="Script" uid="uid://bu2s5012yf41t" path="res://Assets/Player/state_machine.gd" id="4_8jybf"]
+[ext_resource type="PackedScene" uid="uid://bkwb6urvragkp" path="res://Assets/Components/ContextBasedSteering/context_based_steering.tscn" id="5_fmtxg"]
+[ext_resource type="Script" uid="uid://5fou4ild13hv" path="res://Assets/Enemies/Dasher/enemy_idle.gd" id="5_g7xjr"]
+[ext_resource type="PackedScene" uid="uid://buckxoikxks1g" path="res://Assets/Components/DamageComp/DamageComponent.tscn" id="5_ts40w"]
+[ext_resource type="AnimationLibrary" uid="uid://p4axnkbbvouj" path="res://Assets/Enemies/Dasher/enemyFxAnims.tres" id="7_ps5yx"]
+[ext_resource type="Script" uid="uid://bt0ty402aum81" path="res://Assets/Enemies/Dasher/enemy_chase.gd" id="8_lwrc5"]
+[ext_resource type="Script" uid="uid://8csbqgta5dlc" path="res://Assets/Enemies/Dasher/enemy_hurt.gd" id="10_6clr8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8k6n1"]
+radius = 0.880144
+height = 2.81295
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ts40w"]
+radius = 2.28825
+height = 5.23368
+
+[node name="b_Dasher" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 8
+script = ExtResource("1_g7xjr")
+enemy_type = "Dasher"
+run_speed = 15.0
+run_speed_variation = 2.5
+steer = 0.04
+
+[node name="DebugLabel" type="Label3D" parent="."]
+transform = Transform3D(3.34707, 0, 0, 0, 4.72102, 0.654517, 0, -4.08702, 0.756048, 0, 5.36419, 0.718674)
+visible = false
+pixel_size = 0.0091
+billboard = 2
+texture_filter = 0
+text = "CURRENT_STATE"
+font = ExtResource("2_01qyd")
+font_size = 47
+outline_size = 0
+
+[node name="Skin" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.00117889, 2.10887, 0.00047031)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("1_8k6n1")
+hframes = 18
+vframes = 6
+frame = 38
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00353384, 1.35785, 0)
+shape = SubResource("CapsuleShape3D_8k6n1")
+
+[node name="Shadow" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(20, 0, 0, 0, -1.39513, -19.9513, 0, 19.9513, -1.39513, 0, 0, 0)
+pixel_size = 0.0026
+texture_filter = 0
+texture = ExtResource("2_c2y2a")
+
+[node name="DamageComponent" parent="." node_paths=PackedStringArray("entity", "StateMachine") instance=ExtResource("5_ts40w")]
+entity = NodePath("..")
+StateMachine = NodePath("../StateMachine")
+hurt_State_name = "EnemyHurt"
+
+[node name="ContextBasedSteering" parent="." node_paths=PackedStringArray("character", "raycasts") instance=ExtResource("5_fmtxg")]
+character = NodePath("..")
+raycasts = NodePath("../Raycasts")
+raycast_length = 10
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 128
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0257874, 2.03715, 0)
+shape = SubResource("CapsuleShape3D_ts40w")
+debug_color = Color(0.625298, 0.520639, 0.311498, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"dasherAnims": ExtResource("3_4x4fv")
+}
+
+[node name="Fx" type="AnimationPlayer" parent="."]
+libraries = {
+&"enemyFxAnims": ExtResource("7_ps5yx")
+}
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "main_node")]
+unique_name_in_owner = true
+script = ExtResource("4_8jybf")
+initial_state = NodePath("EnemyIdle")
+main_node = NodePath("..")
+
+[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_g7xjr")
+enemy = NodePath("../..")
+
+[node name="EnemyChase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "CBS")]
+script = ExtResource("8_lwrc5")
+enemy = NodePath("../..")
+CBS = NodePath("../../ContextBasedSteering")
+
+[node name="EnemyHurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_6clr8")
+enemy = NodePath("../..")
+
+[node name="Raycasts" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815084, 0)
+
+[node name="0" type="RayCast3D" parent="Raycasts"]
+collision_mask = 8
+
+[node name="1" type="RayCast3D" parent="Raycasts"]
+collision_mask = 8
+
+[node name="2" type="RayCast3D" parent="Raycasts"]
+collision_mask = 8
+
+[node name="3" type="RayCast3D" parent="Raycasts"]
+collision_mask = 8
+
+[node name="4" type="RayCast3D" parent="Raycasts"]
+collision_mask = 8
+
+[node name="5" type="RayCast3D" parent="Raycasts"]
+collision_mask = 8
+
+[node name="6" type="RayCast3D" parent="Raycasts"]
+collision_mask = 8
+
+[node name="7" type="RayCast3D" parent="Raycasts"]
+collision_mask = 8

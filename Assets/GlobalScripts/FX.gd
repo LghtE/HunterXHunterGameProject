@@ -1,6 +1,6 @@
 extends Node
 
-@onready var dust_particle = preload("res://Assets/Effects/DustEffect/dust_particle.tscn")
+@onready var dust_particle = preload("res://Assets/Effects/DustEffect/dust_particle_system.tscn")
 
 
 func dustParticleFx(pos, id, direction = Vector3.ZERO):
@@ -15,3 +15,9 @@ func dustParticleFx(pos, id, direction = Vector3.ZERO):
 	match id:
 		0:
 			dustp_instance.play(0)
+		1:
+			dustp_instance.play(1)
+
+
+
+	

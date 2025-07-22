@@ -1,0 +1,153 @@
+[gd_scene load_steps=12 format=3 uid="uid://6wb4shpwh2rg"]
+
+[ext_resource type="Script" uid="uid://cbriyqfawgmn4" path="res://Assets/Effects/DustEffect/dust_particle.gd" id="1_rfaxk"]
+[ext_resource type="Texture2D" uid="uid://di3sp542ih50v" path="res://Assets/TestStuff/effects/dustfull.png" id="2_gojya"]
+[ext_resource type="Texture2D" uid="uid://b5n3hhm0rkxdf" path="res://Assets/MiscSprites/Dust/dust_vertical.png" id="3_oj4hh"]
+
+[sub_resource type="Curve" id="Curve_t8eg0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.925267, 0.961877), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hgjuv"]
+curve = SubResource("Curve_t8eg0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hgjuv"]
+lifetime_randomness = 0.31
+emission_shape = 1
+emission_sphere_radius = 1.55
+angle_min = -22.5
+angle_max = 38.2
+direction = Vector3(0, 10, 0)
+initial_velocity_min = 0.52
+initial_velocity_max = 0.97
+gravity = Vector3(0, 2, 0)
+damping_max = 10.658
+scale_min = 1.1
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_hgjuv")
+anim_speed_min = 0.86
+anim_speed_max = 1.86
+anim_offset_max = 0.2758
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xvbvg"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_gojya")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow_amount = 1.33
+
+[sub_resource type="QuadMesh" id="QuadMesh_6gslo"]
+lightmap_size_hint = Vector2i(7, 4)
+material = SubResource("StandardMaterial3D_xvbvg")
+size = Vector2(1.2, 1.165)
+
+[sub_resource type="Animation" id="Animation_fvayb"]
+resource_name = "1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DustVertical:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.292405),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DustVertical:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"delete"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ihka6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DustVertical:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DustVertical:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6gslo"]
+_data = {
+&"1": SubResource("Animation_fvayb"),
+&"RESET": SubResource("Animation_ihka6")
+}
+
+[node name="DustParticleSystem" type="Node3D"]
+script = ExtResource("1_rfaxk")
+
+[node name="DustParticle" type="GPUParticles3D" parent="."]
+transparency = 0.78
+emitting = false
+amount = 3
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hgjuv")
+draw_pass_1 = SubResource("QuadMesh_6gslo")
+
+[node name="DustVertical" type="Sprite3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -0.0233797, 0.150668, 0)
+visible = false
+offset = Vector2(-5, 15)
+modulate = Color(1, 1, 1, 0.298039)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_oj4hh")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6gslo")
+}
+
+[connection signal="finished" from="DustParticle" to="DustParticle" method="_on_finished"]

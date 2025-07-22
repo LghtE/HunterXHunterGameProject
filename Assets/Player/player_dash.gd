@@ -10,6 +10,7 @@ class_name PlayerDash
 var dash_multiplier = 1.0
 
 func enter():
+	
 	#%EyeTrail.start()
 	player.velocity = Vector3.ZERO
 	#$DustTimer.start()
@@ -23,10 +24,10 @@ func enter():
 	
 	randomize()
 	
-	#if randf() >= 0.5:
-		#GameAudioManager.playSFX(player.global_position, dashSFX1, 3, true)
-	#else:
-		#GameAudioManager.playSFX(player.global_position, dashSFX2, 3 , true)
+	if randf() >= 0.5:
+		GameAudioManager.playSFX(player.global_position, dashSFX1, 0, true)
+	else:
+		GameAudioManager.playSFX(player.global_position, dashSFX2, 0 , true)
 		#
 	
 	var anim_name = "movementAnims/dash_" + vecToDir(player.facing)
@@ -69,6 +70,8 @@ func enter():
 	player.velocity.x = player_direction.normalized().x * DASH_SPEED * dash_multiplier
 	player.velocity.z = player_direction.normalized().z * DASH_SPEED * dash_multiplier
 	#Fx.dustFx(player.global_position, -player.facing, 0)
+	
+
 
 func exit():
 	#%SkinSuit.scale = Vector2(1,1)
@@ -89,10 +92,20 @@ func physics_update(_delta: float):
 	player.velocity.x = move_toward(player.velocity.x, 0, Slow_down_speed)
 	player.velocity.z = move_toward(player.velocity.z, 0, Slow_down_speed)
 	
+	var input_dir = Vector2(
+	Input.get_action_strength("D") - Input.get_action_strength("A"),
+	Input.get_action_strength("S") - Input.get_action_strength("W")).normalized()
 	
 	
 	
+	if input_dir != Vector2.ZERO:
+		player.facing = (input_dir)
 	
+	if Input.is_action_just_pressed("J"):
+		Transitioned.emit(self, "PlayerMelee")
+	
+	if Input.is_action_just_pressed("Jump") and player.is_on_floor():
+		Transitioned.emit(self, "PlayerJump")
 	#%DashSquareParticle.global_position = player.global_position + Vector2(0, -33)
 	player.move_and_slide()
 
@@ -134,5 +147,5 @@ func _on_dust_timer_timeout() -> void:
 
 
 func _on_dash_timer_timeout() -> void:
-	if %StateMachine.current_state.name != "PlayerHurt":
+	if %StateMachine.current_state.name == "PlayerDash":
 		Transitioned.emit(self, "PlayerIdle")

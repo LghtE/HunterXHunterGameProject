@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dfq4ipml27l1v"
+path="res://.godot/imported/DS DSi - Pokemon Black 2 White 2 - Accumula Town.obj-14cd8759e89bffeb61d5c955452716cb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/DS DSi - Pokemon Black 2 White 2 - Accumula Town.obj-14cd8759e89bffeb61d5c955452716cb.mesh"]
+
+source_file="res://Assets/AccumulaTown/DS DSi - Pokemon Black 2 White 2 - Accumula Town.obj"
+dest_files=["res://.godot/imported/DS DSi - Pokemon Black 2 White 2 - Accumula Town.obj-14cd8759e89bffeb61d5c955452716cb.mesh", "res://.godot/imported/DS DSi - Pokemon Black 2 White 2 - Accumula Town.obj-14cd8759e89bffeb61d5c955452716cb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
