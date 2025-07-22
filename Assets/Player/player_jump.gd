@@ -27,6 +27,8 @@ const CUT_JUMP_MULTIPLIER := 0.5  # How much velocity remains when jump is relea
 var wall_jump = false
 @export var WALL_JUMP_MULTIPLIER = 1.1
 func enter():
+	
+	
 	Fx.dustParticleFx(player.global_position + Vector3(0, 0, 0), 1)
 	if wall_jump:
 		player.velocity.y = JUMP_VELOCITY * WALL_JUMP_MULTIPLIER

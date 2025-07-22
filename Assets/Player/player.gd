@@ -70,7 +70,6 @@ func _ready() -> void:
 	#SignalBus.connect("convoEnded", convoEnded)
 
 func _physics_process(_delta: float) -> void:
-	
 	if current_health <= 0:
 		get_tree().quit()
 	
@@ -148,7 +147,7 @@ func _physics_process(_delta: float) -> void:
 func resetCam():
 	var tween_1 = get_tree().create_tween()
 	#var tween_2 = get_tree().create_tween()
-	
+	# THE ISSUE IS THAT GLOBAL POSITON DOESNT START OFF WITH ZERO ANYWAYS..
 	tween_1.tween_property($CamFollow, "global_position", Vector3.ZERO, 0.15).set_ease(Tween.EASE_IN)
 	#tween_2.tween_property($Pivot, "zoom", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN)
 

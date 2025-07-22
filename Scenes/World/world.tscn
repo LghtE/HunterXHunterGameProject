@@ -24889,6 +24889,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.705, 28.1136, -63.9837)
 [node name="Player" parent="." instance=ExtResource("14_dbvd7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.88777, 5.2009, 3.12655)
 
+[node name="ProceduralSlash" parent="Player" index="3"]
+transform = Transform3D(9.99999, 0, 0, 0, 4.22177, 9.06512, 0, -9.06512, 4.22177, -0.124506, 2.42357, 2.71786)
+
+[node name="testHilt" parent="Player" index="13"]
+transform = Transform3D(0.34214, -0.00193848, -0.413334, -0.228881, 0.015161, -0.617066, 0.00940708, 0.439383, 0.0194685, 1.02004, 2.99281, -0.565918)
+
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
 transform = Transform3D(0.999956, -0.00942464, 0, 0.00942464, 0.999956, 0, 0, 0, 9.60462, -148.959, 67.0384, -56.3351)
 use_collision = true
@@ -24954,16 +24960,12 @@ processing = false
 
 [node name="b_Dasher2" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.3439, -4.78993, -34.354)
-processing = false
 
 [node name="b_Dasher3" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7913, -4.78993, -34.354)
-current_health = 200.0
-max_health = 200.0
 
 [node name="b_Dasher4" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.2083, -4.78993, -30.442)
-processing = false
 
 [node name="b_Dasher5" parent="." instance=ExtResource("16_7aaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2105, -4.78993, -30.442)

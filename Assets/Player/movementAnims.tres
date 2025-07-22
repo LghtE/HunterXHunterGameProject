@@ -341,6 +341,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%SkinSuit/../Particles/Trail3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_wptrv"]
 resource_name = "dash_up"
@@ -398,6 +410,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0399959, -1.63154, 1.94589)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.872116, 3.57845, 1.30729)]
+}
 
 [sub_resource type="Animation" id="Animation_uyuy0"]
 resource_name = "fall_left"
@@ -424,6 +460,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00296532, 3.0377, 1.98827)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.090963, 3.74975, 1.30729)]
 }
 
 [sub_resource type="Animation" id="Animation_10jlx"]
@@ -452,6 +512,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00296535, 0.0468385, 1.98827)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.14254, 3.78088, 1.30729)]
+}
 
 [sub_resource type="Animation" id="Animation_x2wl0"]
 resource_name = "fall_up"
@@ -478,6 +562,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.980089, -1.52373, -1.50884)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.02004, 2.99281, -0.565918)]
 }
 
 [sub_resource type="Animation" id="Animation_p1eok"]
@@ -800,6 +908,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.124489, -1.57352, 1.83677)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.576299, 3.37872, 1.30729)]
+}
 
 [sub_resource type="Animation" id="Animation_bjt64"]
 resource_name = "jump_left"
@@ -827,6 +959,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0134459, 2.90095, 2.34182)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.090963, 3.74975, 1.30729)]
+}
 
 [sub_resource type="Animation" id="Animation_cynw7"]
 resource_name = "jump_right"
@@ -853,6 +1009,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0134459, 0.0449662, 2.34182)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.14254, 3.78088, 1.30729)]
 }
 
 [sub_resource type="Animation" id="Animation_0jp4p"]
@@ -882,6 +1062,54 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0574249),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector3(0.190064, 1.75656, -1.39536), Vector3(0.190064, 1.42922, -1.39536)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0574249),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector3(0.667767, 2.65149, 0.365382), Vector3(0.667767, 2.65149, 0.365382)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.11404, 0.188547, 0.244046, 0.303347, 0.369491, 0.45312, 0.532188, 0.610996),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector3(-0.167814, 3.02606, 0.365382), Vector3(-0.68645, 4.69722, 0.365382), Vector3(-0.0525593, 2.82437, 0.365382), Vector3(0.696582, 2.76674, 0.16737), Vector3(-1.11823, 2.76674, 0.16737), Vector3(1.49463, 3.35945, 0.895261), Vector3(1.19216, 3.1578, 1.30729), Vector3(0.923296, 3.19141, 1.30729)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.11404, 0.188547, 0.244046, 0.303347, 0.369491, 0.45312, 0.532188, 0.610996),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector3(0.303853, -0.0184799, -2.36878), Vector3(0.28037, -0.120127, -2.71843), Vector3(1.44131, -1.10146, 2.50008), Vector3(1.39437, -0.744639, 1.77836), Vector3(0.601676, -1.36014, 0.520231), Vector3(0.203176, -1.0635, 0.251355), Vector3(0.216996, -1.82838, 1.59456), Vector3(0.0727577, -1.86256, 1.6325)]
+}
 
 [sub_resource type="Animation" id="Animation_y1j53"]
 resource_name = "jump_up"
@@ -908,6 +1136,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.75225, -0.866301, -0.671786)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.967583, 2.4452, -0.565918)]
 }
 
 [sub_resource type="Animation" id="Animation_8bapu"]
@@ -1064,6 +1316,30 @@ tracks/2/keys = {
 "method": &"runSound2"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../testHilt:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0847946, 0.262293, 0.336799),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.190064, 1.75656, -1.39536), Vector3(0.190064, 1.42922, -1.39536), Vector3(0.190064, 1.42922, -1.39536), Vector3(0.190064, 1.84761, -1.39536)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../testHilt:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0847946, 0.181754, 0.337253),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector3(0.667767, 2.65149, 0.365382), Vector3(0.667767, 2.65149, 0.365382), Vector3(0.762854, 2.62772, 0.365382), Vector3(0.801737, 2.72953, 0.365382)]
+}
 
 [sub_resource type="Animation" id="Animation_cjc2e"]
 resource_name = "run_downleft"
@@ -1205,6 +1481,30 @@ tracks/2/keys = {
 "method": &"runSound2"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.168766, 3.03064, 2.13011)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.836428, 2.52048, -1)]
+}
 
 [sub_resource type="Animation" id="Animation_a52ai"]
 resource_name = "run_right"
@@ -1252,6 +1552,30 @@ tracks/2/keys = {
 "method": &"runSound2"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0870754, 0.268829, 0.334972),
+"transitions": PackedFloat32Array(0.450625, 1, 0.287175, 1),
+"update": 0,
+"values": [Vector3(-0.168766, -0.118576, 2.13011), Vector3(-0.198585, -0.054883, 1.78478), Vector3(-0.184768, -0.0843946, 1.94478), Vector3(-0.199159, -0.0397638, 1.71125)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0870754, 0.178712, 0.347897),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector3(0.044, 3, 0.876), Vector3(0.232, 3.1, 0.876), Vector3(0.355, 2.9, 0.876), Vector3(0.355, 3.1, 0.876)]
+}
 
 [sub_resource type="Animation" id="Animation_se03x"]
 resource_name = "run_up"
@@ -1298,6 +1622,30 @@ tracks/2/keys = {
 "args": [],
 "method": &"runSound2"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0847946, 0.262293, 0.336799),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.190064, 1.75656, -1.39536), Vector3(0.190064, 1.42922, -1.39536), Vector3(0.190064, 1.42922, -1.39536), Vector3(0.190064, 1.84761, -1.39536)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0847946, 0.181754, 0.337253),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector3(0.667767, 2.65149, 0.365382), Vector3(0.667767, 2.65149, 0.365382), Vector3(0.762854, 2.62772, 0.365382), Vector3(0.801737, 2.72953, 0.365382)]
 }
 
 [sub_resource type="Animation" id="Animation_u5to8"]
@@ -2939,6 +3287,42 @@ tracks/9/keys = {
 "update": 1,
 "values": [Vector3(1.13676, -2.92987, 0.755938), Vector3(-1.27926, 0.313264, 2.04688), Vector3(-1.27926, 0.313264, 2.04688)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../MeleeHurtboxes/UpLeft1:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.0807295, 0.140288),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../MeleeHurtboxes/UpLeft2:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.460028),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../MeleeHurtboxes/UpLeft3:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.04105, 1.16803),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_5cp4r"]
 resource_name = "slash_upright"
@@ -3100,6 +3484,42 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector3(-1.04617, 0.152689, 0.95761), Vector3(1.31839, -2.74684, -2.73801), Vector3(1.12324, 2.85939, 2.92462)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../MeleeHurtboxes/UpRight1:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.0807295, 0.140288),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../MeleeHurtboxes/UpRight2:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.460028),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../MeleeHurtboxes/UpRight3:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.04105, 1.16803),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_p1i0b"]

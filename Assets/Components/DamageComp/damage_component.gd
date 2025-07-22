@@ -73,7 +73,7 @@ func damage(inc_damage, knockback_str = 0.0, knockback_direction = Vector3.ZERO)
 		if "is_dead" in entity:
 			# For dead-ing enemies
 			if entity.is_dead:
-				entity.velocity = knockback_direction * 300
+				entity.velocity = knockback_direction * knockback_str * 1.2
 			else:
 				entity.velocity = knockback_direction * knockback_str 
 		

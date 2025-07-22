@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bybpistiohjuf"]
+
+[ext_resource type="Script" uid="uid://bf2ec6sq74m" path="res://Assets/Effects/Trail/Trail3D.gd" id="1_mmsaq"]
+
+[node name="Trail3D" type="MeshInstance3D"]
+script = ExtResource("1_mmsaq")

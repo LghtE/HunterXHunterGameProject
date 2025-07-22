@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://jhld54l5rdv2"]
+
+[ext_resource type="Script" uid="uid://m861lwnu30lm" path="res://Assets/Components/HealthBarComponent/health_bar_component.gd" id="1_dten7"]
+[ext_resource type="Texture2D" uid="uid://cxnx6iwosecvl" path="res://Assets/Components/HealthBarComponent/barframe.png" id="2_6khl0"]
+[ext_resource type="Texture2D" uid="uid://m24x8djp8h20" path="res://Assets/Components/HealthBarComponent/barframedelay.png" id="2_py5bc"]
+[ext_resource type="Texture2D" uid="uid://d3bvbexist6fv" path="res://Assets/Components/HealthBarComponent/barfill.png" id="3_dsdbv"]
+[ext_resource type="Texture2D" uid="uid://7gblmaxk3l3k" path="res://Assets/Components/HealthBarComponent/barfilldelay.png" id="3_p0os2"]
+[ext_resource type="Texture2D" uid="uid://dpswey551uifk" path="res://Assets/Components/HealthBarComponent/barframe_SQUARED.png" id="3_ws2yo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_py5bc"]
+viewport_path = NodePath("SubViewport")
+
+[node name="HealthBarComponent" type="Node3D"]
+script = ExtResource("1_dten7")
+modulateAlpha = true
+circled_frame = ExtResource("2_6khl0")
+squared_frame = ExtResource("3_ws2yo")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(29, 6)
+
+[node name="HPBarDelay" type="TextureProgressBar" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 23.0
+texture_under = ExtResource("2_py5bc")
+texture_progress = ExtResource("3_p0os2")
+
+[node name="HPBar" type="TextureProgressBar" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 35.0
+texture_under = ExtResource("2_6khl0")
+texture_progress = ExtResource("3_dsdbv")
+
+[node name="ViewportTex" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_py5bc")
+
+[node name="AlphaTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="DelayTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[connection signal="timeout" from="AlphaTimer" to="." method="_on_alpha_timer_timeout"]
+[connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://btbeog3qg5fgv"]
+[gd_scene load_steps=69 format=3 uid="uid://btbeog3qg5fgv"]
 
 [ext_resource type="Script" uid="uid://bihp0domhkt2m" path="res://Assets/Player/player.gd" id="1_6miq6"]
 [ext_resource type="Texture2D" uid="uid://4o7i8fug4tpf" path="res://Assets/Player/FosOWCombat3D.png" id="2_tfsyo"]
@@ -33,6 +33,9 @@
 [ext_resource type="AudioStream" uid="uid://3bvjjexgywyp" path="res://Assets/Sound/BattleSFX/helton_swordSlash1.wav" id="26_vmi6o"]
 [ext_resource type="AudioStream" uid="uid://bk7a8up4mkc7k" path="res://Assets/Sound/BattleSFX/helton_SwordSlash2.wav" id="27_4bdev"]
 [ext_resource type="PackedScene" uid="uid://b7ehk5us22yop" path="res://Assets/Player/player_hurtbox_collider.tscn" id="33_3bf6a"]
+[ext_resource type="Texture2D" uid="uid://cpvsff8x6h0kd" path="res://Assets/Effects/Misc/purpleParticle.png" id="33_j3os4"]
+[ext_resource type="Script" uid="uid://bf2ec6sq74m" path="res://Assets/Effects/Trail/Trail3D.gd" id="34_pm8dm"]
+[ext_resource type="PackedScene" uid="uid://cq6y84vdagvu4" path="res://Assets/TestStuff/testHilt.glb" id="34_yh6lp"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wt21t"]
 noise_type = 2
@@ -164,6 +167,66 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector3(-1.13495, 0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.267568, -0.396667, 3.0313)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%SkinSuit/../testHilt:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.740755, 2.83237, 0.474405)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../testHilt:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.980089, -1.52373, -1.50884)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../testHilt:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.02004, 2.99281, -0.565918)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%SkinSuit/../Particles/Trail3D:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wv4rg"]
 _data = {
@@ -211,7 +274,46 @@ lightmap_size_hint = Vector2i(7, 4)
 material = SubResource("StandardMaterial3D_xvbvg")
 size = Vector2(1.2, 1.165)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhs6l"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("33_j3os4")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_d8bt1"]
+
+[sub_resource type="Curve" id="Curve_j3os4"]
+_data = [Vector2(0.021021, 0.363962), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yh6lp"]
+radius = 3.259
+height = 8.30398
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqaf8"]
+radius = 3.259
+height = 8.30398
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j3os4"]
+radius = 3.259
+height = 8.30398
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pm8dm"]
+radius = 3.259
+height = 8.30398
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhs6l"]
+radius = 3.259
+height = 8.30398
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d8bt1"]
+radius = 3.259
+height = 8.30398
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_84upl"]
 radius = 3.259
 height = 8.30398
 
@@ -244,7 +346,7 @@ frame = 144
 unique_name_in_owner = true
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 visible = false
-offset = Vector2(-10, -42)
+offset = Vector2(-10, -40)
 texture_filter = 0
 texture = ExtResource("4_funjf")
 hframes = 5
@@ -404,8 +506,20 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_funjf")
 draw_pass_1 = SubResource("QuadMesh_so11v")
 
+[node name="Trail3D" type="MeshInstance3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.324252, 5.29437, 1.6747)
+visible = false
+material_override = SubResource("StandardMaterial3D_xhs6l")
+mesh = SubResource("QuadMesh_d8bt1")
+script = ExtResource("34_pm8dm")
+distance = 0.625
+base_width = 1.0
+width_profile = SubResource("Curve_j3os4")
+metadata/_custom_type_script = "uid://bf2ec6sq74m"
+
 [node name="WallRaycasts" type="Node3D" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="left" type="RayCast3D" parent="WallRaycasts"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0112548, 3.21269, 0)
@@ -427,6 +541,7 @@ debug_shape_thickness = 5
 
 [node name="MeleeHurtboxes" type="Area3D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 16
 collision_mask = 128
 
@@ -453,6 +568,174 @@ disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
 knockback_strength = 35
 knockback_direction = Vector3(1, 0, 0)
+
+[node name="Left1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -3.97955, 3.31886, 0.0687985)
+shape = SubResource("CapsuleShape3D_fqaf8")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 20
+knockback_direction = Vector3(-1, 0, 0)
+
+[node name="Left2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -3.97955, 3.31886, 0.0687985)
+shape = SubResource("CapsuleShape3D_fqaf8")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 30
+knockback_direction = Vector3(-1, 0, 0)
+
+[node name="Left3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -3.97955, 3.31886, 0.0687985)
+shape = SubResource("CapsuleShape3D_fqaf8")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 35
+knockback_direction = Vector3(-1, 0, 0)
+
+[node name="Up1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.0204463, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_j3os4")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 35
+
+[node name="Up2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.0204463, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_j3os4")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 40
+
+[node name="Up3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.0204463, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_j3os4")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 45
+
+[node name="Down1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.0204463, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_pm8dm")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 35
+knockback_direction = Vector3(0, 0, 1)
+
+[node name="Down2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.0204463, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_pm8dm")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 30
+knockback_direction = Vector3(0, 0, 1)
+
+[node name="Down3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.0204463, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_pm8dm")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 45
+knockback_direction = Vector3(0, 0, 1)
+
+[node name="DownLeft1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(3.09086e-08, 0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, -0.707107, -3.93165, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_xhs6l")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 20
+knockback_direction = Vector3(-1, 0, 1)
+
+[node name="DownLeft2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(3.09086e-08, 0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, -0.707107, -3.93165, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_xhs6l")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 30
+knockback_direction = Vector3(-1, 0, 1)
+
+[node name="DownLeft3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(3.09086e-08, 0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, -0.707107, -3.93165, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_xhs6l")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 35
+knockback_direction = Vector3(-1, 0, 1)
+
+[node name="DownRight1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 4.06835, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_xhs6l")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 20
+knockback_direction = Vector3(1, 0, 1)
+
+[node name="DownRight2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 4.06835, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_xhs6l")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 30
+knockback_direction = Vector3(1, 0, 1)
+
+[node name="DownRight3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 4.06835, 3.31886, 4.0688)
+shape = SubResource("CapsuleShape3D_xhs6l")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 35
+knockback_direction = Vector3(1, 0, 1)
+
+[node name="UpRight1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-3.78552e-08, -0.866025, 0.5, 1, -4.37114e-08, 0, 2.18557e-08, 0.5, 0.866025, 4.06835, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_d8bt1")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 20
+knockback_direction = Vector3(1, 0, -1)
+
+[node name="UpRight2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-3.78552e-08, -0.866025, 0.5, 1, -4.37114e-08, 0, 2.18557e-08, 0.5, 0.866025, 4.06835, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_d8bt1")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 30
+knockback_direction = Vector3(1, 0, -1)
+
+[node name="UpRight3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(-3.78552e-08, -0.866025, 0.5, 1, -4.37114e-08, 0, 2.18557e-08, 0.5, 0.866025, 4.06835, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_d8bt1")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 35
+knockback_direction = Vector3(1, 0, -1)
+
+[node name="UpLeft1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(3.09086e-08, 0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, -0.707107, -3.93165, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_84upl")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 20
+knockback_direction = Vector3(-1, 0, -1)
+
+[node name="UpLeft2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(3.09086e-08, 0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, -0.707107, -3.93165, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_84upl")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 30
+knockback_direction = Vector3(-1, 0, -1)
+
+[node name="UpLeft3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
+transform = Transform3D(3.09086e-08, 0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, -0.707107, -3.93165, 3.31886, -3.9312)
+shape = SubResource("CapsuleShape3D_84upl")
+disabled = true
+debug_color = Color(0.963757, 0, 0.496823, 0.42)
+knockback_strength = 35
+knockback_direction = Vector3(-1, 0, -1)
+
+[node name="testHilt" parent="." instance=ExtResource("34_yh6lp")]
+transform = Transform3D(0.342351, -0.00194003, -0.260363, -0.229023, 0.0151732, -0.388696, 0.00941289, 0.439734, 0.0122634, 1.02004, 2.99281, -0.565918)
 
 [connection signal="animation_finished" from="Animations/MovementAnims" to="StateMachine/PlayerMelee" method="_on_movement_anims_animation_finished"]
 [connection signal="timeout" from="StateMachine/PlayerJump/JumpSpecialTimer" to="StateMachine/PlayerJump" method="_on_jump_special_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://u3yqd7pwtigk"]
+[gd_scene load_steps=21 format=3 uid="uid://u3yqd7pwtigk"]
 
 [ext_resource type="Texture2D" uid="uid://bx2q4hw8l31y1" path="res://Assets/Enemies/Dasher/dasher.png" id="1_8k6n1"]
 [ext_resource type="Script" uid="uid://p2pqh22e62wl" path="res://Assets/Enemies/Dasher/baseEnemyScript.gd" id="1_g7xjr"]
@@ -9,9 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bkwb6urvragkp" path="res://Assets/Components/ContextBasedSteering/context_based_steering.tscn" id="5_fmtxg"]
 [ext_resource type="Script" uid="uid://5fou4ild13hv" path="res://Assets/Enemies/Dasher/enemy_idle.gd" id="5_g7xjr"]
 [ext_resource type="PackedScene" uid="uid://buckxoikxks1g" path="res://Assets/Components/DamageComp/DamageComponent.tscn" id="5_ts40w"]
+[ext_resource type="PackedScene" uid="uid://jhld54l5rdv2" path="res://Assets/Components/HealthBarComponent/health_bar_component.tscn" id="7_7a3s0"]
 [ext_resource type="AnimationLibrary" uid="uid://p4axnkbbvouj" path="res://Assets/Enemies/Dasher/enemyFxAnims.tres" id="7_ps5yx"]
 [ext_resource type="Script" uid="uid://bt0ty402aum81" path="res://Assets/Enemies/Dasher/enemy_chase.gd" id="8_lwrc5"]
 [ext_resource type="Script" uid="uid://8csbqgta5dlc" path="res://Assets/Enemies/Dasher/enemy_hurt.gd" id="10_6clr8"]
+[ext_resource type="Script" uid="uid://cdqu5qpjkpa2o" path="res://Assets/Enemies/Dasher/enemy_dead.gd" id="14_6nf26"]
 
 [sub_resource type="Shader" id="Shader_ts40w"]
 code = "shader_type spatial;
@@ -75,6 +77,8 @@ _data = {
 collision_layer = 8
 script = ExtResource("1_g7xjr")
 enemy_type = "Dasher"
+current_health = 50.0
+max_health = 50.0
 run_speed = 15.0
 run_speed_variation = 2.5
 steer = 0.04
@@ -92,8 +96,9 @@ outline_size = 0
 
 [node name="Skin" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(10.0363, 0, 0, 0, 10, 0, 0, 0, 10.0314, 0.00117889, 2.10887, 0.00047031)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.00117889, 2.10887, 0.00047031)
 material_override = SubResource("ShaderMaterial_7a3s0")
+modulate = Color(3, 3, 3, 1)
 billboard = 2
 texture_filter = 0
 texture = ExtResource("1_8k6n1")
@@ -116,11 +121,16 @@ texture = ExtResource("2_c2y2a")
 entity = NodePath("..")
 StateMachine = NodePath("../StateMachine")
 hurt_State_name = "EnemyHurt"
+dead_State_name = "EnemyDead"
 
 [node name="ContextBasedSteering" parent="." node_paths=PackedStringArray("character", "raycasts") instance=ExtResource("5_fmtxg")]
 character = NodePath("..")
 raycasts = NodePath("../Raycasts")
 raycast_length = 10
+
+[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("7_7a3s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58253, 0.0106691)
+entity = NodePath("..")
 
 [node name="Hitbox" type="Area3D" parent="."]
 collision_layer = 128
@@ -162,29 +172,33 @@ CBS = NodePath("../../ContextBasedSteering")
 script = ExtResource("10_6clr8")
 enemy = NodePath("../..")
 
+[node name="EnemyDead" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("14_6nf26")
+enemy = NodePath("../..")
+
 [node name="Raycasts" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815084, 0)
 
 [node name="0" type="RayCast3D" parent="Raycasts"]
-collision_mask = 8
+collision_mask = 9
 
 [node name="1" type="RayCast3D" parent="Raycasts"]
-collision_mask = 8
+collision_mask = 9
 
 [node name="2" type="RayCast3D" parent="Raycasts"]
-collision_mask = 8
+collision_mask = 9
 
 [node name="3" type="RayCast3D" parent="Raycasts"]
-collision_mask = 8
+collision_mask = 9
 
 [node name="4" type="RayCast3D" parent="Raycasts"]
-collision_mask = 8
+collision_mask = 9
 
 [node name="5" type="RayCast3D" parent="Raycasts"]
-collision_mask = 8
+collision_mask = 9
 
 [node name="6" type="RayCast3D" parent="Raycasts"]
-collision_mask = 8
+collision_mask = 9
 
 [node name="7" type="RayCast3D" parent="Raycasts"]
-collision_mask = 8
+collision_mask = 9
