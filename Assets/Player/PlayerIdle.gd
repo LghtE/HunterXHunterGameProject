@@ -6,9 +6,9 @@ class_name PlayerIdle
 
 
 func enter():
+	%AimingCrosshair.hide()
 	%SkinSuit.scale = Vector3(10, 10, 10)
 	%Shadow.position.y = player.position.y + 0.7
-	#%AimingCrosshair.visible = false
 	
 	#if !player.in_dialogue and player.cam_override:
 		#player.bbClose()

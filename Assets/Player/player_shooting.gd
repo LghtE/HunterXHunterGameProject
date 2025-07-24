@@ -13,11 +13,23 @@ class_name PlayerShooting
 var offset = Vector2(0, -30)
 var shoot_impulse = 30.0
 
+var cam_tw : Tween
+
 var idx = 0
 
 func enter():
 	
-	#emitProjectile()
+	if cam_tw:
+		if cam_tw.is_running():
+			cam_tw.stop()
+			
+	cam_tw = get_tree().create_tween()
+	cam_tw.tween_property(%Pivot, "rotation_degrees:x", -7, 0.15).set_ease(Tween.EASE_OUT)
+	
+	
+	
+	
+	emitProjectile()
 	#if player.aura_amount > 0.0:
 		#emitProjectile()
 	#else:
@@ -38,6 +50,10 @@ func enter():
 		player.velocity = -((Vector3(player.joy_dir.x, 0, player.joy_dir.y)).normalized() * shoot_impulse)
 
 func exit():
+	if %StateMachine.current_state.name != "PlayerAiming":
+		cam_tw = get_tree().create_tween()
+		cam_tw.tween_property(%Pivot, "rotation_degrees:x", 0.0, 0.15).set_ease(Tween.EASE_IN)
+	
 	%Animations.stopAllAnims()
 	await get_tree().process_frame
 	%AimingCrosshair.visible = false
@@ -53,7 +69,7 @@ func physics_update(_delta: float):
 		%AimingCrosshair.position.y = clamp(%AimingCrosshair.position.y, -220, 220)
 	else:
 		var tween = get_tree().create_tween()
-		tween.tween_property(%AimingCrosshair, "position", (Vector3(player.joy_dir.x,0.12,player.joy_dir.y) * 25.0 ), 0.15)
+		tween.tween_property(%AimingCrosshair, "position", (Vector3(player.joy_dir.x,0.2,player.joy_dir.y) * 25.0 ), 0.15)
 	
 	%CamFollow.position = player.to_local((player.global_position + %AimingCrosshair.global_position) / 2)
 	
@@ -72,10 +88,11 @@ func physics_update(_delta: float):
 	
 	if (Input.is_action_just_pressed("rightShoulderButton") or Input.is_action_just_pressed("leftClick")) and $canShoot.is_stopped():
 		
-		if player.aura_amount > 0.0:
-			emitProjectile()
-		else:
-			GameAudioManager.playSFX(player.global_position, shootFail, 0, false)
+		emitProjectile()
+		#if player.aura_amount > 0.0:
+			#emitProjectile()
+		#else:
+			#GameAudioManager.playSFX(player.global_position, shootFail, 0, false)
 		%AimingCrosshair.interact()
 		playShootAnim()
 		
@@ -121,8 +138,7 @@ func emitProjectile():
 		#
 	
 	
-	proj_instance.global_position = player.global_position + (proj_instance.dir * 10)
-	
+	proj_instance.set_deferred("global_position", player.global_position + (proj_instance.dir * 5) + Vector3(0, 2 ,0))
 	proj_instance.projHit.connect(onProjHit)
 	
 	get_parent().get_parent().get_parent().add_child(proj_instance)
@@ -130,5 +146,5 @@ func emitProjectile():
 
 func onProjHit(enemy):
 	if enemy.is_in_group("enemy"):
-		%FlowState.onProjHit(enemy)
+		#%FlowState.onProjHit(enemy)
 		enemy.onProjectileHit()

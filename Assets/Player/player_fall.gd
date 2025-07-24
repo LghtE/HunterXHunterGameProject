@@ -6,6 +6,8 @@ class_name PlayerFall
 @export var fall_move_speed = 10.0
 
 func enter():
+	player.resetCam()
+	%AimingCrosshair.hide()
 	playDirectionalAnim()
 
 func exit():

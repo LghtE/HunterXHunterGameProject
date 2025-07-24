@@ -11,6 +11,7 @@ var S_MULT = 1.65
 
 
 func enter():
+	%AimingCrosshair.hide()
 	for child in %WallRaycasts.get_children():
 		child.enabled = true
 		

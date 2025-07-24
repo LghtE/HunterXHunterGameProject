@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://btbeog3qg5fgv"]
+[gd_scene load_steps=78 format=3 uid="uid://btbeog3qg5fgv"]
 
 [ext_resource type="Script" uid="uid://bihp0domhkt2m" path="res://Assets/Player/player.gd" id="1_6miq6"]
 [ext_resource type="Texture2D" uid="uid://4o7i8fug4tpf" path="res://Assets/Player/FosOWCombat3D.png" id="2_tfsyo"]
@@ -42,6 +42,9 @@
 [ext_resource type="PackedScene" uid="uid://cq6y84vdagvu4" path="res://Assets/TestStuff/testHilt.glb" id="34_yh6lp"]
 [ext_resource type="AudioStream" uid="uid://m5ar8wt2slk7" path="res://Assets/Sound/BattleSFX/AimEnd.wav" id="35_gss1x"]
 [ext_resource type="Script" uid="uid://naurobe10kq" path="res://Assets/Player/player_shooting.gd" id="36_4uypw"]
+[ext_resource type="PackedScene" uid="uid://d26uyj3u0k3yy" path="res://Assets/Projectiles/AuraBall/aura_ball.tscn" id="37_gss1x"]
+[ext_resource type="AudioStream" uid="uid://cg1r0l11yp6kv" path="res://Assets/Sound/BattleSFX/Shoot2.wav" id="37_tlios"]
+[ext_resource type="AudioStream" uid="uid://c14l8hl0teo1w" path="res://Assets/Sound/BattleSFX/failed.wav" id="38_7v3uv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wt21t"]
 noise_type = 2
@@ -506,7 +509,10 @@ player = NodePath("../..")
 
 [node name="PlayerShooting" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("36_4uypw")
+shootSFX1 = ExtResource("37_tlios")
+shootFail = ExtResource("38_7v3uv")
 player = NodePath("../..")
+projectile = ExtResource("37_gss1x")
 
 [node name="canShoot" type="Timer" parent="StateMachine/PlayerShooting"]
 wait_time = 0.15

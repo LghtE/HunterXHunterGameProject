@@ -28,6 +28,7 @@ var wall_jump = false
 @export var WALL_JUMP_MULTIPLIER = 1.1
 func enter():
 	
+	%AimingCrosshair.hide()
 	
 	Fx.dustParticleFx(player.global_position + Vector3(0, 0, 0), 1)
 	

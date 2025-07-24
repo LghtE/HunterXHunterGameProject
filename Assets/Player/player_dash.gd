@@ -10,6 +10,7 @@ class_name PlayerDash
 var dash_multiplier = 1.0
 
 func enter():
+	%AimingCrosshair.hide()
 	%EyeTrail.PlayerEyeTrailStart()
 	player.velocity = Vector3.ZERO
 	#$DustTimer.start()

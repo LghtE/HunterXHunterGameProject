@@ -117,6 +117,10 @@ func _physics_process(_delta: float) -> void:
 		Input.get_action_strength("joy_R") - Input.get_action_strength("joy_L"),
 		Input.get_action_strength("joy_D") - Input.get_action_strength("joy_U")
 	)
+	
+	
+	if Input.is_action_just_pressed("1"):
+		Engine.time_scale = 0.02
 
 
 #func _on_melee_hurtboxes_area_entered(area: Area2D) -> void:
@@ -152,9 +156,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func resetCam():
-	#var tween_1 = get_tree().create_tween()
 	$CamFollow.position = cam_follow_orig_vec
-	#tween_1.tween_property($CamFollow, "position", cam_follow_orig_vec, 0.15).set_ease(Tween.EASE_IN)
 
 
 #==============================================================================
@@ -200,7 +202,6 @@ func enemyDead(enemy):
 	#%Cam.get_node("AnimationPlayer").play("shake_extreme")
 	
 	
-	GameGlobals.hitStop(0.02)
 
 
 func blur():

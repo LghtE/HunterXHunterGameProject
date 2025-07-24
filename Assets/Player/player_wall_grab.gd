@@ -14,11 +14,8 @@ var collided_raycast : RayCast3D
 var impulse_direction = Vector3.ZERO
 
 func enter():
-	#await get_tree().process_frame
-	#await get_tree().process_frame
-	#await get_tree().process_frame
-	#await get_tree().process_frame
 	
+	%AimingCrosshair.hide()
 	player.velocity = Vector3.ZERO
 	$OnWallTimer.start()
 	GameAudioManager.playSFX(player.global_position, wallgrabsfx, 0, true)

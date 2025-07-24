@@ -9,7 +9,7 @@ class_name PlayerRunning
 var S_MULT = 1.65
 
 func enter():
-	
+	%AimingCrosshair.hide()
 	%SkinSuit.scale = Vector3(10, 10, 10)
 	%Shadow.position.y = player.position.y + 0.7
 	#%RunDust.emitting = true

@@ -40,7 +40,7 @@ func enter():
 	if GameGlobals.mouse_mode:
 		%AimingCrosshair.global_position = Vector3(GameGlobals.returnMousePos().x, GameGlobals.returnMousePos().y, 0)
 	else:
-		%AimingCrosshair.global_position = player.global_position
+		%AimingCrosshair.global_position = player.global_position + Vector3(0, 0.1 * 25 , 0 )
 	
 	
 	await get_tree().process_frame
@@ -58,9 +58,11 @@ func exit():
 	if cam_tw:
 		if cam_tw.is_running():
 			cam_tw.stop()
+
 	
-	cam_tw = get_tree().create_tween()
-	cam_tw.tween_property(%Pivot, "rotation_degrees:x", 0.0, 0.15).set_ease(Tween.EASE_IN)
+	if %StateMachine.current_state.name != "PlayerShooting":
+		cam_tw = get_tree().create_tween()
+		cam_tw.tween_property(%Pivot, "rotation_degrees:x", 0.0, 0.15).set_ease(Tween.EASE_IN)
 	
 	
 	
@@ -91,7 +93,7 @@ func physics_update(_delta: float):
 		#%AimingCrosshair.position.y = clamp(%AimingCrosshair.position.y, -220, 220)
 	else:
 		var tween = get_tree().create_tween()
-		tween.tween_property(%AimingCrosshair, "position", (Vector3(player.joy_dir.x,0.12,player.joy_dir.y) * 25.0 ), 0.15)
+		tween.tween_property(%AimingCrosshair, "position", (Vector3(player.joy_dir.x,0.2,player.joy_dir.y) * 25.0 ), 0.15)
 
 	%CamFollow.position = player.to_local((player.global_position + %AimingCrosshair.global_position) / 2)
 	

@@ -16,6 +16,7 @@ var t : Tween
 var t2: Tween
 
 func enter():
+	%AimingCrosshair.hide()
 	GameAudioManager.playSFX(player.global_position, slash1, 3)
 	#player.velocity = player.facing.normalized() * melee_impulse
 	

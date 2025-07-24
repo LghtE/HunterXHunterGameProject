@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://d26uyj3u0k3yy"]
+
+[ext_resource type="Script" uid="uid://rdgtmofsu836" path="res://Assets/Projectiles/AuraBall/aura_ball.gd" id="1_3qn53"]
+[ext_resource type="Texture2D" uid="uid://ckgi7tsnpcuvs" path="res://Assets/Projectiles/AuraBall/balltest.png" id="1_ipgau"]
+[ext_resource type="Texture2D" uid="uid://gemf0qgv7hrx" path="res://Assets/Player/shadow.png" id="3_b4bkl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b4bkl"]
+radius = 2.155
+
+[node name="AuraBall" type="Node3D" groups=["process"]]
+script = ExtResource("1_3qn53")
+damage = 10
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="BlackBall" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1.28721, 0)
+offset = Vector2(2, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_ipgau")
+
+[node name="HurtBox" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20499, 0)
+shape = SubResource("SphereShape3D_b4bkl")
+
+[node name="Shadow" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(20, 0, 0, 0, -1.39513, -19.9513, 0, 19.9513, -1.39513, 0, -0.22419, 0)
+pixel_size = 0.0026
+texture_filter = 0
+texture = ExtResource("3_b4bkl")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
