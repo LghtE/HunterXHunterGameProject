@@ -61,7 +61,7 @@ func convertPathToDanger():
 	
 	for i in range(rays.size()):
 		if rays[i].is_colliding() and rays[i].get_collider() != character:
-
+			
 			rays[i].get_collider()
 			danger_map[i] = 5
 			

@@ -10,8 +10,7 @@ class_name PlayerDash
 var dash_multiplier = 1.0
 
 func enter():
-	
-	#%EyeTrail.start()
+	%EyeTrail.PlayerEyeTrailStart()
 	player.velocity = Vector3.ZERO
 	#$DustTimer.start()
 	#%RunDust.emitting = true
@@ -75,7 +74,7 @@ func enter():
 
 func exit():
 	#%SkinSuit.scale = Vector2(1,1)
-	#%EyeTrail.end()
+	%EyeTrail.PlayerEyeTrailEnd()
 	
 
 	#%DashSquareParticle.emitting = false
@@ -91,6 +90,8 @@ func exit():
 func physics_update(_delta: float):
 	player.velocity.x = move_toward(player.velocity.x, 0, Slow_down_speed)
 	player.velocity.z = move_toward(player.velocity.z, 0, Slow_down_speed)
+	
+	
 	
 	var input_dir = Vector2(
 	Input.get_action_strength("D") - Input.get_action_strength("A"),

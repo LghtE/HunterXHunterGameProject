@@ -4,7 +4,7 @@ class_name Game
 
 var player_can_move = true
 
-var mouse_mode = true
+var mouse_mode = false
 var idx = 0
 var f_idx = 0
 

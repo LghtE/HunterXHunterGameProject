@@ -341,18 +341,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%SkinSuit/../Particles/Trail3D:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_wptrv"]
 resource_name = "dash_up"
@@ -1053,58 +1041,46 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("../testHilt:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0574249),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [Vector3(0.190064, 1.75656, -1.39536), Vector3(0.190064, 1.42922, -1.39536)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../testHilt:rotation")
+tracks/2/path = NodePath("../testHilt:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.0574249),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector3(0.190064, 1.75656, -1.39536), Vector3(0.190064, 1.42922, -1.39536)]
+"values": [Vector3(0.667767, 2.65149, 0.365382), Vector3(0.667767, 2.65149, 0.365382)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../testHilt:position")
+tracks/3/path = NodePath("%SkinSuit/../testHilt:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0574249),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector3(0.667767, 2.65149, 0.365382), Vector3(0.667767, 2.65149, 0.365382)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("%SkinSuit/../testHilt:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0.11404, 0.188547, 0.244046, 0.303347, 0.369491, 0.45312, 0.532188, 0.610996),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector3(-0.167814, 3.02606, 0.365382), Vector3(-0.68645, 4.69722, 0.365382), Vector3(-0.0525593, 2.82437, 0.365382), Vector3(0.696582, 2.76674, 0.16737), Vector3(-1.11823, 2.76674, 0.16737), Vector3(1.49463, 3.35945, 0.895261), Vector3(1.19216, 3.1578, 1.30729), Vector3(0.923296, 3.19141, 1.30729)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("%SkinSuit/../testHilt:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%SkinSuit/../testHilt:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0.11404, 0.188547, 0.244046, 0.303347, 0.369491, 0.45312, 0.532188, 0.610996),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -2094,7 +2070,7 @@ tracks/9/keys = {
 tracks/10/type = "method"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("%StateMachine/PlayerMelee")
+tracks/10/path = NodePath("../StateMachine/PlayerMelee")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {

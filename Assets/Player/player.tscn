@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://btbeog3qg5fgv"]
+[gd_scene load_steps=75 format=3 uid="uid://btbeog3qg5fgv"]
 
 [ext_resource type="Script" uid="uid://bihp0domhkt2m" path="res://Assets/Player/player.gd" id="1_6miq6"]
 [ext_resource type="Texture2D" uid="uid://4o7i8fug4tpf" path="res://Assets/Player/FosOWCombat3D.png" id="2_tfsyo"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bu2s5012yf41t" path="res://Assets/Player/state_machine.gd" id="5_5j20w"]
 [ext_resource type="Script" uid="uid://du4rxefxh7iax" path="res://Assets/Player/PlayerIdle.gd" id="6_rul8u"]
 [ext_resource type="Script" uid="uid://dd50nbblsuj1g" path="res://Assets/Player/PlayerRunning.gd" id="7_kg0wl"]
+[ext_resource type="PackedScene" uid="uid://c3uayxkxu3rhq" path="res://Assets/PlayerCrosshair/aiming_crosshair.tscn" id="7_xhs6l"]
 [ext_resource type="FontFile" uid="uid://c0qwhv3dt8bkn" path="res://Assets/Fonts/EXEPixelPerfect.ttf" id="9_2147b"]
 [ext_resource type="Script" uid="uid://ljibp7pj51tr" path="res://Assets/Player/player_fall.gd" id="9_csact"]
 [ext_resource type="Script" uid="uid://cmbd3nwsd6cw8" path="res://Assets/Player/player_jump.gd" id="10_e6xfg"]
@@ -32,10 +33,15 @@
 [ext_resource type="AudioStream" uid="uid://bxktf4721l834" path="res://Assets/Sound/BattleSFX/Slash3.wav" id="24_qcxy6"]
 [ext_resource type="AudioStream" uid="uid://3bvjjexgywyp" path="res://Assets/Sound/BattleSFX/helton_swordSlash1.wav" id="26_vmi6o"]
 [ext_resource type="AudioStream" uid="uid://bk7a8up4mkc7k" path="res://Assets/Sound/BattleSFX/helton_SwordSlash2.wav" id="27_4bdev"]
+[ext_resource type="Script" uid="uid://b5ek7nd4r5mqy" path="res://Assets/Player/player_aiming.gd" id="31_pm8dm"]
 [ext_resource type="PackedScene" uid="uid://b7ehk5us22yop" path="res://Assets/Player/player_hurtbox_collider.tscn" id="33_3bf6a"]
+[ext_resource type="AudioStream" uid="uid://boylw1dq627jj" path="res://Assets/Sound/BattleSFX/AimReady1.wav" id="33_a2eid"]
 [ext_resource type="Texture2D" uid="uid://cpvsff8x6h0kd" path="res://Assets/Effects/Misc/purpleParticle.png" id="33_j3os4"]
+[ext_resource type="AudioStream" uid="uid://dtqfdnj55xv1h" path="res://Assets/Sound/BattleSFX/AimReady2.wav" id="34_4uypw"]
 [ext_resource type="Script" uid="uid://bf2ec6sq74m" path="res://Assets/Effects/Trail/Trail3D.gd" id="34_pm8dm"]
 [ext_resource type="PackedScene" uid="uid://cq6y84vdagvu4" path="res://Assets/TestStuff/testHilt.glb" id="34_yh6lp"]
+[ext_resource type="AudioStream" uid="uid://m5ar8wt2slk7" path="res://Assets/Sound/BattleSFX/AimEnd.wav" id="35_gss1x"]
+[ext_resource type="Script" uid="uid://naurobe10kq" path="res://Assets/Player/player_shooting.gd" id="36_4uypw"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wt21t"]
 noise_type = 2
@@ -218,7 +224,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("%SkinSuit/../Particles/Trail3D:visible")
+tracks/9/path = NodePath("%SwordFX:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -323,7 +329,6 @@ script = ExtResource("1_6miq6")
 
 [node name="StateNameDebug" type="Label3D" parent="."]
 transform = Transform3D(3.34707, 0, 0, 0, 4.72102, 0.654517, 0, -4.08702, 0.756048, 0, 8.72271, 0.718674)
-visible = false
 pixel_size = 0.0091
 billboard = 2
 texture_filter = 0
@@ -344,14 +349,14 @@ frame = 144
 
 [node name="SwordFX" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 1, 5, 5)
 visible = false
-offset = Vector2(-10, -40)
+offset = Vector2(-5, -40)
 texture_filter = 0
 texture = ExtResource("4_funjf")
 hframes = 5
 vframes = 9
-frame = 4
+frame = 5
 
 [node name="ProceduralSlash" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
@@ -373,7 +378,12 @@ fixed_size = true
 texture_filter = 0
 texture = ExtResource("3_8ft5u")
 
+[node name="AimingCrosshair" parent="." instance=ExtResource("7_xhs6l")]
+unique_name_in_owner = true
+transform = Transform3D(10, 0, 0, 0, 9.65926, -2.58819, 0, 2.58819, 9.65926, 0, 3.08921, 0)
+
 [node name="Pivot" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 35.5, 95)
@@ -388,6 +398,7 @@ extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_4bdev")
 
 [node name="CamFollow" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="Animations" type="Node" parent="."]
 unique_name_in_owner = true
@@ -411,29 +422,27 @@ main_node = NodePath("..")
 script = ExtResource("6_rul8u")
 player = NodePath("../..")
 
+[node name="PlayerMelee" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("17_so11v")
+slash1 = ExtResource("26_vmi6o")
+slash2 = ExtResource("27_4bdev")
+preslash3 = ExtResource("23_gtoes")
+slash3 = ExtResource("24_qcxy6")
+player = NodePath("../..")
+
+[node name="M1" type="Timer" parent="StateMachine/PlayerMelee"]
+wait_time = 0.15
+one_shot = true
+
+[node name="M2" type="Timer" parent="StateMachine/PlayerMelee"]
+wait_time = 0.15
+one_shot = true
+
 [node name="PlayerRunning" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_kg0wl")
 player = NodePath("../..")
 run1 = ExtResource("12_80x61")
 run2 = ExtResource("13_sklkn")
-
-[node name="PlayerFall" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("9_csact")
-player = NodePath("../..")
-fall_move_speed = 30.0
-
-[node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-unique_name_in_owner = true
-script = ExtResource("10_e6xfg")
-player = NodePath("../..")
-jump_move_speed = 30.0
-jumpSFX1 = ExtResource("16_qcxy6")
-jumpSFX2 = ExtResource("16_qcxy6")
-special_jumpSFX = ExtResource("17_4bdev")
-
-[node name="JumpSpecialTimer" type="Timer" parent="StateMachine/PlayerJump"]
-wait_time = 0.705
-one_shot = true
 
 [node name="PlayerDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("11_fx6gu")
@@ -454,6 +463,24 @@ one_shot = true
 wait_time = 0.3
 one_shot = true
 
+[node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+script = ExtResource("10_e6xfg")
+player = NodePath("../..")
+jump_move_speed = 30.0
+jumpSFX1 = ExtResource("16_qcxy6")
+jumpSFX2 = ExtResource("16_qcxy6")
+special_jumpSFX = ExtResource("17_4bdev")
+
+[node name="JumpSpecialTimer" type="Timer" parent="StateMachine/PlayerJump"]
+wait_time = 0.705
+one_shot = true
+
+[node name="PlayerFall" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("9_csact")
+player = NodePath("../..")
+fall_move_speed = 30.0
+
 [node name="PlayerLand" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("12_tfsyo")
 player = NodePath("../..")
@@ -470,19 +497,18 @@ wallgrabsfx = ExtResource("24_pw7o6")
 wait_time = 1.5
 one_shot = true
 
-[node name="PlayerMelee" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("17_so11v")
-slash1 = ExtResource("26_vmi6o")
-slash2 = ExtResource("27_4bdev")
-preslash3 = ExtResource("23_gtoes")
-slash3 = ExtResource("24_qcxy6")
+[node name="PlayerAiming" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("31_pm8dm")
+aimSFX1 = ExtResource("33_a2eid")
+aimSFX2 = ExtResource("34_4uypw")
+aimEnd = ExtResource("35_gss1x")
 player = NodePath("../..")
 
-[node name="M1" type="Timer" parent="StateMachine/PlayerMelee"]
-wait_time = 0.15
-one_shot = true
+[node name="PlayerShooting" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("36_4uypw")
+player = NodePath("../..")
 
-[node name="M2" type="Timer" parent="StateMachine/PlayerMelee"]
+[node name="canShoot" type="Timer" parent="StateMachine/PlayerShooting"]
 wait_time = 0.15
 one_shot = true
 
@@ -506,14 +532,14 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_funjf")
 draw_pass_1 = SubResource("QuadMesh_so11v")
 
-[node name="Trail3D" type="MeshInstance3D" parent="Particles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.324252, 5.29437, 1.6747)
-visible = false
+[node name="EyeTrail" type="MeshInstance3D" parent="Particles"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148154, 4.97063, 0.00172615)
+top_level = true
 material_override = SubResource("StandardMaterial3D_xhs6l")
 mesh = SubResource("QuadMesh_d8bt1")
 script = ExtResource("34_pm8dm")
-distance = 0.625
-base_width = 1.0
+distance = 0.635
 width_profile = SubResource("Curve_j3os4")
 metadata/_custom_type_script = "uid://bf2ec6sq74m"
 
@@ -550,8 +576,8 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.0204
 shape = SubResource("CapsuleShape3D_yh6lp")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 20
-knockback_direction = Vector3(1, 0, 0)
+knockback_strength = 100
+knockback_direction = Vector3(0, 1, 0)
 
 [node name="Right2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.02045, 3.31886, 0.0687985)
@@ -738,9 +764,9 @@ knockback_direction = Vector3(-1, 0, -1)
 transform = Transform3D(0.342351, -0.00194003, -0.260363, -0.229023, 0.0151732, -0.388696, 0.00941289, 0.439734, 0.0122634, 1.02004, 2.99281, -0.565918)
 
 [connection signal="animation_finished" from="Animations/MovementAnims" to="StateMachine/PlayerMelee" method="_on_movement_anims_animation_finished"]
-[connection signal="timeout" from="StateMachine/PlayerJump/JumpSpecialTimer" to="StateMachine/PlayerJump" method="_on_jump_special_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerDash/DashTimer" to="StateMachine/PlayerDash" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerDash/DashCooldown" to="StateMachine/PlayerDash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerDash/DustTimer" to="StateMachine/PlayerDash" method="_on_dust_timer_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerJump/JumpSpecialTimer" to="StateMachine/PlayerJump" method="_on_jump_special_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerWallGrab/OnWallTimer" to="StateMachine/PlayerWallGrab" method="_on_on_wall_timer_timeout"]
 [connection signal="area_entered" from="MeleeHurtboxes" to="." method="_on_melee_hurtboxes_area_entered"]

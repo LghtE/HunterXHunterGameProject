@@ -36,6 +36,7 @@ var _C: Point
 var _temp_segment := []
 var _points := []
 
+var t : Tween
 
 class Point:
 	var transform: Transform3D
@@ -258,6 +259,7 @@ func _emit(delta) -> void:
 
 
 func _ready() -> void:
+	self.hide()
 	mesh = ImmediateMesh.new()
 	_target = get_parent()
 	top_level = true
@@ -272,3 +274,20 @@ func _process(delta) -> void:
 	if always_update:
 		# This is needed for alignment == view, so it can be updated every frame.
 		_render_geometry(points)
+
+func PlayerEyeTrailStart():
+	
+	if t:
+		if t.is_running():
+			t.stop()
+	await get_tree().create_timer(0.085).timeout
+	base_width = 1.0
+	if %StateMachine.current_state.name == "PlayerDash":
+		show()
+
+
+func PlayerEyeTrailEnd():
+	var w = base_width
+	t  = get_tree().create_tween()
+	t.tween_property(self, "base_width", 0.0, 0.4)
+	#hide()

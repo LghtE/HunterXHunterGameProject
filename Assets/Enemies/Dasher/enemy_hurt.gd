@@ -29,7 +29,7 @@ func exit():
 
 func physics_update(_delta: float):
 	
-	enemy.velocity += Vector3(0, -98, 0) * _delta
+	enemy.velocity += Vector3(0, -98.0, 0) * _delta
 	enemy.move_and_slide()
 
 func returnToChase():

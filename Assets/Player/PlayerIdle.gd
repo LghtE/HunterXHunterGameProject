@@ -12,7 +12,7 @@ func enter():
 	
 	#if !player.in_dialogue and player.cam_override:
 		#player.bbClose()
-		#player.resetCam()
+	player.resetCam()
 	
 	var anim = "movementAnims/idle_" + vecToDir(player.facing)
 	
@@ -49,8 +49,8 @@ func physics_update(_delta: float):
 		Transitioned.emit(self, "PlayerDash")
 	#
 	#
-	#if player.joy_dir != Vector2.ZERO or Input.is_action_pressed("rightClick"):
-		#Transitioned.emit(self, "PlayerAiming")
+	if player.joy_dir != Vector2.ZERO or Input.is_action_pressed("rightClick"):
+		Transitioned.emit(self, "PlayerAiming")
 	
 	#if Input.is_action_just_pressed("Y"):
 		#if player.aura_amount >= (20.0 * 3):

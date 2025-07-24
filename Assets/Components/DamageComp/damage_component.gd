@@ -75,7 +75,7 @@ func damage(inc_damage, knockback_str = 0.0, knockback_direction = Vector3.ZERO)
 			if entity.is_dead:
 				entity.velocity = knockback_direction * knockback_str * 1.2
 			else:
-				entity.velocity = knockback_direction * knockback_str 
+				entity.velocity = knockback_direction * knockback_str * 100.0
 		
 		if hurt_tween:
 			if hurt_tween.is_running():
@@ -87,5 +87,7 @@ func damage(inc_damage, knockback_str = 0.0, knockback_direction = Vector3.ZERO)
 	else:
 		#Enemy is NOT stunlockable but we like some knockback
 		if !entity.is_dead:
-			entity.velocity += knockback_direction * 50.0
-			
+			entity.velocity += knockback_direction * 15.0
+		else:
+			# For deading unstunlockable enemies
+			entity.velocity += knockback_direction * 10.0

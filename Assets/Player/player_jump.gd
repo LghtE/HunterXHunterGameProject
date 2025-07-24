@@ -30,12 +30,15 @@ func enter():
 	
 	
 	Fx.dustParticleFx(player.global_position + Vector3(0, 0, 0), 1)
+	
 	if wall_jump:
 		player.velocity.y = JUMP_VELOCITY * WALL_JUMP_MULTIPLIER
 	else:
 		player.velocity.y = JUMP_VELOCITY
+	
+	
 	jump_released = false
-	4
+	
 	
 	if wall_jump:
 		GameAudioManager.playSFX(player.global_position, special_jumpSFX, 0 , true)
@@ -98,6 +101,9 @@ func playDirectionalAnim():
 	
 	if wall_jump:
 		if %MovementAnims.current_animation != "movementAnims/jump_special":
+			
+			if randf() >= 0.5:
+				%SkinSuit.flip_h = true
 			%MovementAnims.play("movementAnims/jump_special")
 			$JumpSpecialTimer.start()
 		return

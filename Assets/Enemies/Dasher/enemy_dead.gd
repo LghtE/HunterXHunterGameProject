@@ -7,14 +7,14 @@ class_name EnemyDead
 
 @export var dissolve_time = 0.5
 func enter():
+	enemy.velocity = Vector3.ZERO
+	enemy.is_dead = true
+	enemy.invulnerable = true
 	
 	if enemy.enemy_type == "EnemySlasher":
 		enemy.get_node("SlasherSlash").hide()
 	
 	
-	enemy.velocity = Vector3.ZERO
-	enemy.is_dead = true
-	enemy.invulnerable = true
 	
 	SignalBus.emit_signal("onEnemyDied", enemy)
 	
@@ -51,6 +51,11 @@ func exit():
 
 
 func physics_update(_delta : float):
+	
+	enemy.velocity.x = move_toward(enemy.velocity.x, 0, 0.1)
+	enemy.velocity.z = move_toward(enemy.velocity.z, 0, 0.1)
+	
+	enemy.velocity += Vector3(0, -98, 0) * _delta
 	enemy.move_and_slide()
 
 func shimmerFx():

@@ -40,6 +40,8 @@ var cam_override = true
 
 var rotation_speed = 5.0  # radians per second
 
+var cam_follow_orig_vec : Vector3
+
 func _process(delta: float) -> void:
 	
 	# Smoothing the Camera
@@ -48,6 +50,8 @@ func _process(delta: float) -> void:
 
 
 func _ready() -> void:
+	
+	cam_follow_orig_vec = $CamFollow.position
 	%ProceduralSlash.material_override.set_shader_parameter("progress", 0.0)
 	$Shadow.position.y = position.y 
 	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -60,7 +64,7 @@ func _ready() -> void:
 		#child.knockback_strength *= knockback_multiplier
 	
 	#SignalBus.connect("onEnemyBreak", %Cam.onEnemyBreak)
-	#SignalBus.connect("onEnemyDied", enemyDead)
+	SignalBus.connect("onEnemyDied", enemyDead)
 	#SignalBus.connect("auraBarChanged", onAuraBarChange)
 	#SignalBus.connect("auraIncrease", onAuraIncrease)
 	#
@@ -78,38 +82,41 @@ func _physics_process(_delta: float) -> void:
 	$Shadow.position.x = position.x 
 	$Shadow.position.z = position.z - 0.25
 	
-	if get_tree().get_nodes_in_group("enemy") != []:
-		idx = 0
-
-	for enemy in get_tree().get_nodes_in_group("enemy"):
-		if enemy.processing:
-			sum += enemy.global_position
-			num += 1
-
-	if num > 0:
-		var cam_tween = get_tree().create_tween()
-		var avg_pos = sum / num
-		var final_pos = global_position * 0.9 + avg_pos * 0.1
-		cam_tween.tween_property($CamFollow, "global_position", final_pos, 0.1)
-	else:
-		if idx == 0:
-			resetCam()
-			idx = 1
+	#if get_tree().get_nodes_in_group("enemy") != []:
+		#idx = 0
+#
+	#for enemy in get_tree().get_nodes_in_group("enemy"):
+		#if enemy.processing:
+			#sum += enemy.global_position
+			#num += 1
+#
+	#if num > 0:
+		#var cam_tween = get_tree().create_tween()
+		#var avg_pos = sum / num
+		#var final_pos = global_position * 0.9 + avg_pos * 0.1
+		#cam_tween.tween_property($CamFollow, "global_position", final_pos, 0.1)
+	#else:
+		#if idx == 0:
+			#resetCam()
+			#idx = 1
 	
 	$StateNameDebug.text = "State: "+ $StateMachine.current_state.name
 		
-	var stick_vector = Input.get_vector("joy_L", "joy_R", "joy_U", "joy_D")
+	#var stick_vector = Input.get_vector("joy_L", "joy_R", "joy_U", "joy_D")
 	# Cam rotate 
-	self.rotation.x += stick_vector.y * _delta * joypad_sensitivity
-	self.rotation.x = clamp($Pivot.rotation.x, -PI / 6.0, PI / 6.0)
-	self.rotation.y -= stick_vector.x * _delta * joypad_sensitivity
-	
+	#self.rotation.x += stick_vector.y * _delta * joypad_sensitivity
+	#self.rotation.x = clamp($Pivot.rotation.x, -PI / 6.0, PI / 6.0)
+	#self.rotation.y -= stick_vector.x * _delta * joypad_sensitivity
+	#
+	#%MeleeHurtboxes.rotation.x -= stick_vector.y * _delta * joypad_sensitivity
+	#%MeleeHurtboxes.rotation.x = clamp(%MeleeHurtboxes.rotation.x, -PI / 6.0, PI / 6.0)
+	#%MeleeHurtboxes.rotation.y -= stick_vector.x * _delta * joypad_sensitivity
 	#$RichTextLabel2.text = "Velocity: "+ str(round(velocity.x)) + "," + str(round(velocity.y))
 	
-	#joy_dir = Vector2(
-		#Input.get_action_strength("joy_R") - Input.get_action_strength("joy_L"),
-		#Input.get_action_strength("joy_Down") - Input.get_action_strength("joy_UP")
-	#)
+	joy_dir = Vector2(
+		Input.get_action_strength("joy_R") - Input.get_action_strength("joy_L"),
+		Input.get_action_strength("joy_D") - Input.get_action_strength("joy_U")
+	)
 
 
 #func _on_melee_hurtboxes_area_entered(area: Area2D) -> void:
@@ -145,11 +152,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func resetCam():
-	var tween_1 = get_tree().create_tween()
-	#var tween_2 = get_tree().create_tween()
-	# THE ISSUE IS THAT GLOBAL POSITON DOESNT START OFF WITH ZERO ANYWAYS..
-	tween_1.tween_property($CamFollow, "global_position", Vector3.ZERO, 0.15).set_ease(Tween.EASE_IN)
-	#tween_2.tween_property($Pivot, "zoom", Vector2.ONE, 0.15).set_ease(Tween.EASE_IN)
+	#var tween_1 = get_tree().create_tween()
+	$CamFollow.position = cam_follow_orig_vec
+	#tween_1.tween_property($CamFollow, "position", cam_follow_orig_vec, 0.15).set_ease(Tween.EASE_IN)
+
 
 #==============================================================================
 
@@ -189,15 +195,12 @@ func increaseAura(Amount):
 	SignalBus.emit_signal("increaseAura", Amount)
 
 func enemyDead(enemy):
-	%blurAnimPlayer.play("show")
+	#%blurAnimPlayer.play("show")
+	num -= 1
+	#%Cam.get_node("AnimationPlayer").play("shake_extreme")
 	
-	%Cam.get_node("AnimationPlayer").play("shake_extreme")
 	
-	
-	GameGlobals.setProcessOff([self])
-	var tw = get_tree().create_timer(0.1)
-	await tw.timeout
-	GameGlobals.resetProcess()
+	GameGlobals.hitStop(0.02)
 
 
 func blur():
@@ -294,6 +297,7 @@ func _on_melee_hurtboxes_area_entered(area: Area3D) -> void:
 				
 				Fx.hitFx(child.global_position, 0)
 				#isAuraIncrease = false
+				GameGlobals.hitStop(0.008)
 				
 				if child.isHitstop:
 					GameGlobals.setProcessOff([%Cam])
@@ -307,8 +311,7 @@ func _on_melee_hurtboxes_area_entered(area: Area3D) -> void:
 						area.owner.get_node("DamageComponent").damage(child.damage_amount * 1.5, child.knockback_strength, child.knockback_direction)
 					else:
 						if !area.owner.stun_lockable:
-							var dir = Vector3(facing.x, 0.0, facing.z)
-							velocity = -dir.normalized() * 140
-						area.owner.get_node("DamageComponent").damage(child.damage_amount, child.knockback_strength, child.knockback_direction)
+							velocity = -child.knockback_direction * 10.0
+						area.owner.get_node("DamageComponent").damage(child.damage_amount, child.knockback_strength / 100.0, child.knockback_direction)
 				else:
 					print("Hit entity has no damage component")

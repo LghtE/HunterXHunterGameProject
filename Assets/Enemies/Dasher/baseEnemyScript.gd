@@ -73,7 +73,7 @@ func _ready() -> void:
 	
 	#if processing:
 		#for node in get_children():
-			#node.process_mode = Node.PROCESS_MODE_ALWAYS
+			#node.process_mode = Node.PROCESS_MOSDE_ALWAYS
 	#else:
 		#for node in get_children():
 			#node.process_mode = Node.PROCESS_MODE_DISABLED
@@ -86,19 +86,25 @@ func _ready() -> void:
 	
 	randomize()
 	run_speed += randf_range(-run_speed_variation, run_speed_variation)
-	distance_to_maintain_outer += randf_range(-10, 10)
-	distance_to_maintain_inner += randf_range(-10, 10)
-
+	distance_to_maintain_outer += randf_range(-2.5, 2.5)
+	distance_to_maintain_inner += randf_range(-2.5, 2.5)
 
 
 
 func setLookDirection():
-	if player:
+	if player and chase_target:
 		var vec_to_target = (chase_target.global_position - global_position).normalized()
-		if vec_to_target.x >= 0:
-			$Skin.flip_h = true
-		else:
-			$Skin.flip_h = false
+		var camera = get_viewport().get_camera_3d()
+		
+		if camera:
+			# Get camera's right vector (local +X direction in world space)
+			var cam_right = camera.global_transform.basis.x.normalized()
+			
+			# Dot product tells us if the target is to the right or left from camera's view
+			var rightness = vec_to_target.dot(cam_right)
+			
+			$Skin.flip_h = rightness > 0
+
 
 func setChaseTarget(target):
 	chase_target = target

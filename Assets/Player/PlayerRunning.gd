@@ -9,6 +9,7 @@ class_name PlayerRunning
 var S_MULT = 1.65
 
 func enter():
+	
 	%SkinSuit.scale = Vector3(10, 10, 10)
 	%Shadow.position.y = player.position.y + 0.7
 	#%RunDust.emitting = true
@@ -73,8 +74,8 @@ func physics_update(_delta:float):
 	if Input.is_action_just_pressed("Dash") and player.can_dash:
 		Transitioned.emit(self, "PlayerDash")
 		#
-	#if player.joy_dir != Vector2.ZERO or Input.is_action_pressed("rightClick"):
-		#Transitioned.emit(self, "PlayerAiming")
+	if player.joy_dir != Vector2.ZERO or Input.is_action_pressed("rightClick"):
+		Transitioned.emit(self, "PlayerAiming")
 	#
 	if input_dir == Vector2.ZERO and %StateMachine.current_state.name != "PlayerMelee":
 		Transitioned.emit(self, "PlayerIdle")

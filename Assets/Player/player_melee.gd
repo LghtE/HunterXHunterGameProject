@@ -16,7 +16,7 @@ var t : Tween
 var t2: Tween
 
 func enter():
-	GameAudioManager.playSFX(player.global_position, slash1, 0)
+	GameAudioManager.playSFX(player.global_position, slash1, 3)
 	#player.velocity = player.facing.normalized() * melee_impulse
 	
 	anim_name = "movementAnims/slash_" + vecToDir(player.facing)
@@ -31,6 +31,10 @@ func enter():
 func exit():
 	%SwordFX.hide()
 	%ProceduralSlash.material_override.set_shader_parameter("progress", 0.0)
+	
+	for col in %MeleeHurtboxes.get_children():
+		col.disabled = true
+	
 	if t:
 		if t.is_running():
 			t.kill()
@@ -55,7 +59,7 @@ func physics_update(_delta: float):
 	if Input.is_action_just_pressed("J"):
 		if !$M1.is_stopped() :
 			hit_connected = false
-			GameAudioManager.playSFX(player.global_position, slash2, 0, true)
+			GameAudioManager.playSFX(player.global_position, slash2, 3, true)
 			Fx.dustParticleFx(player.global_position + Vector3(0, 1.5, 1.5), 0)
 			applyImpulse(melee_impulse)
 			#%Animations.stopAllAnims()
@@ -72,6 +76,8 @@ func physics_update(_delta: float):
 			
 	if player.velocity.y <= 0 and !player.is_on_floor():
 		Transitioned.emit(self, "PlayerFall")
+	if Input.is_action_just_pressed("Jump") and player.is_on_floor():
+		Transitioned.emit(self, "PlayerJump")
 
 func M1():
 	# Starts a timer, if attack button is pressed within it's lifespan : Second Melee Performed !
@@ -123,6 +129,7 @@ func shake_big():
 func shake_small():
 	await get_tree().process_frame
 	await get_tree().process_frame
+	
 	
 	if hit_connected:
 		Input.start_joy_vibration(0, 0.1, 0.1, 0.1)

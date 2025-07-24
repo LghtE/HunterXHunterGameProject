@@ -18,26 +18,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Skin:material:shader_parameter/active")
+tracks/1/path = NodePath("Skin:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0, 0.0326744, 0.0599816, 0.0854998, 0.110359),
+"transitions": PackedFloat32Array(0.148651, 0.267943, 0.217638, 0.189465, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-7, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Skin:offset")
+tracks/2/path = NodePath("Skin:material_override:shader_parameter/flash_active")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0326744, 0.0599816, 0.0854998, 0.110359),
-"transitions": PackedFloat32Array(0.148651, 0.267943, 0.217638, 0.189465, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(3, 0), Vector2(0, 0)]
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_64n2q"]
