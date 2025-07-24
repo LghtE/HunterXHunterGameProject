@@ -5,7 +5,7 @@ signal projHit(enemy)
 
 @export var is_enemy_proj = false
 var dir = Vector3.ZERO
-var speed = 150.0
+var speed = 140.0
 var rebound = false
 @export var damage = 5
 

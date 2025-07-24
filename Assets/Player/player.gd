@@ -31,6 +31,7 @@ var can_dash : bool = true
 var current_skill_running : String
 
 var in_break : bool = false
+
 var idx = 0
 var isAuraIncrease  = false
 
@@ -58,8 +59,6 @@ func _ready() -> void:
 	
 	#$CanvasLayer/HealthBarComponent.hide()
 	
-	
-	
 	#for child in %MeleeHurtboxes.get_children():
 		#child.knockback_strength *= knockback_multiplier
 	
@@ -82,23 +81,28 @@ func _physics_process(_delta: float) -> void:
 	$Shadow.position.x = position.x 
 	$Shadow.position.z = position.z - 0.25
 	
-	#if get_tree().get_nodes_in_group("enemy") != []:
-		#idx = 0
-#
-	#for enemy in get_tree().get_nodes_in_group("enemy"):
-		#if enemy.processing:
-			#sum += enemy.global_position
-			#num += 1
-#
-	#if num > 0:
-		#var cam_tween = get_tree().create_tween()
-		#var avg_pos = sum / num
-		#var final_pos = global_position * 0.9 + avg_pos * 0.1
-		#cam_tween.tween_property($CamFollow, "global_position", final_pos, 0.1)
-	#else:
-		#if idx == 0:
-			#resetCam()
-			#idx = 1
+	if get_tree().get_nodes_in_group("enemy") != []:
+		idx = 0
+		sum = Vector3.ZERO
+		num = 0
+		
+		for enemy in get_tree().get_nodes_in_group("enemy"):
+			if enemy.processing:
+				sum.x += enemy.global_position.x
+				sum.y += enemy.global_position.y
+				sum.z += enemy.global_position.z
+				num += 1
+		
+		if num > 0:
+			cam_tween = get_tree().create_tween()
+			var final_pos = global_position * 0.7 + Vector3(sum.x/num, sum.y/num, sum.z/num) * (1 - 0.7)
+			cam_tween.tween_property($CamFollow, "position", to_local(final_pos), 0.1)
+	else:
+		if idx == 0:
+			resetCam()
+			idx = 1
+	
+	
 	
 	$StateNameDebug.text = "State: "+ $StateMachine.current_state.name
 		
@@ -198,7 +202,7 @@ func increaseAura(Amount):
 
 func enemyDead(enemy):
 	#%blurAnimPlayer.play("show")
-	num -= 1
+	pass
 	#%Cam.get_node("AnimationPlayer").play("shake_extreme")
 	
 	

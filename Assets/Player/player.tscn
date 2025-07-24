@@ -332,6 +332,7 @@ script = ExtResource("1_6miq6")
 
 [node name="StateNameDebug" type="Label3D" parent="."]
 transform = Transform3D(3.34707, 0, 0, 0, 4.72102, 0.654517, 0, -4.08702, 0.756048, 0, 8.72271, 0.718674)
+visible = false
 pixel_size = 0.0091
 billboard = 2
 texture_filter = 0
@@ -767,7 +768,7 @@ knockback_strength = 35
 knockback_direction = Vector3(-1, 0, -1)
 
 [node name="testHilt" parent="." instance=ExtResource("34_yh6lp")]
-transform = Transform3D(0.342351, -0.00194003, -0.260363, -0.229023, 0.0151732, -0.388696, 0.00941289, 0.439734, 0.0122634, 1.02004, 2.99281, -0.565918)
+transform = Transform3D(0.342351, -0.00194003, -0.260363, -0.229023, 0.0151732, -0.388696, 0.00941289, 0.439735, 0.0122634, 1.02004, 2.99281, -0.565918)
 
 [connection signal="animation_finished" from="Animations/MovementAnims" to="StateMachine/PlayerMelee" method="_on_movement_anims_animation_finished"]
 [connection signal="timeout" from="StateMachine/PlayerDash/DashTimer" to="StateMachine/PlayerDash" method="_on_dash_timer_timeout"]
