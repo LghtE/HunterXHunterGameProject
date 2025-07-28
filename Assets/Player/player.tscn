@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://btbeog3qg5fgv"]
+[gd_scene load_steps=79 format=3 uid="uid://btbeog3qg5fgv"]
 
 [ext_resource type="Script" uid="uid://bihp0domhkt2m" path="res://Assets/Player/player.gd" id="1_6miq6"]
 [ext_resource type="Texture2D" uid="uid://4o7i8fug4tpf" path="res://Assets/Player/FosOWCombat3D.png" id="2_tfsyo"]
@@ -298,6 +298,10 @@ texture_filter = 0
 _data = [Vector2(0.021021, 0.363962), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tlios"]
+radius = 1.03
+height = 7.085
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yh6lp"]
 radius = 3.259
 height = 8.30398
@@ -572,6 +576,15 @@ target_position = Vector3(0, 0, -3.2)
 debug_shape_custom_color = Color(0, 1, 0, 1)
 debug_shape_thickness = 5
 
+[node name="PlayerHitbox" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("CapsuleShape3D_tlios")
+debug_color = Color(0.942765, 0.415974, 0.448256, 1)
+
 [node name="MeleeHurtboxes" type="Area3D" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -768,7 +781,7 @@ knockback_strength = 35
 knockback_direction = Vector3(-1, 0, -1)
 
 [node name="testHilt" parent="." instance=ExtResource("34_yh6lp")]
-transform = Transform3D(0.342351, -0.00194003, -0.260363, -0.229023, 0.0151732, -0.388696, 0.00941289, 0.439735, 0.0122634, 1.02004, 2.99281, -0.565918)
+transform = Transform3D(0.342351, -0.00194004, -0.260363, -0.229023, 0.0151732, -0.388696, 0.00941289, 0.439735, 0.0122634, 1.02004, 2.99281, -0.565918)
 
 [connection signal="animation_finished" from="Animations/MovementAnims" to="StateMachine/PlayerMelee" method="_on_movement_anims_animation_finished"]
 [connection signal="timeout" from="StateMachine/PlayerDash/DashTimer" to="StateMachine/PlayerDash" method="_on_dash_timer_timeout"]

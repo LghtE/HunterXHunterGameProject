@@ -2,26 +2,30 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clffrh7ids86w"
-path="res://.godot/imported/grass01ax.png-4076b5571fcdc14fcd2fb882b5de563f.ctex"
+uid="uid://bopaedq0m6xp"
+path.s3tc="res://.godot/imported/BaseScene_0.png-ce6aba9cec2206c7299398fe9d9ba7c6.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "d4b4a45f910c8c41f42049c77a2b0de7"
 }
 
 [deps]
 
-source_file="res://Assets/AccumulaTown/grass01ax.png"
-dest_files=["res://.godot/imported/grass01ax.png-4076b5571fcdc14fcd2fb882b5de563f.ctex"]
+source_file="res://Assets/TestModel/crocodile-3d/BaseScene_0.png"
+dest_files=["res://.godot/imported/BaseScene_0.png-ce6aba9cec2206c7299398fe9d9ba7c6.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

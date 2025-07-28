@@ -109,21 +109,20 @@ func interpolateHoldSpeed(val : float):
 
 
 func _on_attack_timer_timeout() -> void:
-	pass
-	#if %StateMachine.current_state.name == "EnemyDead":
-		#return
-	#
-	#
-	#if randf() > enemy.attack_frequency and %StateMachine.current_state.name == "EnemyHold":
-		#
-		#if enemy.has_token:
-			#if enemy.wait_for_others:
-				#if !other_en_ready:
-					#Transitioned.emit(self, "EnemyReady")
-					#enemy.has_token = false
-			#else:
-					#Transitioned.emit(self, "EnemyReady")
-					#enemy.has_token = false
+	if %StateMachine.current_state.name == "EnemyDead":
+		return
+	
+	
+	if randf() > enemy.attack_frequency and %StateMachine.current_state.name == "EnemyHold":
+		
+		if enemy.has_token:
+			if enemy.wait_for_others:
+				if !other_en_ready:
+					Transitioned.emit(self, "EnemyReady")
+					enemy.has_token = false
+			else:
+					Transitioned.emit(self, "EnemyReady")
+					enemy.has_token = false
 
 func onEnReady(enem):
 	pass

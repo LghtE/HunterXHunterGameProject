@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://d22xacdodbo73"]
+
+[ext_resource type="Script" uid="uid://btyq0kslrokpl" path="res://Assets/Components/EnemyReadyIndicator/enemy_ready_indicator.gd" id="1_dpqph"]
+[ext_resource type="Texture2D" uid="uid://cnkqg5luffxgt" path="res://Assets/Components/EnemyReadyIndicator/EnemyReadyIndicator.png" id="1_mfv4k"]
+[ext_resource type="AnimationLibrary" uid="uid://j8h2s8shdt28" path="res://Assets/Components/EnemyReadyIndicator/enemy_ready_indicator.tres" id="2_dpqph"]
+[ext_resource type="AudioStream" uid="uid://fw0cthyfoww0" path="res://Assets/Components/EnemyReadyIndicator/enemyReadySound.wav" id="2_tbgur"]
+
+[sub_resource type="Animation" id="Animation_tbgur"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5vikx"]
+_data = {
+&"RESET": SubResource("Animation_tbgur")
+}
+
+[node name="EnemyReadyIndicator" type="Node3D"]
+script = ExtResource("1_dpqph")
+readySFX = ExtResource("2_tbgur")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+texture_filter = 0
+texture = ExtResource("1_mfv4k")
+hframes = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5vikx"),
+&"enemy_ready_indicator": ExtResource("2_dpqph")
+}
+autoplay = "enemy_ready_indicator/show"

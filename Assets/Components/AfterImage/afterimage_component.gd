@@ -79,7 +79,7 @@ func _on_echo_timer_timeout() -> void:
 	
 	var dupli = sprite.duplicate(true)
 	
-	##Offset for Fos
+	#Offset for Fos
 	#var offset = Vector2(-1, -6)
 	#
 	#dupli.offset = offset
@@ -103,7 +103,7 @@ func _on_echo_timer_timeout() -> void:
 	
 	dupli.material.set_shader_parameter("opacity", 0.851)
 	
-	shader_tween.tween_property(dupli.material, "shader_parameter/opacity", 0.0, fade_time)
+	shader_tween.tween_property(dupli.material, "shader_parameter/opacity", 0.0, fade_time).set_ease(Tween.EASE_OUT)
 	scale_tween.tween_property(dupli, "scale", Vector2(1.55, 1.35), 0.3)
 	
 	shader_tween.connect("finished", Callable(dupli, "queue_free"))

@@ -43,6 +43,9 @@ var rotation_speed = 5.0  # radians per second
 
 var cam_follow_orig_vec : Vector3
 
+var default_rotation = -4.0
+var aiming_rotation = -10
+
 func _process(delta: float) -> void:
 	
 	# Smoothing the Camera
@@ -95,7 +98,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if num > 0:
 			cam_tween = get_tree().create_tween()
-			var final_pos = global_position * 0.7 + Vector3(sum.x/num, sum.y/num, sum.z/num) * (1 - 0.7)
+			var final_pos = global_position * 0.65 + Vector3(sum.x/num, sum.y/num, sum.z/num) * (1 - 0.65)
 			cam_tween.tween_property($CamFollow, "position", to_local(final_pos), 0.1)
 	else:
 		if idx == 0:

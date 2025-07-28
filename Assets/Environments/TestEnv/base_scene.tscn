@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cms6qym3jgkqx"]
+
+[ext_resource type="PackedScene" uid="uid://ci78tprbdb2xd" path="res://Assets/Environments/TestEnv/floor.tscn" id="1_nbi78"]
+
+[node name="BaseScene" type="Node3D"]
+
+[node name="default" parent="." instance=ExtResource("1_nbi78")]

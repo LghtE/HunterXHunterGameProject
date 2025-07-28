@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci78tprbdb2xd"]
+
+[ext_resource type="PackedScene" uid="uid://dtdonu8qvpoox" path="res://Assets/TestModel/crocodile-3d/BaseScene.glb" id="1_drclm"]
+[ext_resource type="Texture2D" uid="uid://bopaedq0m6xp" path="res://Assets/TestModel/crocodile-3d/BaseScene_0.png" id="3_7ms7c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v615t"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("3_7ms7c")
+metallic_specular = 0.24
+roughness = 0.0
+rim_enabled = true
+rim_tint = 0.2
+backlight_enabled = true
+backlight = Color(0.207843, 0.141176, 0.439216, 1)
+texture_filter = 0
+
+[node name="floor" instance=ExtResource("1_drclm")]
+
+[node name="ground" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1845, 4.22729, -6.14074)
+surface_material_override/0 = SubResource("StandardMaterial3D_v615t")
+
+[node name="StaticBody3D" parent="ground" index="0"]
+collision_mask = 2
+
+[node name="tree" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147.5, 11.3877, 23.2497)

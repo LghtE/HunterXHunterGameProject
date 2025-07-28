@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://u3yqd7pwtigk"]
+[gd_scene load_steps=26 format=3 uid="uid://u3yqd7pwtigk"]
 
 [ext_resource type="Texture2D" uid="uid://bx2q4hw8l31y1" path="res://Assets/Enemies/Dasher/dasher.png" id="1_8k6n1"]
 [ext_resource type="Script" uid="uid://p2pqh22e62wl" path="res://Assets/Enemies/Dasher/baseEnemyScript.gd" id="1_g7xjr"]
@@ -9,42 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://bkwb6urvragkp" path="res://Assets/Components/ContextBasedSteering/context_based_steering.tscn" id="5_fmtxg"]
 [ext_resource type="Script" uid="uid://5fou4ild13hv" path="res://Assets/Enemies/Dasher/enemy_idle.gd" id="5_g7xjr"]
 [ext_resource type="PackedScene" uid="uid://buckxoikxks1g" path="res://Assets/Components/DamageComp/DamageComponent.tscn" id="5_ts40w"]
+[ext_resource type="PackedScene" uid="uid://dkfwlw1eq2ydy" path="res://Assets/Components/AfterImage/afterimage_component.tscn" id="7_3bse3"]
 [ext_resource type="PackedScene" uid="uid://jhld54l5rdv2" path="res://Assets/Components/HealthBarComponent/health_bar_component.tscn" id="7_7a3s0"]
 [ext_resource type="AnimationLibrary" uid="uid://p4axnkbbvouj" path="res://Assets/Enemies/Dasher/enemyFxAnims.tres" id="7_ps5yx"]
 [ext_resource type="Script" uid="uid://bt0ty402aum81" path="res://Assets/Enemies/Dasher/enemy_chase.gd" id="8_lwrc5"]
 [ext_resource type="Script" uid="uid://8csbqgta5dlc" path="res://Assets/Enemies/Dasher/enemy_hurt.gd" id="10_6clr8"]
 [ext_resource type="Script" uid="uid://cdqu5qpjkpa2o" path="res://Assets/Enemies/Dasher/enemy_dead.gd" id="14_6nf26"]
 [ext_resource type="Script" uid="uid://byv5ewh1b80uo" path="res://Assets/Enemies/Dasher/enemy_hold.gd" id="15_aries"]
-
-[sub_resource type="Shader" id="Shader_ts40w"]
-code = "shader_type spatial;
-render_mode unshaded, cull_disabled, depth_draw_opaque;
-
-uniform sampler2D albedo_texture: filter_nearest, source_color;
-uniform bool flash_active = false;
-uniform vec4 flash_color = vec4(1.0, 1.0, 1.0, 1.0); // Flash color (white by default)
-
-void fragment() {
-    vec4 tex_color = texture(albedo_texture, UV);
-
-    vec4 final_color = tex_color;
-    if (flash_active) {
-        final_color.rgb = flash_color.rgb;
-        final_color.a *= flash_color.a;
-    }
-
-    ALBEDO = final_color.rgb;
-    ALPHA = final_color.a;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a3s0"]
-resource_local_to_scene = true
-render_priority = 0
-shader = SubResource("Shader_ts40w")
-shader_parameter/albedo_texture = ExtResource("1_8k6n1")
-shader_parameter/flash_active = false
-shader_parameter/flash_color = Vector4(1, 1, 1, 1)
+[ext_resource type="Script" uid="uid://cp1eitskxeavx" path="res://Assets/Enemies/Dasher/enemy_attack.gd" id="16_rvpgs"]
+[ext_resource type="Script" uid="uid://nqli1pgxtibi" path="res://Assets/Enemies/Dasher/enemy_ready.gd" id="17_sxtd4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8k6n1"]
 radius = 0.880144
@@ -53,6 +26,9 @@ height = 2.81295
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ts40w"]
 radius = 2.28825
 height = 5.23368
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sxtd4"]
+radius = 2.0
 
 [sub_resource type="Animation" id="Animation_7a3s0"]
 length = 0.001
@@ -107,7 +83,6 @@ distance_to_maintain_inner = 10.0
 
 [node name="DebugLabel" type="Label3D" parent="."]
 transform = Transform3D(3.34707, 0, 0, 0, 4.72102, 0.654517, 0, -4.08702, 0.756048, 0, 5.36419, 0.718674)
-visible = false
 pixel_size = 0.0091
 billboard = 2
 texture_filter = 0
@@ -119,14 +94,12 @@ outline_size = 0
 [node name="Skin" type="Sprite3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.00117889, 2.10887, 0.00047031)
-material_override = SubResource("ShaderMaterial_7a3s0")
-modulate = Color(3, 3, 3, 1)
 billboard = 2
 texture_filter = 0
 texture = ExtResource("1_8k6n1")
 hframes = 18
 vframes = 6
-frame = 55
+frame = 72
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00353384, 1.35785, 0)
@@ -150,6 +123,14 @@ character = NodePath("..")
 raycasts = NodePath("../Raycasts")
 raycast_length = 7
 
+[node name="AfterImageComponent" parent="." node_paths=PackedStringArray("sprite", "main_node") instance=ExtResource("7_3bse3")]
+unique_name_in_owner = true
+ai_frequency = 12.0
+sprite = NodePath("../Skin")
+main_node = NodePath("..")
+afterimage_color = Color(1, 0, 0, 1)
+mix_color = 1.0
+
 [node name="HealthBarComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("7_7a3s0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.58253, 0.0106691)
 entity = NodePath("..")
@@ -162,6 +143,16 @@ collision_mask = 16
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0257874, 2.03715, 0)
 shape = SubResource("CapsuleShape3D_ts40w")
 debug_color = Color(0.625298, 0.520639, 0.311498, 0.42)
+
+[node name="HurtBox" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SphereShape3D_sxtd4")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -206,6 +197,19 @@ enemy = NodePath("../..")
 script = ExtResource("14_6nf26")
 enemy = NodePath("../..")
 
+[node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("16_rvpgs")
+enemy = NodePath("../..")
+attack_motion_strength = 150.0
+attack_anim_name = "dasherAnims/Attack"
+
+[node name="EnemyReady" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "attackState")]
+script = ExtResource("17_sxtd4")
+enemy = NodePath("../..")
+attackState = NodePath("../EnemyAttack")
+ready_anim_name = "dasherAnims/AttackReady"
+indicator_offset = Vector3(0, 3, 1)
+
 [node name="Raycasts" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815084, 0)
 
@@ -233,4 +237,5 @@ collision_mask = 9
 [node name="7" type="RayCast3D" parent="Raycasts"]
 collision_mask = 9
 
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="timeout" from="StateMachine/EnemyHold/AttackTimer" to="StateMachine/EnemyHold" method="_on_attack_timer_timeout"]

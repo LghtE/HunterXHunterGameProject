@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1xm43mbrk4vk"]
+
+[ext_resource type="PackedScene" uid="uid://c6mm50qg18y88" path="res://Assets/TestModel/grassfloor.glb" id="1_3niel"]
+[ext_resource type="Texture2D" uid="uid://btov1wsbili3l" path="res://Assets/TestModel/grassfloor_grass01ax.png" id="2_j8b7w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dk0i"]
+resource_name = "grassMat"
+cull_mode = 2
+albedo_texture = ExtResource("2_j8b7w")
+roughness = 0.48
+emission_energy_multiplier = 0.0
+emission_texture = ExtResource("2_j8b7w")
+rim_enabled = true
+rim = 0.43
+rim_tint = 0.17
+backlight_enabled = true
+backlight = Color(0.209024, 0.141367, 0.438856, 1)
+uv1_scale = Vector3(28, 28, 1)
+texture_filter = 0
+proximity_fade_distance = 104.91
+distance_fade_max_distance = 2.35
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_emksq"]
+_surfaces = [{
+"aabb": AABB(-9.98417, 0, -9.98417, 19.9683, 1e-05, 19.9683),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "grassMat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mk0t4"]
+resource_name = "grassfloor_Plane"
+_surfaces = [{
+"aabb": AABB(-9.98417, 0, -9.98417, 19.9683, 1e-05, 19.9683),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_7dk0i"),
+"name": "grassMat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 127, 255, 191, 255, 127, 255, 191, 255, 127, 255, 191, 255, 127, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_emksq")
+
+[node name="grassfloor" instance=ExtResource("1_3niel")]
+
+[node name="Plane" parent="." index="0"]
+mesh = SubResource("ArrayMesh_mk0t4")

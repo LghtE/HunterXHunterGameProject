@@ -57,8 +57,8 @@ var has_slash_hit = false
  
 
 func _physics_process(_delta: float) -> void:
-	$DebugLabel.text = str("State : " + %StateMachine.current_state.name)
-	#$Skin/DebugLabel.text = str("has_token : " + str(has_token))
+	#$DebugLabel.text = str("State : " + %StateMachine.current_state.name)
+	$DebugLabel.text = str("has_token : " + str(has_token))
 	
 	
 func _process(delta):
@@ -110,8 +110,7 @@ func setChaseTarget(target):
 	chase_target = target
 
 
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-	
+func _on_hurt_box_area_entered(area: Area3D) -> void:
 	match enemy_type:
 		"EnemySlasher":
 			has_slash_hit = true
@@ -132,7 +131,7 @@ func onProjectileHit():
 				if %StateMachine.current_state.name == "EnemyReady":
 					if current_health != 0:
 						
-						call_deferred("spawnHealthPickupSafe", global_position)
+						#call_deferred("spawnHealthPickupSafe", global_position)
 						
 						if get_node("BreakIndicatorComp"):
 							get_node("BreakIndicatorComp").tweenOut()
@@ -141,7 +140,7 @@ func onProjectileHit():
 				if %StateMachine.current_state.name == "EnemySlashRecover":
 					if current_health != 0:
 						
-						call_deferred("spawnHealthPickupSafe", global_position)
+						#call_deferred("spawnHealthPickupSafe", global_position)
 						
 						if get_node("BreakIndicatorComp"):
 							get_node("BreakIndicatorComp").tweenOut()

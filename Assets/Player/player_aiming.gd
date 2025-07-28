@@ -23,7 +23,7 @@ func enter():
 			cam_tw.stop()
 			
 	cam_tw = get_tree().create_tween()
-	cam_tw.tween_property(%Pivot, "rotation_degrees:x", -7, 0.15).set_ease(Tween.EASE_OUT)
+	cam_tw.tween_property(%Pivot, "rotation_degrees:x", player.aiming_rotation, 0.15).set_ease(Tween.EASE_OUT)
 	
 	%AimingCrosshair.size()
 	
@@ -62,7 +62,7 @@ func exit():
 	
 	if %StateMachine.current_state.name != "PlayerShooting":
 		cam_tw = get_tree().create_tween()
-		cam_tw.tween_property(%Pivot, "rotation_degrees:x", 0.0, 0.15).set_ease(Tween.EASE_IN)
+		cam_tw.tween_property(%Pivot, "rotation_degrees:x", player.default_rotation, 0.15).set_ease(Tween.EASE_IN)
 	
 	
 	
