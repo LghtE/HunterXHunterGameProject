@@ -1,0 +1,8 @@
+extends Node2D
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
+
+func _ready() -> void:
+	$AnimationPlayer2.play("reveal")

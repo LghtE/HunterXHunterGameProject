@@ -318,8 +318,8 @@ func _on_melee_hurtboxes_area_entered(area: Area3D) -> void:
 					if area.owner.in_break:
 						area.owner.get_node("DamageComponent").damage(child.damage_amount * 1.5, child.knockback_strength, child.knockback_direction)
 					else:
-						if !area.owner.stun_lockable:
-							velocity = -child.knockback_direction * 10.0
-						area.owner.get_node("DamageComponent").damage(child.damage_amount, child.knockback_strength / 100.0, child.knockback_direction)
+						#if !area.owner.stun_lockable:
+							#velocity = -child.knockback_direction * 10.0
+						area.owner.get_node("DamageComponent").damage(child.damage_amount, child.knockback_strength, child.knockback_direction)
 				else:
 					print("Hit entity has no damage component")

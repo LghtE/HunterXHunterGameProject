@@ -80,7 +80,7 @@ func _on_hurt_box_area_entered(area: Area3D) -> void:
 					_:
 						area.owner.get_node("DamageComponent").damage(20, 150, dir)
 		else:
-			area.owner.get_node("DamageComponent").damage(damage, 150, dir)
+			area.owner.get_node("DamageComponent").damage(damage, 1.0, dir)
 	
 	
 	if area.owner.has_method("projectileRebound"):

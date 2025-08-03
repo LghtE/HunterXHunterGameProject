@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://btbeog3qg5fgv"]
+[gd_scene load_steps=82 format=3 uid="uid://btbeog3qg5fgv"]
 
 [ext_resource type="Script" uid="uid://bihp0domhkt2m" path="res://Assets/Player/player.gd" id="1_6miq6"]
 [ext_resource type="Texture2D" uid="uid://4o7i8fug4tpf" path="res://Assets/Player/FosOWCombat3D.png" id="2_tfsyo"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bu2s5012yf41t" path="res://Assets/Player/state_machine.gd" id="5_5j20w"]
 [ext_resource type="Script" uid="uid://du4rxefxh7iax" path="res://Assets/Player/PlayerIdle.gd" id="6_rul8u"]
 [ext_resource type="Script" uid="uid://dd50nbblsuj1g" path="res://Assets/Player/PlayerRunning.gd" id="7_kg0wl"]
+[ext_resource type="PackedScene" uid="uid://buckxoikxks1g" path="res://Assets/Components/DamageComp/DamageComponent.tscn" id="7_lgt1c"]
 [ext_resource type="PackedScene" uid="uid://c3uayxkxu3rhq" path="res://Assets/PlayerCrosshair/aiming_crosshair.tscn" id="7_xhs6l"]
 [ext_resource type="FontFile" uid="uid://c0qwhv3dt8bkn" path="res://Assets/Fonts/EXEPixelPerfect.ttf" id="9_2147b"]
 [ext_resource type="Script" uid="uid://ljibp7pj51tr" path="res://Assets/Player/player_fall.gd" id="9_csact"]
@@ -45,6 +46,8 @@
 [ext_resource type="PackedScene" uid="uid://d26uyj3u0k3yy" path="res://Assets/Projectiles/AuraBall/aura_ball.tscn" id="37_gss1x"]
 [ext_resource type="AudioStream" uid="uid://cg1r0l11yp6kv" path="res://Assets/Sound/BattleSFX/Shoot2.wav" id="37_tlios"]
 [ext_resource type="AudioStream" uid="uid://c14l8hl0teo1w" path="res://Assets/Sound/BattleSFX/failed.wav" id="38_7v3uv"]
+[ext_resource type="Script" uid="uid://fnpr2svrco6o" path="res://Assets/Player/player_hurt.gd" id="41_r5ekf"]
+[ext_resource type="AudioStream" uid="uid://ba1qapaa3idjq" path="res://Assets/Sound/BattleSFX/ImpactHitShortened.wav" id="42_r5ekf"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wt21t"]
 noise_type = 2
@@ -386,12 +389,19 @@ fixed_size = true
 texture_filter = 0
 texture = ExtResource("3_8ft5u")
 
+[node name="DamageComponent" parent="." node_paths=PackedStringArray("entity", "StateMachine") instance=ExtResource("7_lgt1c")]
+entity = NodePath("..")
+StateMachine = NodePath("../StateMachine")
+hurt_State_name = "PlayerHurt"
+dead_State_name = "PlayerDead"
+
 [node name="AimingCrosshair" parent="." instance=ExtResource("7_xhs6l")]
 unique_name_in_owner = true
 transform = Transform3D(10, 0, 0, 0, 9.65926, -2.58819, 0, 2.58819, 9.65926, 0, 3.08921, 0)
 
 [node name="Pivot" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 35.5, 95)
@@ -407,6 +417,7 @@ mesh = SubResource("QuadMesh_4bdev")
 
 [node name="CamFollow" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.992966, -0.118404, 0, 0.118404, 0.992966, 0, 0, 0)
 
 [node name="Animations" type="Node" parent="."]
 unique_name_in_owner = true
@@ -523,6 +534,15 @@ projectile = ExtResource("37_gss1x")
 wait_time = 0.15
 one_shot = true
 
+[node name="PlayerHurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("41_r5ekf")
+player = NodePath("../..")
+hurt_impact_sfx = ExtResource("42_r5ekf")
+
+[node name="InvulTimer" type="Timer" parent="StateMachine/PlayerHurt"]
+wait_time = 1.9
+one_shot = true
+
 [node name="Particles" type="Node3D" parent="."]
 
 [node name="AfterImageComponent" parent="Particles" node_paths=PackedStringArray("sprite", "main_node") instance=ExtResource("13_cdil5")]
@@ -596,15 +616,15 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.0204
 shape = SubResource("CapsuleShape3D_yh6lp")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 100
-knockback_direction = Vector3(0, 1, 0)
+knockback_strength = 1.5
+knockback_direction = Vector3(1, 0, 0)
 
 [node name="Right2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.02045, 3.31886, 0.0687985)
 shape = SubResource("CapsuleShape3D_yh6lp")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 30
+knockback_strength = 1.5
 knockback_direction = Vector3(1, 0, 0)
 
 [node name="Right3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -612,7 +632,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.0204
 shape = SubResource("CapsuleShape3D_yh6lp")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 35
+knockback_strength = 2.0
 knockback_direction = Vector3(1, 0, 0)
 
 [node name="Left1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -620,7 +640,7 @@ transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.821
 shape = SubResource("CapsuleShape3D_fqaf8")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 20
+knockback_strength = 1.5
 knockback_direction = Vector3(-1, 0, 0)
 
 [node name="Left2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -628,7 +648,7 @@ transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.821
 shape = SubResource("CapsuleShape3D_fqaf8")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 30
+knockback_strength = 1.5
 knockback_direction = Vector3(-1, 0, 0)
 
 [node name="Left3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -636,7 +656,7 @@ transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.821
 shape = SubResource("CapsuleShape3D_fqaf8")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 35
+knockback_strength = 2.0
 knockback_direction = Vector3(-1, 0, 0)
 
 [node name="Up1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -644,28 +664,28 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114
 shape = SubResource("CapsuleShape3D_j3os4")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 35
+knockback_strength = 1.5
 
 [node name="Up2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.0204463, 3.31886, -3.9312)
 shape = SubResource("CapsuleShape3D_j3os4")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 40
+knockback_strength = 1.5
 
 [node name="Up3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.0204463, 3.31886, -3.9312)
 shape = SubResource("CapsuleShape3D_j3os4")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 45
+knockback_strength = 2.0
 
 [node name="Down1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.0204463, 3.31886, 4.0688)
 shape = SubResource("CapsuleShape3D_pm8dm")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 35
+knockback_strength = 1.5
 knockback_direction = Vector3(0, 0, 1)
 
 [node name="Down2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -673,7 +693,7 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.371
 shape = SubResource("CapsuleShape3D_pm8dm")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 30
+knockback_strength = 1.5
 knockback_direction = Vector3(0, 0, 1)
 
 [node name="Down3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -681,7 +701,7 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.371
 shape = SubResource("CapsuleShape3D_pm8dm")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 45
+knockback_strength = 2.0
 knockback_direction = Vector3(0, 0, 1)
 
 [node name="DownLeft1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -689,7 +709,7 @@ transform = Transform3D(3.09086e-08, 0.707107, -0.707107, 1, -4.37114e-08, 0, -3
 shape = SubResource("CapsuleShape3D_xhs6l")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 20
+knockback_strength = 1.5
 knockback_direction = Vector3(-1, 0, 1)
 
 [node name="DownLeft2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -697,7 +717,7 @@ transform = Transform3D(3.09086e-08, 0.707107, -0.707107, 1, -4.37114e-08, 0, -3
 shape = SubResource("CapsuleShape3D_xhs6l")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 30
+knockback_strength = 1.5
 knockback_direction = Vector3(-1, 0, 1)
 
 [node name="DownLeft3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -705,7 +725,7 @@ transform = Transform3D(3.09086e-08, 0.707107, -0.707107, 1, -4.37114e-08, 0, -3
 shape = SubResource("CapsuleShape3D_xhs6l")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 35
+knockback_strength = 2.0
 knockback_direction = Vector3(-1, 0, 1)
 
 [node name="DownRight1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -713,7 +733,7 @@ transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, 
 shape = SubResource("CapsuleShape3D_xhs6l")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 20
+knockback_strength = 1.5
 knockback_direction = Vector3(1, 0, 1)
 
 [node name="DownRight2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -721,7 +741,7 @@ transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, 
 shape = SubResource("CapsuleShape3D_xhs6l")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 30
+knockback_strength = 1.5
 knockback_direction = Vector3(1, 0, 1)
 
 [node name="DownRight3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -729,7 +749,7 @@ transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, 
 shape = SubResource("CapsuleShape3D_xhs6l")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 35
+knockback_strength = 2.0
 knockback_direction = Vector3(1, 0, 1)
 
 [node name="UpRight1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -737,7 +757,7 @@ transform = Transform3D(-3.78552e-08, -0.866025, 0.5, 1, -4.37114e-08, 0, 2.1855
 shape = SubResource("CapsuleShape3D_d8bt1")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 20
+knockback_strength = 1.5
 knockback_direction = Vector3(1, 0, -1)
 
 [node name="UpRight2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -745,7 +765,7 @@ transform = Transform3D(-3.78552e-08, -0.866025, 0.5, 1, -4.37114e-08, 0, 2.1855
 shape = SubResource("CapsuleShape3D_d8bt1")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 30
+knockback_strength = 1.5
 knockback_direction = Vector3(1, 0, -1)
 
 [node name="UpRight3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -753,7 +773,7 @@ transform = Transform3D(-3.78552e-08, -0.866025, 0.5, 1, -4.37114e-08, 0, 2.1855
 shape = SubResource("CapsuleShape3D_d8bt1")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 35
+knockback_strength = 2.0
 knockback_direction = Vector3(1, 0, -1)
 
 [node name="UpLeft1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -761,7 +781,7 @@ transform = Transform3D(3.09086e-08, 0.707107, 0.707107, 1, -4.37114e-08, 0, 3.0
 shape = SubResource("CapsuleShape3D_84upl")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 20
+knockback_strength = 1.5
 knockback_direction = Vector3(-1, 0, -1)
 
 [node name="UpLeft2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -769,7 +789,7 @@ transform = Transform3D(3.09086e-08, 0.707107, 0.707107, 1, -4.37114e-08, 0, 3.0
 shape = SubResource("CapsuleShape3D_84upl")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 30
+knockback_strength = 1.5
 knockback_direction = Vector3(-1, 0, -1)
 
 [node name="UpLeft3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
@@ -777,7 +797,7 @@ transform = Transform3D(3.09086e-08, 0.707107, 0.707107, 1, -4.37114e-08, 0, 3.0
 shape = SubResource("CapsuleShape3D_84upl")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 35
+knockback_strength = 2.0
 knockback_direction = Vector3(-1, 0, -1)
 
 [node name="testHilt" parent="." instance=ExtResource("34_yh6lp")]
@@ -789,4 +809,5 @@ transform = Transform3D(0.342351, -0.00194004, -0.260363, -0.229023, 0.0151732, 
 [connection signal="timeout" from="StateMachine/PlayerDash/DustTimer" to="StateMachine/PlayerDash" method="_on_dust_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerJump/JumpSpecialTimer" to="StateMachine/PlayerJump" method="_on_jump_special_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerWallGrab/OnWallTimer" to="StateMachine/PlayerWallGrab" method="_on_on_wall_timer_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerHurt/InvulTimer" to="StateMachine/PlayerHurt" method="_on_invul_timer_timeout"]
 [connection signal="area_entered" from="MeleeHurtboxes" to="." method="_on_melee_hurtboxes_area_entered"]

@@ -45,10 +45,10 @@ func addImpulseTowardsPlayer():
 	if Afterimages_enabled:
 		%AfterImageComponent.AiStart(%Skin)
 		
-	enemy.velocity = Vector3(dir_to_attack.normalized().x,0.0,dir_to_attack.normalized().z) * attack_motion_strength
+	enemy.velocity = Vector3(dir_to_attack.normalized().x,dir_to_attack.normalized().y,dir_to_attack.normalized().z) * attack_motion_strength
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(enemy, "velocity", Vector3.ZERO, 0.8).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(enemy, "velocity", Vector3.ZERO, 0.7).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
 	# Dust FX
 	#match dust_fx_type:

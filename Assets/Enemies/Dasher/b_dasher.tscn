@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://u3yqd7pwtigk"]
+[gd_scene load_steps=29 format=3 uid="uid://u3yqd7pwtigk"]
 
 [ext_resource type="Texture2D" uid="uid://bx2q4hw8l31y1" path="res://Assets/Enemies/Dasher/dasher.png" id="1_8k6n1"]
 [ext_resource type="Script" uid="uid://p2pqh22e62wl" path="res://Assets/Enemies/Dasher/baseEnemyScript.gd" id="1_g7xjr"]
@@ -18,6 +18,9 @@
 [ext_resource type="Script" uid="uid://byv5ewh1b80uo" path="res://Assets/Enemies/Dasher/enemy_hold.gd" id="15_aries"]
 [ext_resource type="Script" uid="uid://cp1eitskxeavx" path="res://Assets/Enemies/Dasher/enemy_attack.gd" id="16_rvpgs"]
 [ext_resource type="Script" uid="uid://nqli1pgxtibi" path="res://Assets/Enemies/Dasher/enemy_ready.gd" id="17_sxtd4"]
+[ext_resource type="Script" uid="uid://c0kuxpxyuaisg" path="res://Assets/Enemies/Dasher/enemy_break.gd" id="19_8tv7q"]
+[ext_resource type="AudioStream" uid="uid://6ii6fsiihbc3" path="res://Assets/Sound/BattleSFX/break1.wav" id="20_0lcm7"]
+[ext_resource type="Script" uid="uid://du2ijibsk48v3" path="res://Assets/Enemies/Dasher/enemy_break_hurt.gd" id="21_lx4aj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8k6n1"]
 radius = 0.880144
@@ -28,7 +31,7 @@ radius = 2.28825
 height = 5.23368
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_sxtd4"]
-radius = 2.0
+radius = 2.65
 
 [sub_resource type="Animation" id="Animation_7a3s0"]
 length = 0.001
@@ -43,6 +46,66 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skin:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skin:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(10, 10, 10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skin:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skin:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skin:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6nf26"]
@@ -74,7 +137,6 @@ _data = {
 collision_layer = 8
 script = ExtResource("1_g7xjr")
 enemy_type = "Dasher"
-stun_lockable = false
 run_speed = 15.0
 run_speed_variation = 2.5
 steer = 0.05
@@ -83,6 +145,7 @@ distance_to_maintain_inner = 10.0
 
 [node name="DebugLabel" type="Label3D" parent="."]
 transform = Transform3D(3.34707, 0, 0, 0, 4.72102, 0.654517, 0, -4.08702, 0.756048, 0, 5.36419, 0.718674)
+visible = false
 pixel_size = 0.0091
 billboard = 2
 texture_filter = 0
@@ -99,7 +162,6 @@ texture_filter = 0
 texture = ExtResource("1_8k6n1")
 hframes = 18
 vframes = 6
-frame = 72
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00353384, 1.35785, 0)
@@ -112,16 +174,16 @@ pixel_size = 0.0026
 texture_filter = 0
 texture = ExtResource("2_c2y2a")
 
+[node name="ContextBasedSteering" parent="." node_paths=PackedStringArray("character", "raycasts") instance=ExtResource("5_fmtxg")]
+character = NodePath("..")
+raycasts = NodePath("../Raycasts")
+raycast_length = 7
+
 [node name="DamageComponent" parent="." node_paths=PackedStringArray("entity", "StateMachine") instance=ExtResource("5_ts40w")]
 entity = NodePath("..")
 StateMachine = NodePath("../StateMachine")
 hurt_State_name = "EnemyHurt"
 dead_State_name = "EnemyDead"
-
-[node name="ContextBasedSteering" parent="." node_paths=PackedStringArray("character", "raycasts") instance=ExtResource("5_fmtxg")]
-character = NodePath("..")
-raycasts = NodePath("../Raycasts")
-raycast_length = 7
 
 [node name="AfterImageComponent" parent="." node_paths=PackedStringArray("sprite", "main_node") instance=ExtResource("7_3bse3")]
 unique_name_in_owner = true
@@ -200,8 +262,9 @@ enemy = NodePath("../..")
 [node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("16_rvpgs")
 enemy = NodePath("../..")
-attack_motion_strength = 150.0
+attack_motion_strength = 200.0
 attack_anim_name = "dasherAnims/Attack"
+predict_movement = true
 
 [node name="EnemyReady" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "attackState")]
 script = ExtResource("17_sxtd4")
@@ -209,6 +272,20 @@ enemy = NodePath("../..")
 attackState = NodePath("../EnemyAttack")
 ready_anim_name = "dasherAnims/AttackReady"
 indicator_offset = Vector3(0, 3, 1)
+
+[node name="EnemyBreak" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("19_8tv7q")
+break_sfx = ExtResource("20_0lcm7")
+enemy = NodePath("../..")
+break_offset = Vector3(0, 5, 0)
+
+[node name="Timer" type="Timer" parent="StateMachine/EnemyBreak"]
+wait_time = 3.0
+one_shot = true
+
+[node name="EnemyBreakHurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("21_lx4aj")
+enemy = NodePath("../..")
 
 [node name="Raycasts" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815084, 0)
@@ -239,3 +316,4 @@ collision_mask = 9
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="timeout" from="StateMachine/EnemyHold/AttackTimer" to="StateMachine/EnemyHold" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="StateMachine/EnemyBreak/Timer" to="StateMachine/EnemyBreak" method="_on_timer_timeout"]

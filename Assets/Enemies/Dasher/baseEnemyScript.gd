@@ -57,8 +57,8 @@ var has_slash_hit = false
  
 
 func _physics_process(_delta: float) -> void:
-	#$DebugLabel.text = str("State : " + %StateMachine.current_state.name)
-	$DebugLabel.text = str("has_token : " + str(has_token))
+	$DebugLabel.text = str("State : " + %StateMachine.current_state.name)
+	#$DebugLabel.text = str("has_token : " + str(has_token))
 	
 	
 func _process(delta):
@@ -114,8 +114,6 @@ func _on_hurt_box_area_entered(area: Area3D) -> void:
 	match enemy_type:
 		"EnemySlasher":
 			has_slash_hit = true
-
-	
 	
 	if area.owner.has_node("DamageComponent"):
 		area.owner.get_node("DamageComponent").damage(base_damage, 250, velocity.normalized())
