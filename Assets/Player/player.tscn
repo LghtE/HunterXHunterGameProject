@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://btbeog3qg5fgv"]
+[gd_scene load_steps=88 format=3 uid="uid://btbeog3qg5fgv"]
 
 [ext_resource type="Script" uid="uid://bihp0domhkt2m" path="res://Assets/Player/player.gd" id="1_6miq6"]
 [ext_resource type="Texture2D" uid="uid://4o7i8fug4tpf" path="res://Assets/Player/FosOWCombat3D.png" id="2_tfsyo"]
@@ -13,14 +13,17 @@
 [ext_resource type="PackedScene" uid="uid://c3uayxkxu3rhq" path="res://Assets/PlayerCrosshair/aiming_crosshair.tscn" id="7_xhs6l"]
 [ext_resource type="FontFile" uid="uid://c0qwhv3dt8bkn" path="res://Assets/Fonts/EXEPixelPerfect.ttf" id="9_2147b"]
 [ext_resource type="Script" uid="uid://ljibp7pj51tr" path="res://Assets/Player/player_fall.gd" id="9_csact"]
+[ext_resource type="Script" uid="uid://c0ujx50wjb1j4" path="res://Assets/Player/PlayerCam.gd" id="9_u08sk"]
 [ext_resource type="Script" uid="uid://cmbd3nwsd6cw8" path="res://Assets/Player/player_jump.gd" id="10_e6xfg"]
 [ext_resource type="Script" uid="uid://cpknpv44fgq5j" path="res://Assets/Player/player_dash.gd" id="11_fx6gu"]
 [ext_resource type="AudioStream" uid="uid://7nh60qruoy6u" path="res://Assets/Sound/BattleSFX/Run1.wav" id="12_80x61"]
+[ext_resource type="AnimationLibrary" uid="uid://bmtg8k5l1or6l" path="res://Assets/Player/PlayerFxAnims.tres" id="12_mk17y"]
 [ext_resource type="Script" uid="uid://prdecssgxee1" path="res://Assets/Player/player_land.gd" id="12_tfsyo"]
 [ext_resource type="PackedScene" uid="uid://dkfwlw1eq2ydy" path="res://Assets/Components/AfterImage/afterimage_component.tscn" id="13_cdil5"]
 [ext_resource type="AudioStream" uid="uid://bbmhgs3svjmx4" path="res://Assets/Sound/BattleSFX/Run2.wav" id="13_sklkn"]
 [ext_resource type="Script" uid="uid://devgbdm6eoge4" path="res://Assets/Player/player_wall_grab.gd" id="14_rf7nh"]
 [ext_resource type="AudioStream" uid="uid://cjygcd7aydwsu" path="res://Assets/Sound/BattleSFX/DSGNMisc_MOVEMENT-Jump Sparkle_HY_PC-004.wav" id="16_qcxy6"]
+[ext_resource type="AudioStream" uid="uid://b8174gxt1ose0" path="res://Assets/Sound/BattleSFX/Swing1.wav" id="16_u08sk"]
 [ext_resource type="Texture2D" uid="uid://di3sp542ih50v" path="res://Assets/TestStuff/effects/dustfull.png" id="16_wv4rg"]
 [ext_resource type="AudioStream" uid="uid://d0im6ia5hbhjn" path="res://Assets/Sound/BattleSFX/PlayerDashSounds/dashHeltonQuicker.wav" id="17_1ssyw"]
 [ext_resource type="AudioStream" uid="uid://i0d1l3pkg4i3" path="res://Assets/Sound/BattleSFX/WHSH_MOVEMENT-Wind Shaker_HY_PC-001.wav" id="17_4bdev"]
@@ -32,8 +35,6 @@
 [ext_resource type="AudioStream" uid="uid://bfivrphxmo3so" path="res://Assets/Sound/BattleSFX/preslash3.wav" id="23_gtoes"]
 [ext_resource type="AudioStream" uid="uid://srr2p3fdrd7t" path="res://Assets/Sound/BattleSFX/DSGNMisc_HIT-Yoi Yai_HY_PC-006.wav" id="24_pw7o6"]
 [ext_resource type="AudioStream" uid="uid://bxktf4721l834" path="res://Assets/Sound/BattleSFX/Slash3.wav" id="24_qcxy6"]
-[ext_resource type="AudioStream" uid="uid://3bvjjexgywyp" path="res://Assets/Sound/BattleSFX/helton_swordSlash1.wav" id="26_vmi6o"]
-[ext_resource type="AudioStream" uid="uid://bk7a8up4mkc7k" path="res://Assets/Sound/BattleSFX/helton_SwordSlash2.wav" id="27_4bdev"]
 [ext_resource type="Script" uid="uid://b5ek7nd4r5mqy" path="res://Assets/Player/player_aiming.gd" id="31_pm8dm"]
 [ext_resource type="PackedScene" uid="uid://b7ehk5us22yop" path="res://Assets/Player/player_hurtbox_collider.tscn" id="33_3bf6a"]
 [ext_resource type="AudioStream" uid="uid://boylw1dq627jj" path="res://Assets/Sound/BattleSFX/AimReady1.wav" id="33_a2eid"]
@@ -116,6 +117,125 @@ height = 8.0
 [sub_resource type="QuadMesh" id="QuadMesh_4bdev"]
 flip_faces = true
 size = Vector2(2, 2)
+
+[sub_resource type="Animation" id="Animation_mk17y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:h_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:v_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u08sk"]
+resource_name = "shake_big"
+length = 0.21
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:h_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0628653, 0.133452, 0.201639),
+"transitions": PackedFloat32Array(0.287175, 0.233258, 0.277392, 1),
+"update": 0,
+"values": [0.0, 0.2, -0.2, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:v_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0628653, 0.133333, 0.201639),
+"transitions": PackedFloat32Array(0.258816, 0.277392, 0.258816, 1),
+"update": 0,
+"values": [0.0, 0.2, -0.1, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_v5hew"]
+resource_name = "shake_small"
+length = 0.21
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:h_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0628653, 0.133452, 0.201639),
+"transitions": PackedFloat32Array(0.287175, 0.233258, 0.277392, 1),
+"update": 0,
+"values": [0.0, 0.05, -0.05, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:v_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0628653, 0.133333, 0.201639),
+"transitions": PackedFloat32Array(0.258816, 0.277392, 0.258816, 1),
+"update": 0,
+"values": [0.0, 0.05, -0.05, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4m2ga"]
+resource_name = "shake_extreme"
+length = 0.21
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:h_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0628653, 0.133452, 0.201639),
+"transitions": PackedFloat32Array(0.287175, 0.233258, 0.277392, 1),
+"update": 0,
+"values": [0.0, 0.6, -0.6, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:v_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0628653, 0.133333, 0.201639),
+"transitions": PackedFloat32Array(0.258816, 0.277392, 0.258816, 1),
+"update": 0,
+"values": [0.0, 0.6, -0.3, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5hew"]
+_data = {
+&"RESET": SubResource("Animation_mk17y"),
+&"shake_big": SubResource("Animation_u08sk"),
+&"shake_extreme": SubResource("Animation_4m2ga"),
+&"shake_small": SubResource("Animation_v5hew")
+}
 
 [sub_resource type="Animation" id="Animation_rf7nh"]
 length = 0.001
@@ -239,6 +359,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wv4rg"]
 _data = {
@@ -352,7 +484,7 @@ outline_size = 0
 unique_name_in_owner = true
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 4, 0.249898)
 billboard = 2
-texture_filter = 4
+texture_filter = 0
 texture = ExtResource("2_tfsyo")
 hframes = 16
 vframes = 39
@@ -403,11 +535,14 @@ transform = Transform3D(10, 0, 0, 0, 9.65926, -2.58819, 0, 2.58819, 9.65926, 0, 
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Pivot"]
+[node name="Camera3D" type="Camera3D" parent="Pivot" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 35.5, 95)
 current = true
 fov = 20.0
 size = 24.164
+script = ExtResource("9_u08sk")
+player = NodePath("../..")
 
 [node name="Outline" type="MeshInstance3D" parent="Pivot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0672989, -1.14777)
@@ -415,13 +550,19 @@ material_override = SubResource("ShaderMaterial_yh6lp")
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_4bdev")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/Camera3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_v5hew")
+}
+
 [node name="CamFollow" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.992966, -0.118404, 0, 0.118404, 0.992966, 0, 0, 0)
 
-[node name="Animations" type="Node" parent="."]
+[node name="Animations" type="Node" parent="." node_paths=PackedStringArray("animPlayers_to_exclude")]
 unique_name_in_owner = true
 script = ExtResource("4_kg0wl")
+animPlayers_to_exclude = [NodePath("FXAnims")]
 
 [node name="MovementAnims" type="AnimationPlayer" parent="Animations"]
 unique_name_in_owner = true
@@ -429,6 +570,12 @@ root_node = NodePath("../../SkinSuit")
 libraries = {
 &"": SubResource("AnimationLibrary_wv4rg"),
 &"movementAnims": ExtResource("3_5jfoa")
+}
+
+[node name="FXAnims" type="AnimationPlayer" parent="Animations"]
+unique_name_in_owner = true
+libraries = {
+&"PlayerFxAnims": ExtResource("12_mk17y")
 }
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "main_node")]
@@ -443,8 +590,8 @@ player = NodePath("../..")
 
 [node name="PlayerMelee" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("17_so11v")
-slash1 = ExtResource("26_vmi6o")
-slash2 = ExtResource("27_4bdev")
+slash1 = ExtResource("16_u08sk")
+slash2 = ExtResource("16_u08sk")
 preslash3 = ExtResource("23_gtoes")
 slash3 = ExtResource("24_qcxy6")
 player = NodePath("../..")
@@ -466,7 +613,7 @@ run2 = ExtResource("13_sklkn")
 [node name="PlayerDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("11_fx6gu")
 player = NodePath("../..")
-DASH_SPEED = 135.0
+DASH_SPEED = 125.0
 dashSFX1 = ExtResource("17_1ssyw")
 dashSFX2 = ExtResource("18_7rk7e")
 
@@ -664,21 +811,21 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114
 shape = SubResource("CapsuleShape3D_j3os4")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 1.5
+knockback_strength = 2.5
 
 [node name="Up2" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.0204463, 3.31886, -3.9312)
 shape = SubResource("CapsuleShape3D_j3os4")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 1.5
+knockback_strength = 2.5
 
 [node name="Up3" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.0204463, 3.31886, -3.9312)
 shape = SubResource("CapsuleShape3D_j3os4")
 disabled = true
 debug_color = Color(0.963757, 0, 0.496823, 0.42)
-knockback_strength = 2.0
+knockback_strength = 3.0
 
 [node name="Down1" parent="MeleeHurtboxes" instance=ExtResource("33_3bf6a")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.0204463, 3.31886, 4.0688)

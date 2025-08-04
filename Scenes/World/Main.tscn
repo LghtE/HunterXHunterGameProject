@@ -3,17 +3,17 @@
 [ext_resource type="Shader" uid="uid://dxkw21t1uxuvu" path="res://Scenes/World/retroPostPro.gdshader" id="1_0vnrk"]
 [ext_resource type="PackedScene" uid="uid://c2x67o7sqxefx" path="res://Scenes/World/world.tscn" id="2_hnfn7"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tp8nj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bm7dg"]
 shader = ExtResource("1_0vnrk")
-shader_parameter/change_color_depth = true
+shader_parameter/change_color_depth = false
 shader_parameter/target_color_depth = 5
-shader_parameter/dithering = true
+shader_parameter/dithering = false
 shader_parameter/scale_resolution = false
-shader_parameter/target_resolution_scale = 1
+shader_parameter/target_resolution_scale = 3
 shader_parameter/enable_recolor = false
 
 [node name="Main" type="SubViewportContainer"]
-material = SubResource("ShaderMaterial_tp8nj")
+material = SubResource("ShaderMaterial_bm7dg")
 offset_right = 1920.0
 offset_bottom = 1080.0
 stretch = true

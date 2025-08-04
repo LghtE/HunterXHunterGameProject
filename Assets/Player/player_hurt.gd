@@ -15,19 +15,19 @@ func enter():
 	player.invulnerable = true
 	$InvulTimer.start()
 	
-	#GameGlobals.hitStop(0.02)
+	GameGlobals.hitStop(0.02)
 	
 	
 	Input.start_joy_vibration(0, 0.6, 0.6, 0.2)
 
 	
 	%MovementAnims.play("movementAnims/hurt_down")
-	#%FXAnims.play("invul_flash")
+	%FXAnims.play("PlayerFxAnims/invul_flash")
 	
-	#%Cam.onPlayerHurt()
+	%Camera3D.onPlayerHurt()
 	
 func exit():
-	pass
+	%SkinSuit.modulate = Color.WHITE
 	#player.invulnerable = false
 	#%SkinSuit.material.set_shader_parameter("active", false)
 	

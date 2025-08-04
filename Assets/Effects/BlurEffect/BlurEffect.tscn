@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp155c67c7u6i"]
+
+[ext_resource type="Shader" uid="uid://itlwltrwngbh" path="res://Assets/Effects/BlurEffect/BlurEffect.gdshader" id="1_cjiv3"]
+[ext_resource type="AnimationLibrary" uid="uid://bmjxxjy5pqgd" path="res://Assets/Effects/BlurEffect/blurAnim.tres" id="2_sexcj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0p03m"]
+resource_local_to_scene = true
+shader = ExtResource("1_cjiv3")
+shader_parameter/blur_center = Vector2(0.5, 0.5)
+shader_parameter/blur_power = 0.01
+shader_parameter/sampling_count = 6
+
+[node name="BlurEffect" type="TextureRect"]
+material = SubResource("ShaderMaterial_0p03m")
+offset_left = -114.0
+offset_top = -73.0
+offset_right = 788.0
+offset_bottom = 494.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"blurAnim": ExtResource("2_sexcj")
+}
+autoplay = "blurAnim/show"
+
+[node name="BlurEffect" type="Node2D" parent="."]

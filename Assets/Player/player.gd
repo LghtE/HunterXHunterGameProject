@@ -65,7 +65,7 @@ func _ready() -> void:
 	#for child in %MeleeHurtboxes.get_children():
 		#child.knockback_strength *= knockback_multiplier
 	
-	#SignalBus.connect("onEnemyBreak", %Cam.onEnemyBreak)
+	SignalBus.connect("onEnemyBreak", %Camera3D.onEnemyBreak)
 	SignalBus.connect("onEnemyDied", enemyDead)
 	#SignalBus.connect("auraBarChanged", onAuraBarChange)
 	#SignalBus.connect("auraIncrease", onAuraIncrease)
@@ -205,8 +205,8 @@ func increaseAura(Amount):
 
 func enemyDead(enemy):
 	#%blurAnimPlayer.play("show")
-	pass
-	#%Cam.get_node("AnimationPlayer").play("shake_extreme")
+	
+	%Camera3D.get_node("AnimationPlayer").play("shake_extreme")
 	
 	
 

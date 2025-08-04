@@ -125,7 +125,7 @@ func shake_big():
 		
 		#player.increaseAura(7)
 		Input.start_joy_vibration(0, 0.3, 0.3, 0.15)
-		#%Cam.get_node("AnimationPlayer").play("shake_big")
+		%Camera3D.get_node("AnimationPlayer").play("shake_big")
 
 func shake_small():
 	await get_tree().process_frame
@@ -134,7 +134,7 @@ func shake_small():
 	
 	if hit_connected:
 		Input.start_joy_vibration(0, 0.1, 0.1, 0.1)
-		#%Cam.get_node("AnimationPlayer").play("shake_small")
+		%Camera3D.get_node("AnimationPlayer").play("shake_small")
 
 func playFinalSlashSFX():
 	GameAudioManager.playSFX(player.global_position, slash3)

@@ -6,6 +6,7 @@ class_name PlayerIdle
 
 
 func enter():
+	%SkinSuit.modulate = Color.WHITE
 	%AimingCrosshair.hide()
 	%SkinSuit.scale = Vector3(10, 10, 10)
 	%Shadow.position.y = player.position.y + 0.7
@@ -16,7 +17,7 @@ func enter():
 	
 	var anim = "movementAnims/idle_" + vecToDir(player.facing)
 	
-	if anim != "idle_":
+	if anim != "movementAnims/idle_":
 		%Animations.stopAllAnims()
 		%MovementAnims.play(anim)
 	

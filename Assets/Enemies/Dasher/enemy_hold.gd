@@ -125,10 +125,9 @@ func _on_attack_timer_timeout() -> void:
 					enemy.has_token = false
 
 func onEnReady(enem):
-	pass
-	#if enem != enemy:
-		#$OtherEnReady.start()
-		#other_en_ready = true
+	if enem != enemy:
+		$OtherEnReady.start()
+		other_en_ready = true
 
 
 func _on_other_en_ready_timeout() -> void:

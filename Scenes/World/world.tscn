@@ -25423,6 +25423,7 @@ collision_mask = 4
 shape = SubResource("ConcavePolygonShape3D_wxl67")
 
 [node name="TokenManager" parent="." instance=ExtResource("12_7c7np")]
+no_of_tokens = 3
 
 [node name="StartingPos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 201.427, 34.0479, -74.1322)

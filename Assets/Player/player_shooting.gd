@@ -118,7 +118,7 @@ func playShootAnim():
 
 func emitProjectile():
 	#player.decreaseAura(5)
-	GameAudioManager.playSFX(player.global_position, shootSFX1, -14, true)
+	GameAudioManager.playSFX(player.global_position, shootSFX1, -5, true)
 	var proj_instance = projectile.instantiate()
 	
 	
