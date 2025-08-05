@@ -12,11 +12,10 @@ func enter():
 	%AimingCrosshair.hide()
 	%SkinSuit.scale = Vector3(10, 10, 10)
 	%Shadow.position.y = player.position.y + 0.7
-	#%RunDust.emitting = true
+	%RunDust.emitting = true
 
 func exit():
-	pass
-	#%RunDust.emitting = false
+	%RunDust.emitting = false
 func update(_delta: float):
 	pass
 

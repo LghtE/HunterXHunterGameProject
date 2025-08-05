@@ -27,7 +27,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.2),
 "transitions": PackedFloat32Array(0.164939, 1.03526, 1),
 "update": 0,
-"values": [0.0, 0.092, 0.0]
+"values": [0.0, 0.2, 0.0]
 }
 
 [resource]

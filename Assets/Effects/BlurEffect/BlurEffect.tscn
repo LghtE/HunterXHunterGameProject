@@ -6,9 +6,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0p03m"]
 resource_local_to_scene = true
 shader = ExtResource("1_cjiv3")
-shader_parameter/blur_center = Vector2(0.5, 0.5)
-shader_parameter/blur_power = 0.01
-shader_parameter/sampling_count = 6
+shader_parameter/max_drag_distance = 0.5
+shader_parameter/samples = 20
+shader_parameter/contrast = 1.0
 
 [node name="BlurEffect" type="TextureRect"]
 material = SubResource("ShaderMaterial_0p03m")

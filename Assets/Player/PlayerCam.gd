@@ -12,7 +12,7 @@ var cam_tween_zoom : Tween
 @export var player : CharacterBody3D
 
 func onEnemyBreak(enemy):
-	#%blurAnimPlayer.play("show")
+	%blurAnimPlayer.play("blurAnim/show")
 	
 	tween_zoom = get_tree().create_tween()
 	tween_zoom.set_ease(Tween.EASE_OUT)
@@ -73,7 +73,7 @@ func onEnemyBreak(enemy):
 
 func onPlayerHurt():
 	
-	#%blurAnimPlayer.play("show")
+	%blurAnimPlayer.play("blurAnim/show")
 	
 	tween_zoom = get_tree().create_tween()
 	tween_zoom.set_ease(Tween.EASE_OUT)

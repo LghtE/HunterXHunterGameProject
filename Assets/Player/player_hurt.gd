@@ -18,7 +18,7 @@ func enter():
 	GameGlobals.hitStop(0.02)
 	
 	
-	Input.start_joy_vibration(0, 0.6, 0.6, 0.2)
+	Input.start_joy_vibration(0, 0.8, 0.8, 0.2)
 
 	
 	%MovementAnims.play("movementAnims/hurt_down")
