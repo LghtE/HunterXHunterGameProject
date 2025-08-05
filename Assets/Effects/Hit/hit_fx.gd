@@ -22,8 +22,8 @@ func spawn(id, playSfx = true):
 			#position.y -= 20
 			#$PurpleHitFx.rotation_degrees = randf_range(500, 250)
 			#$AnimationPlayer.play("1")
-		#2:
-			#$AnimationPlayer.play("2")
+		2:
+			$AnimationPlayer.play("hit_fx/2")
 func delete():
 	queue_free()
 

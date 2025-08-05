@@ -4,6 +4,7 @@ extends Node
 @onready var hitFX = preload("res://Assets/Effects/Hit/hit_fx.tscn")
 @onready var enemyReadyInd = preload("res://Assets/Components/EnemyReadyIndicator/enemy_ready_indicator.tscn")
 @onready var break_FX = preload("res://Assets/Components/BreakComponent/break_fx.tscn")
+@onready var NumPopUp = preload("res://Assets/Components/NumberPopupComponent/NumPopupComponent.tscn")
 
 func dustParticleFx(pos, id, direction = Vector3.ZERO):
 	var dustp_instance = dust_particle.instantiate()
@@ -46,3 +47,16 @@ func breakFx(offset, enemy):
 	
 	breakfx_instance.set_deferred("global_position", offset)
 	enemy.add_child(breakfx_instance)
+
+
+func numPopup(value: int, pos: Vector3):
+	
+	var popup: NumberPopupComponent = NumPopUp.instantiate()
+	
+	popup.set_deferred("global_position", pos)
+	popup.num = value
+	
+	var world = get_tree().get_first_node_in_group("world")
+	
+	world.add_child(popup)
+	world.move_child(popup, 0)

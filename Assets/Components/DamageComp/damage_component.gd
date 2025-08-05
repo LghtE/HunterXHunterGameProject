@@ -48,7 +48,7 @@ func damage(inc_damage, knockback_str = 0.0, knockback_direction = Vector3.ZERO)
 		entity.current_health = clamp(entity.current_health, 0, entity.max_health)
 		
 		# Refactor
-		#Fx.numPopup(inc_damage, entity.global_position + Vector2(0, -40))
+		Fx.numPopup(inc_damage, entity.global_position + Vector3(0, 7, 2))
 		
 		if entity.has_node("HealthBarComponent"):
 			entity.get_node("HealthBarComponent").hpDrop(entity.current_health + inc_damage,

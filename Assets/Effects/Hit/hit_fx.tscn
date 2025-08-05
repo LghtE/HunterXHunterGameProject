@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://btocv3djf5fd5"]
+[gd_scene load_steps=6 format=3 uid="uid://btocv3djf5fd5"]
 
 [ext_resource type="Script" uid="uid://dted0t2x42rrv" path="res://Assets/Effects/Hit/hit_fx.gd" id="1_jux12"]
 [ext_resource type="Texture2D" uid="uid://b0mf0j0e26new" path="res://Assets/Effects/Hit/testFX.png" id="2_23bcg"]
 [ext_resource type="AnimationLibrary" uid="uid://botymj47gwite" path="res://Assets/Effects/Hit/hit_fx.tres" id="2_i1a6a"]
 [ext_resource type="AudioStream" uid="uid://ipsqoljkug8u" path="res://Assets/Sound/BattleSFX/Dash3.wav" id="2_snepq"]
+[ext_resource type="Texture2D" uid="uid://r3j4ach2edep" path="res://Assets/Effects/Hit/hitsparkFx.png" id="5_8xcck"]
 
 [node name="HitFx" type="Node3D"]
 script = ExtResource("1_jux12")
@@ -15,8 +16,19 @@ libraries = {
 }
 
 [node name="BaseHit" type="Sprite3D" parent="."]
-transform = Transform3D(11.3, 0, 0, 0, 10, 0, 0, 0, 11.3, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
 billboard = 2
 texture_filter = 0
 texture = ExtResource("2_23bcg")
 hframes = 7
+frame = 6
+
+[node name="PinkSparkHit" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("5_8xcck")
+hframes = 7
+frame = 6

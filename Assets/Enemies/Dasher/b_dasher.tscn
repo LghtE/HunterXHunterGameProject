@@ -267,7 +267,6 @@ script = ExtResource("16_rvpgs")
 enemy = NodePath("../..")
 attack_motion_strength = 200.0
 attack_anim_name = "dasherAnims/Attack"
-predict_movement = true
 
 [node name="EnemyReady" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "attackState")]
 script = ExtResource("17_sxtd4")

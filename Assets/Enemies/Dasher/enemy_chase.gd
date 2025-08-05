@@ -33,7 +33,7 @@ func physics_update(_delta : float):
 			Transitioned.emit(self, "EnemyHold")
 	
 	
-	enemy.velocity += Vector3(0, -98, 0) * _delta
+	enemy.velocity += Vector3(0, -200, 0) * _delta
 	
 	enemy.move_and_slide()
 

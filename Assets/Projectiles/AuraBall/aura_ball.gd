@@ -87,6 +87,6 @@ func _on_hurt_box_area_entered(area: Area3D) -> void:
 		var rb_dir = (area.owner.global_position - GameGlobals.returnPlayer().global_position).normalized()
 		area.owner.projectileRebound(rb_dir)
 	
-	Fx.hitFx(global_position, 0)
+	Fx.hitFx(global_position, 2)
 	
 	queue_free()

@@ -1,0 +1,243 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhk4ar0rosgon"]
+
+[ext_resource type="Script" uid="uid://bnu66cgnanrof" path="res://Assets/Components/NumberPopupComponent/num_popup_component.gd" id="1_2cchq"]
+[ext_resource type="Texture2D" uid="uid://dg8rdpcydnk6g" path="res://Assets/Components/NumberPopupComponent/Numbers.png" id="1_ne1mj"]
+
+[sub_resource type="Animation" id="Animation_3synl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Numbers/DigitOnes:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Numbers/DigitTwos:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Numbers/DigitThrees:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Numbers/DigitFours:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2cchq"]
+resource_name = "popup"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Numbers/DigitOnes:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.6),
+"transitions": PackedFloat32Array(0.277392, 2.54912, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8.02), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Numbers/DigitTwos:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.733333),
+"transitions": PackedFloat32Array(0.277392, 2.54912, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8.02), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Numbers/DigitThrees:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.866667),
+"transitions": PackedFloat32Array(0.277392, 2.54912, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8.02), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Numbers/DigitFours:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.966667),
+"transitions": PackedFloat32Array(0.277392, 2.54912, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8.02), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Numbers/DigitOnes:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.67991, 0.972751),
+"transitions": PackedFloat32Array(0.112657, 0.138696, 1.8025, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(41.437, 20, 20, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.06667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"delete"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Numbers/DigitTwos:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.67991, 0.972751),
+"transitions": PackedFloat32Array(0.112657, 0.138696, 1.8025, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(41.437, 20, 20, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Numbers/DigitThrees:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.67991, 0.972751),
+"transitions": PackedFloat32Array(0.112657, 0.138696, 1.8025, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(41.437, 20, 20, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Numbers/DigitFours:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.67991, 0.972751),
+"transitions": PackedFloat32Array(0.112657, 0.138696, 1.8025, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(41.437, 20, 20, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3synl"]
+_data = {
+&"RESET": SubResource("Animation_3synl"),
+&"popup": SubResource("Animation_2cchq")
+}
+
+[node name="NumPopupComponent" type="Node3D"]
+visible = false
+script = ExtResource("1_2cchq")
+
+[node name="Numbers" type="Node3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="DigitOnes" type="Sprite3D" parent="Numbers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122727, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_ne1mj")
+hframes = 12
+
+[node name="DigitTwos" type="Sprite3D" parent="Numbers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0415623, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_ne1mj")
+hframes = 12
+frame = 9
+
+[node name="DigitThrees" type="Sprite3D" parent="Numbers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0413711, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_ne1mj")
+hframes = 12
+frame = 2
+
+[node name="DigitFours" type="Sprite3D" parent="Numbers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11347, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_ne1mj")
+hframes = 12
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3synl")
+}
+autoplay = "popup"

@@ -33,6 +33,7 @@ sky_material = SubResource("ProceduralSkyMaterial_hv7uk")
 background_mode = 2
 sky = SubResource("Sky_dr8i3")
 glow_enabled = true
+glow_intensity = 1.0
 glow_strength = 1.34
 fog_mode = 1
 fog_light_color = Color(0.423204, 0.264424, 0.587186, 1)
