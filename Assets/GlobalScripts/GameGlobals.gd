@@ -1,6 +1,7 @@
 extends Node2D
 class_name Game
 
+@onready var health_pickup = preload("res://Assets/Components/HealthPickup/health_pickup.tscn")
 
 var player_can_move = true
 
@@ -151,14 +152,14 @@ func findNodeById(parent: Node, target_id: String):
 		return null
 
 
-#func spawnHealthPickup(pos, impulse):
-	#var ins = health_pickup.instantiate()
-	#
-	#ins.global_position = pos
-	#
-	#var world = get_tree().get_first_node_in_group("world")
-	#
-	#world.add_child(ins)
-	#world.move_child(ins, 0)
-	#ins.impulse = impulse
-	#ins.spawn()
+func spawnHealthPickup(pos, impulse):
+	var ins = health_pickup.instantiate()
+	
+	ins.set_deferred("global_position", pos)
+	
+	var world = get_tree().get_first_node_in_group("world")
+	
+	world.add_child(ins)
+	world.move_child(ins, 0)
+	ins.impulse = impulse
+	ins.spawn()

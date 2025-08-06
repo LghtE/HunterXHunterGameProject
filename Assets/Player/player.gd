@@ -275,16 +275,17 @@ func enableCam():
 
 
 func playerHeal(frac):
+	
 	current_health += max_health * frac
 	current_health = clamp(current_health, 0, max_health)
 	
 	var heal_tw = get_tree().create_tween()
 	
-	%SkinSuit.modulate = Color(1.0, 8.0, 1.0, 1.0)
+	%SkinSuit.modulate = Color.GREEN
 	heal_tw.set_ease(Tween.EASE_OUT)
 	heal_tw.tween_property(%SkinSuit, "modulate", Color.WHITE, 0.5)
 	
-	get_node("CanvasLayer/HealthBarComponent").hpDrop(current_health - (frac * max_health), current_health, 0.6)
+	#get_node("CanvasLayer/HealthBarComponent").hpDrop(current_health - (frac * max_health), current_health, 0.6)
 
 
 # TESTSTUFF

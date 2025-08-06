@@ -155,6 +155,7 @@ rightShoulderButton={
 3d_physics/layer_6="PlayerHitbox"
 3d_physics/layer_7="EnemyHurtBox"
 3d_physics/layer_8="EnemyHitBox"
+3d_physics/layer_9="Pickup"
 
 [physics]
 

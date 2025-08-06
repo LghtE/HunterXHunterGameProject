@@ -129,7 +129,7 @@ func onProjectileHit():
 				if %StateMachine.current_state.name == "EnemyReady":
 					if current_health != 0:
 						
-						#call_deferred("spawnHealthPickupSafe", global_position)
+						call_deferred("spawnHealthPickupSafe", global_position)
 						
 						if get_node("BreakIndicatorComp"):
 							get_node("BreakIndicatorComp").tweenOut()
@@ -154,16 +154,26 @@ func onUntarget():
 
 func spawnHealthPickupSafe(pos):
 	var x_com 
+	var z_com
+	
 	if randf() > 0.5:
 		x_com = randf_range(-0.8, -0.2)
 	else:
 		x_com = randf_range(0.2, 0.8)
-
-	var y_com = -1
 	
-	var x_mag = 250
-	var y_mag = 350
-	var impulse = Vector2(x_com * x_mag, y_com * y_mag)
+	if randf() > 0.5:
+		z_com = randf_range(-0.8, -0.2)
+	else:
+		z_com = randf_range(0.2, 0.8)
+	
+	
+	var y_com = 1
+	
+	var x_mag = 20
+	var y_mag = 30
+	var z_mag = 20
+	
+	var impulse = Vector3(x_com * x_mag, y_com * y_mag, z_com * z_mag)
 	GameGlobals.spawnHealthPickup(pos, impulse)
 
 func delayEnable():
